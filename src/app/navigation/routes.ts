@@ -4,6 +4,7 @@ import {
   HabitsPage,
   NewHabitPage,
   OnboardingPage,
+  ProgressPage,
   TimerPage,
 } from '../../pages';
 
@@ -27,6 +28,10 @@ export const routes = [
   {
     name: 'Onboarding',
     component: OnboardingPage,
+  },
+  {
+    name: 'Progress',
+    component: ProgressPage,
   },
   {
     name: 'Timer',

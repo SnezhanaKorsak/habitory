@@ -1,9 +1,11 @@
 import { Text, View } from 'react-native';
 
+import { Layout } from '../../../widgets';
+
 export const EditHabitPage = () => {
   return (
-    <View>
+    <Layout>
       <Text>Edit Habit Page</Text>
-    </View>
+    </Layout>
   );
 };

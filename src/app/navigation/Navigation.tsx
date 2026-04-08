@@ -1,28 +1,35 @@
 import { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { OnboardingPage } from '../../pages';
 import { routes } from './routes';
 
-import { TypeRootStackParamList } from '../../shared/types';
+import {
+  StackNavigationProp,
+  TypeRootStackParamList,
+} from '../../shared/types';
 
 const Stack = createNativeStackNavigator<TypeRootStackParamList>();
 
 export const Navigation = () => {
-  const [showPreview, setShowPreview] = useState(true);
+  const navigation = useNavigation<StackNavigationProp>();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShowPreview(false);
+      // Переход к главному экрану после 3 секунд
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Habits' }],
+      });
     }, 3000);
 
-    return () => {
-      clearTimeout(timer);
-    };
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <Stack.Navigator
+      initialRouteName="Onboarding"
       screenOptions={{
         headerShown: false,
         //contentStyle: { backgroundColor: theme.colors.bgColor },
@@ -30,13 +37,9 @@ export const Navigation = () => {
         animationDuration: 300,
       }}
     >
-      {showPreview ? (
-        <Stack.Screen name="Onboarding" component={OnboardingPage} />
-      ) : (
-        routes.map(({ name, component }) => (
-          <Stack.Screen key={name} name={name} component={component} />
-        ))
-      )}
+      {routes.map(({ name, component }) => (
+        <Stack.Screen key={name} name={name} component={component} />
+      ))}
     </Stack.Navigator>
   );
 };

@@ -1,17 +1,22 @@
-import { Feather } from '@expo/vector-icons';
+import { NavigationProp } from '@react-navigation/native';
+
+import { MaterialIcons } from '@expo/vector-icons';
 
 export type TypeRootStackParamList = {
   Awards: undefined;
   Edit: undefined;
   Habits: undefined;
   New: undefined;
+  Progress: undefined;
   Onboarding: undefined;
   Timer: undefined;
 };
 
 export type MenuItemType = {
-  iconName: keyof typeof Feather.glyphMap;
+  iconName: keyof typeof MaterialIcons.glyphMap;
   path: keyof TypeRootStackParamList;
 };
 
 export type NavFunction = (name: keyof TypeRootStackParamList) => void;
+
+export type StackNavigationProp = NavigationProp<TypeRootStackParamList>;

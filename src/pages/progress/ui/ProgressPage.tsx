@@ -1,9 +1,11 @@
 import { Text, View } from 'react-native';
 
+import { Layout } from '../../../widgets';
+
 export const ProgressPage = () => {
   return (
-    <View>
+    <Layout>
       <Text>Progress Page</Text>
-    </View>
+    </Layout>
   );
 };

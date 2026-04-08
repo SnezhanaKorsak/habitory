@@ -1,9 +1,11 @@
 import { Text, View } from 'react-native';
 
+import { Layout } from '../../../widgets';
+
 export const TimerPage = () => {
   return (
-    <View>
+    <Layout>
       <Text>Timer Page</Text>
-    </View>
+    </Layout>
   );
 };

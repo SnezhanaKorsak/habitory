@@ -1,9 +1,11 @@
 import { Text, View } from 'react-native';
 
+import { Layout } from '../../../widgets';
+
 export const NewHabitPage = () => {
   return (
-    <View>
+    <Layout>
       <Text>Add Habit Page</Text>
-    </View>
+    </Layout>
   );
 };

@@ -1,6 +1,6 @@
 import { Pressable } from 'react-native';
 
-import { Feather } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import { MenuItemType, NavFunction } from '../../../shared/types';
 
@@ -16,7 +16,7 @@ export const MenuItem = ({ item, currentRoute, nav }: Props) => {
 
   return (
     <Pressable onPress={() => nav(path)}>
-      <Feather
+      <MaterialIcons
         name={iconName}
         size={26}
         //color={theme.colors[isActive ? 'primary' : 'secondary']}
