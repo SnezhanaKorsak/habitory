@@ -4,7 +4,7 @@ import {
   useNavigationContainerRef,
 } from '@react-navigation/native';
 
-import { BottomMenu } from '../../widgets/bottom-menu';
+import { BottomMenu } from '../../widgets';
 import { Navigation } from './Navigation';
 
 export const RootNavigation = () => {
@@ -22,7 +22,7 @@ export const RootNavigation = () => {
     );
 
     return () => navRef.removeListener('state', listener);
-  }, []);
+  }, [navRef]);
 
   return (
     <>
@@ -30,7 +30,7 @@ export const RootNavigation = () => {
         <Navigation />
       </NavigationContainer>
 
-      {currentRoute && (
+      {currentRoute && currentRoute != 'Onboarding' && (
         <BottomMenu currentRoute={currentRoute} nav={navRef.navigate} />
       )}
     </>

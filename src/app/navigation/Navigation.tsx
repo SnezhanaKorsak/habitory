@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { OnboardingPage } from '../../pages';
 import { routes } from './routes';
 
 import {
@@ -25,14 +24,13 @@ export const Navigation = () => {
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [navigation]);
 
   return (
     <Stack.Navigator
       initialRouteName="Onboarding"
       screenOptions={{
         headerShown: false,
-        //contentStyle: { backgroundColor: theme.colors.bgColor },
         animation: 'slide_from_right',
         animationDuration: 300,
       }}
