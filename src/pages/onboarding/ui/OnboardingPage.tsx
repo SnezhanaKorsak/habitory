@@ -1,8 +1,9 @@
-import { Image,StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { theme } from '../../../app/theme';
+import { LoadingDots } from '../../../shared/ui';
 
 export const OnboardingPage = () => {
   const { top } = useSafeAreaInsets();
@@ -18,6 +19,8 @@ export const OnboardingPage = () => {
         <Text style={styles.title}>Digital Habits Tracker</Text>
         <Text style={styles.description}>Your habits, your power</Text>
       </View>
+
+      <LoadingDots />
 
       <Image
         source={require('../../../../assets/bg-image.jpg')}
@@ -42,6 +45,7 @@ const styles = StyleSheet.create({
   },
   description: {
     marginTop: -10,
+    marginBottom: 20,
     fontSize: 30,
     fontFamily: 'BritishTimes',
     textAlign: 'center',
@@ -49,6 +53,6 @@ const styles = StyleSheet.create({
   },
   img: {
     width: '100%',
-    height: 550,
+    height: 500,
   },
 });
