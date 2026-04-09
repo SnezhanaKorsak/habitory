@@ -1715,7 +1715,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@expo/vector-icons@npm:^15.0.3":
+"@expo/vector-icons@npm:^15.0.3, @expo/vector-icons@npm:^15.1.1":
   version: 15.1.1
   resolution: "@expo/vector-icons@npm:15.1.1"
   peerDependencies:
@@ -5156,6 +5156,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "habitory@workspace:."
   dependencies:
+    "@expo/vector-icons": "npm:^15.1.1"
     "@react-navigation/elements": "npm:^2.9.14"
     "@react-navigation/native": "npm:^7.2.2"
     "@react-navigation/native-stack": "npm:^7.14.10"

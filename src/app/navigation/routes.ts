@@ -37,6 +37,4 @@ export const routes = [
     name: 'Timer',
     component: TimerPage,
   },
-] as const;
-
-export type RouteKeys = keyof typeof routes;
+];

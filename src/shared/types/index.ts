@@ -1,3 +1,4 @@
+export { FeatherIconName } from './icons';
 export {
   MenuItemType,
   NavFunction,
