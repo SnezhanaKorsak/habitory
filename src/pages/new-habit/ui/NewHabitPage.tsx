@@ -1,14 +1,30 @@
-import React from 'react';
-import { Text } from 'react-native';
+import React, { useState } from 'react';
 
-import { SaveNewHabit } from '../../../features/save-new-habbit';
+import { IconButton, PageTitle } from '../../../shared/ui';
 import { Layout } from '../../../widgets';
+import { HabitForm, HabitFormData } from '../../../widgets/habit-form';
 
 export const NewHabitPage = () => {
+  const [form, setForm] = useState<HabitFormData>({
+    type: 'check',
+    name: '',
+    description: '',
+    icon: '',
+    color: '',
+  });
+
+  const handleSave = () => {
+    console.log(form);
+  };
+
   return (
     <Layout>
-      <SaveNewHabit />
-      <Text>Add Habit Page</Text>
+      <PageTitle
+        title={'New Habit'}
+        rightAddon={<IconButton icon="save" size={32} callback={handleSave} />}
+      />
+
+      <HabitForm value={form} onChange={setForm} />
     </Layout>
   );
 };
