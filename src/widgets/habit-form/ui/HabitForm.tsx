@@ -1,3 +1,4 @@
+import { HabitColorPicker } from './HabitColorPicker';
 import { HabitDetailsBlock } from './HabitDetailsBlock';
 import { HabitIconPicker } from './HabitIconPicker';
 import { HabitTypeSelect } from './HabitTypeSelect';
@@ -18,9 +19,7 @@ export const HabitForm = ({ form, setForm }: Props) => {
 
       <HabitIconPicker form={form} setForm={setForm} />
 
-      {/* <HabitColorPicker />*/}
-
-      {/* <Button onPress={onSubmit}>Save</Button>*/}
+      <HabitColorPicker form={form} setForm={setForm} />
     </>
   );
 };

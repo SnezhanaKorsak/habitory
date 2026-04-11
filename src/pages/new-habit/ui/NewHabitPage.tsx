@@ -5,12 +5,14 @@ import { IconButton, PageTitle } from '../../../shared/ui';
 import { Layout } from '../../../widgets';
 import { HabitForm, HabitFormData } from '../../../widgets/habit-form';
 
+import { FeatherIconName } from '../../../shared/types';
+
 export const NewHabitPage = () => {
   const [form, setForm] = useState<HabitFormData>({
     type: HabitType.check,
     name: '',
     description: '',
-    icon: '',
+    icon: '' as FeatherIconName,
     color: '',
   });
 
