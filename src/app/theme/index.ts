@@ -1,5 +1,7 @@
 const bgPrimary = '#e4dac0';
 const bgSecondary = '#DCE1DA';
+const bgAccent = '#DDCDA2';
+
 const cardsBg = [
   '#B8CEC2',
   '#EBC8B4',
@@ -13,11 +15,12 @@ const cardsBg = [
 const accent100 = '#C64A38';
 const accent200 = '#E17C4B';
 const textPrimary = '#171717';
-const textSecondary = '#7D7D7D';
+const textSecondary = '#5e5d5d';
 
 export const theme = {
   bgPrimary,
   bgSecondary,
+  bgAccent,
   cardsBg,
   accent100,
   accent200,

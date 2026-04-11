@@ -2,6 +2,8 @@ import { Pressable } from 'react-native';
 
 import { MaterialIcons } from '@expo/vector-icons';
 
+import { theme } from '../../../app/theme';
+
 import { MenuItemType, NavFunction } from '../../../shared/types';
 
 type Props = {
@@ -18,8 +20,8 @@ export const MenuItem = ({ item, currentRoute, nav }: Props) => {
     <Pressable onPress={() => nav(path)}>
       <MaterialIcons
         name={iconName}
-        size={26}
-        //color={theme.colors[isActive ? 'primary' : 'secondary']}
+        size={32}
+        color={theme[isActive ? 'accent100' : 'textSecondary']}
       />
     </Pressable>
   );

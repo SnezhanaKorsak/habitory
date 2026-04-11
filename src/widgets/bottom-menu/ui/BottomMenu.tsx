@@ -2,6 +2,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { theme } from '../../../app/theme';
 import { menuData } from '../config/menu-data';
 import { MenuItem } from './MenuItem';
 
@@ -16,7 +17,7 @@ export const BottomMenu = ({ currentRoute, nav }: Props) => {
   const { bottom } = useSafeAreaInsets();
 
   return (
-    <View style={[{ paddingBottom: bottom + 20 }, styles.container]}>
+    <View style={[{ paddingBottom: bottom + 12 }, styles.container]}>
       {menuData.map((item) => (
         <MenuItem
           key={item.path}
@@ -34,8 +35,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 20,
+    paddingTop: 12,
     paddingHorizontal: 32,
-    //backgroundColor: theme.colors.bgColor,
+    backgroundColor: theme.bgAccent,
   },
 });
