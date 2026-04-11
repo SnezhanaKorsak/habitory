@@ -1,14 +1,20 @@
-import { HabitFormData } from '../model/types';
+import { HabitTypeSelect } from './HabitTypeSelect';
+
+import { ChangeFormHandler, HabitFormData } from '../model/types';
 
 type Props = {
-  value: HabitFormData;
-  onChange: (value: HabitFormData) => void;
+  form: HabitFormData;
+  setForm: (value: HabitFormData) => void;
 };
 
-export const HabitForm = ({ value, onChange }: Props) => {
+export const HabitForm = ({ form, setForm }: Props) => {
+  const changeForm: ChangeFormHandler = (key, newValue) => {
+    setForm({ ...form, [key]: newValue });
+  };
+
   return (
     <>
-      {/*  <HabitTypeSelect />*/}
+      <HabitTypeSelect onChange={(value) => changeForm('type', value)} />
 
       {/* <HabitDetailsBlock />*/}
 

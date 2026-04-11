@@ -5178,6 +5178,7 @@ __metadata:
     prettier: "npm:^3"
     react: "npm:19.1.0"
     react-native: "npm:0.81.5"
+    react-native-dropdown-select-list: "npm:^2.0.5"
     react-native-safe-area-context: "npm:~5.6.0"
     react-native-screens: "npm:~4.16.0"
     typescript: "npm:~5.9.2"
@@ -7776,6 +7777,13 @@ __metadata:
   version: 19.2.4
   resolution: "react-is@npm:19.2.4"
   checksum: 10c0/477a7cfc900f24194606e315fa353856a3a13487ea8eca841678817cad4daef64339ea0d1e84e58459fc75dbe0d9ba00bb0cc626db3d07e0cf31edc64cb4fa37
+  languageName: node
+  linkType: hard
+
+"react-native-dropdown-select-list@npm:^2.0.5":
+  version: 2.0.5
+  resolution: "react-native-dropdown-select-list@npm:2.0.5"
+  checksum: 10c0/ca3d885efde0628d40956af2c08dcc92599963b5d0eb4bdcbef7e991d91dc5cb61739c85ad39c8dc2c5ec389a0532a394ec3bb97dbd6a95d6d900468a2d67781
   languageName: node
   linkType: hard
 

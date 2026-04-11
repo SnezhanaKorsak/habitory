@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 
+import { HabitType } from '../../../entities/habit';
 import { IconButton, PageTitle } from '../../../shared/ui';
 import { Layout } from '../../../widgets';
 import { HabitForm, HabitFormData } from '../../../widgets/habit-form';
 
 export const NewHabitPage = () => {
   const [form, setForm] = useState<HabitFormData>({
-    type: 'check',
+    type: HabitType.check,
     name: '',
     description: '',
     icon: '',
@@ -24,7 +25,7 @@ export const NewHabitPage = () => {
         rightAddon={<IconButton icon="save" size={32} callback={handleSave} />}
       />
 
-      <HabitForm value={form} onChange={setForm} />
+      <HabitForm form={form} setForm={setForm} />
     </Layout>
   );
 };
