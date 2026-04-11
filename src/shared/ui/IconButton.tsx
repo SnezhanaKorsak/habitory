@@ -14,10 +14,7 @@ export const IconButton = ({ icon, callback, size = 26 }: Props) => {
   return (
     <Pressable
       onPress={callback}
-      style={({ pressed }) => [
-        styles.button,
-        pressed && styles.buttonPressed, // стиль при нажатии
-      ]}
+      style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}
     >
       <Feather name={icon} size={size} />
     </Pressable>

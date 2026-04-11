@@ -1,4 +1,5 @@
 import { HabitDetailsBlock } from './HabitDetailsBlock';
+import { HabitIconPicker } from './HabitIconPicker';
 import { HabitTypeSelect } from './HabitTypeSelect';
 
 import { HabitFormData } from '../model/types';
@@ -15,7 +16,7 @@ export const HabitForm = ({ form, setForm }: Props) => {
 
       <HabitDetailsBlock form={form} setForm={setForm} />
 
-      {/* <HabitIconPicker />*/}
+      <HabitIconPicker form={form} setForm={setForm} />
 
       {/* <HabitColorPicker />*/}
 

@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { HabitType } from '../../../entities/habit';
-import { FloatingInput, TimerPicker } from '../../../shared/ui';
+import { FloatingInput } from '../../../shared/ui';
+import { TimerPicker } from './TimerPicker';
 
 import { HabitFormData } from '../model/types';
 

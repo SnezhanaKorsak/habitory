@@ -3,10 +3,9 @@ import { useState } from 'react';
 import { SelectList } from 'react-native-dropdown-select-list';
 
 import { HabitType } from '../../../entities/habit';
+import { formData } from '../constants/form-data';
 
 import { HabitFormData } from '../model/types';
-
-import { typesData } from '../constants/select-types-data';
 
 type Props = {
   form: HabitFormData;
@@ -22,7 +21,7 @@ export const HabitTypeSelect = ({ form, setForm }: Props) => {
 
   return (
     <SelectList
-      data={typesData}
+      data={formData}
       save="value"
       placeholder="Select type of habit"
       search={false}

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { theme } from '../../app/theme';
-import { WheelPicker } from './WheelPicker';
+import { theme } from '../../../app/theme';
+import { WheelPicker } from '../../../shared/ui';
 
 const hoursData = Array.from({ length: 25 }, (_, i) => i);
 const minutesData = Array.from({ length: 60 }, (_, i) => i);
@@ -60,9 +60,9 @@ export const TimerPicker = ({ value, onChange }: Props) => {
             </View>
 
             <View style={styles.labels}>
-              <Text>h</Text>
-              <Text>m</Text>
-              <Text>s</Text>
+              <Text>hours</Text>
+              <Text>minutes</Text>
+              <Text>seconds</Text>
             </View>
 
             <View style={styles.actions}>

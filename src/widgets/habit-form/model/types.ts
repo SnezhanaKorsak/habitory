@@ -1,5 +1,7 @@
 import { HabitType } from '../../../entities/habit';
 
+import { FeatherIconName } from '../../../shared/types';
+
 export type HabitFormData = {
   type: HabitType;
   name: string;
@@ -7,7 +9,7 @@ export type HabitFormData = {
   numericGoal?: number;
   numericUnit?: string;
   timerGoal?: number;
-  icon: string;
+  icon: FeatherIconName;
   color: string;
 };
 
