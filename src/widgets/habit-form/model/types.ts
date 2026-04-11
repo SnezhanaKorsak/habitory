@@ -11,11 +11,6 @@ export type HabitFormData = {
   color: string;
 };
 
-export type ChangeFormHandler = <K extends keyof HabitFormData>(
-  key: K,
-  value: HabitFormData[K],
-) => void;
-
 export type SelectHabitType = {
   key: string;
   value: HabitType;

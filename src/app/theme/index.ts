@@ -15,7 +15,9 @@ const cardsBg = [
 const accent100 = '#C64A38';
 const accent200 = '#E17C4B';
 const textPrimary = '#171717';
-const textSecondary = '#5e5d5d';
+const textSecondary = '#666';
+
+const border = '#7c7a7a';
 
 export const theme = {
   bgPrimary,
@@ -26,4 +28,5 @@ export const theme = {
   accent200,
   textPrimary,
   textSecondary,
+  border,
 };

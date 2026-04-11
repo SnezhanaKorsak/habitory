@@ -4,17 +4,20 @@ import { SelectList } from 'react-native-dropdown-select-list';
 
 import { HabitType } from '../../../entities/habit';
 
+import { HabitFormData } from '../model/types';
+
 import { typesData } from '../constants/select-types-data';
 
 type Props = {
-  onChange: (value: HabitType) => void;
+  form: HabitFormData;
+  setForm: (value: HabitFormData) => void;
 };
 
-export const HabitTypeSelect = ({ onChange }: Props) => {
+export const HabitTypeSelect = ({ form, setForm }: Props) => {
   const [selected, setSelected] = useState<HabitType>(HabitType.check);
 
   const onSelectHandler = () => {
-    onChange(selected);
+    setForm({ ...form, type: selected });
   };
 
   return (
@@ -25,6 +28,8 @@ export const HabitTypeSelect = ({ onChange }: Props) => {
       search={false}
       setSelected={(val: HabitType) => setSelected(val)}
       onSelect={onSelectHandler}
+      boxStyles={{ paddingHorizontal: 12 }}
+      inputStyles={{ fontSize: 16 }}
     />
   );
 };

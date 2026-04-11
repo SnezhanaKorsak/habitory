@@ -1,6 +1,7 @@
+import { HabitDetailsBlock } from './HabitDetailsBlock';
 import { HabitTypeSelect } from './HabitTypeSelect';
 
-import { ChangeFormHandler, HabitFormData } from '../model/types';
+import { HabitFormData } from '../model/types';
 
 type Props = {
   form: HabitFormData;
@@ -8,15 +9,11 @@ type Props = {
 };
 
 export const HabitForm = ({ form, setForm }: Props) => {
-  const changeForm: ChangeFormHandler = (key, newValue) => {
-    setForm({ ...form, [key]: newValue });
-  };
-
   return (
     <>
-      <HabitTypeSelect onChange={(value) => changeForm('type', value)} />
+      <HabitTypeSelect form={form} setForm={setForm} />
 
-      {/* <HabitDetailsBlock />*/}
+      <HabitDetailsBlock form={form} setForm={setForm} />
 
       {/* <HabitIconPicker />*/}
 
