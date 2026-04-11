@@ -4,14 +4,20 @@ import { Animated, StyleSheet, TextInput, View } from 'react-native';
 import { theme } from '../../app/theme';
 
 type Props = {
-  value: string;
-  onChangeValue: (value: string) => void;
+  value: string | number;
+  onChangeValue: (value: string | number) => void;
   placeholder: string;
+  type?: 'numeric';
 };
 
-export const FloatingInput = ({ value, onChangeValue, placeholder }: Props) => {
+export const FloatingInput = ({
+  value,
+  onChangeValue,
+  placeholder,
+  type,
+}: Props) => {
   const [isFocused, setIsFocused] = useState(false);
-  const [text, setText] = useState(value);
+  const [text, setText] = useState(String(value ?? ''));
 
   const animated = useRef(new Animated.Value(value ? 1 : 0)).current;
 
@@ -24,7 +30,12 @@ export const FloatingInput = ({ value, onChangeValue, placeholder }: Props) => {
   }, [isFocused, text, animated]);
 
   const onEndEditingHandler = () => {
-    onChangeValue(text);
+    if (type === 'numeric') {
+      const numberValue = Number(text);
+      onChangeValue(isNaN(numberValue) ? 0 : numberValue);
+    } else {
+      onChangeValue(text);
+    }
   };
 
   return (
@@ -61,6 +72,7 @@ export const FloatingInput = ({ value, onChangeValue, placeholder }: Props) => {
       </Animated.Text>
 
       <TextInput
+        keyboardType={type === 'numeric' ? 'numeric' : 'default'}
         value={text}
         onChangeText={setText}
         onEndEditing={onEndEditingHandler}
@@ -80,7 +92,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     justifyContent: 'center',
     position: 'relative',
-    marginTop: 20,
   },
 
   input: {
