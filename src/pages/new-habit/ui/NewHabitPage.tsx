@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
 
-import { createNewHabit } from '../../../features/create-new-habit';
+import { useCreateHabit } from '../../../features/create-new-habit';
 import { IconButton, PageTitle } from '../../../shared/ui';
 import { Layout } from '../../../widgets';
 import { HabitForm } from '../../../widgets/habit-form';
 
-import {
-  FeatherIconName,
-  HabitFormData,
-  StackNavigationProp,
-} from '../../../shared/types';
+import { FeatherIconName, HabitFormData } from '../../../shared/types';
 import { HabitType } from '../../../shared/types/habit';
 
 export const NewHabitPage = () => {
-  const navigation = useNavigation<StackNavigationProp>();
+  const { createHabit } = useCreateHabit();
 
   const [form, setForm] = useState<HabitFormData>({
     type: HabitType.check,
@@ -25,8 +20,7 @@ export const NewHabitPage = () => {
   });
 
   const handleSave = () => {
-    createNewHabit(form);
-    navigation.navigate('Habits');
+    createHabit(form);
   };
 
   return (

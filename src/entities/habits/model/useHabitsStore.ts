@@ -13,6 +13,7 @@ type State = {
 
 type Action = {
   addHabit: (habit: Habit) => void;
+  deleteHabit: (id: string) => void;
 };
 
 export const useHabitsStore = create<State & Action>()(
@@ -25,6 +26,10 @@ export const useHabitsStore = create<State & Action>()(
       addHabit: (habit) =>
         set((state) => ({
           habits: [...state.habits, habit],
+        })),
+      deleteHabit: (id: string) =>
+        set((state) => ({
+          habits: state.habits.filter((habit) => habit.id !== id),
         })),
     }),
     {

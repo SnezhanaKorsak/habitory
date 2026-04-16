@@ -1,0 +1,45 @@
+import { StyleSheet, View } from 'react-native';
+
+import { theme } from '../../../app/theme';
+import { HabitCardTitle } from '../../../entities/habits/ui/HabitCardTitle';
+import { DeleteHabit } from '../../../features/delete-habit';
+
+import { Habit } from '../../../shared/types/habit';
+
+type Props = {
+  habit: Habit;
+};
+
+export const HabitCard = ({ habit }: Props) => {
+  const { id, icon, name, description } = habit;
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <HabitCardTitle
+          id={id}
+          title={name}
+          description={description}
+          icon={icon}
+        />
+        <DeleteHabit id={id} />
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    height: 180,
+    backgroundColor: theme.bgShadow,
+    marginBottom: 20,
+    borderRadius: 10,
+    padding: 10,
+  },
+  pressed: {
+    transform: [{ scale: 0.9 }],
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+});
