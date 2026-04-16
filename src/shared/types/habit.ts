@@ -1,6 +1,4 @@
-import { HabitType } from '../../../entities/habit';
-
-import { FeatherIconName } from '../../../shared/types';
+import { FeatherIconName } from './icons';
 
 export type HabitFormData = {
   type: HabitType;
@@ -17,3 +15,9 @@ export type SelectHabitType = {
   key: string;
   value: HabitType;
 };
+
+export enum HabitType {
+  check = 'WITH A YES OR NO',
+  numeric = 'WITH A NUMERIC VALUE',
+  time = 'WITH A TIMER',
+}

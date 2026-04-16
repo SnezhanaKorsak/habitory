@@ -1,5 +1,5 @@
 const bgPrimary = '#e4dac0';
-const bgSecondary = '#DCE1DA';
+const bgSecondary = '#eceadb';
 const bgAccent = '#DDCDA2';
 
 const cardsBg = [

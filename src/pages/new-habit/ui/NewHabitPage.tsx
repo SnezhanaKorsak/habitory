@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-import { HabitType } from '../../../entities/habit';
 import { IconButton, PageTitle } from '../../../shared/ui';
 import { Layout } from '../../../widgets';
-import { HabitForm, HabitFormData } from '../../../widgets/habit-form';
+import { HabitForm } from '../../../widgets/habit-form';
 
-import { FeatherIconName } from '../../../shared/types';
+import { FeatherIconName, HabitFormData } from '../../../shared/types';
+import { HabitType } from '../../../shared/types/habit';
 
 export const NewHabitPage = () => {
   const [form, setForm] = useState<HabitFormData>({

@@ -33,10 +33,8 @@ export const IconPicker = ({ visible, onSelect, setModalVisible }: Props) => {
 
   return (
     <Modal transparent={true} visible={visible} animationType="fade">
-      {/* 🔥 BACKDROP */}
       <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
         <View style={styles.overlay}>
-          {/* 🔥 MODAL (внутри, чтобы не закрывалось при клике по нему) */}
           <TouchableWithoutFeedback>
             <View style={styles.modal}>
               <TextInput

@@ -6,8 +6,7 @@ import { IconButton, PrimaryButton } from '../../../shared/ui';
 import { previewIcons } from '../constants/form-data';
 import { IconPicker } from './IconPicker';
 
-import { FeatherIconName } from '../../../shared/types';
-import { HabitFormData } from '../model/types';
+import { FeatherIconName, HabitFormData } from '../../../shared/types';
 
 type Props = {
   form: HabitFormData;
@@ -86,6 +85,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     marginTop: 10,
     gap: 15,
+    paddingHorizontal: 4,
   },
   iconBtn: {
     alignItems: 'center',
@@ -100,9 +100,9 @@ const styles = StyleSheet.create({
       height: 2,
     },
     shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    shadowRadius: 1.84,
 
-    elevation: 5,
+    elevation: 3,
   },
   buttonBlock: {
     alignItems: 'flex-end',

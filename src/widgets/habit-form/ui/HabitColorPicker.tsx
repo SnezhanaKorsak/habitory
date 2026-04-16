@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { theme } from '../../../app/theme';
 
-import { HabitFormData } from '../model/types';
+import { HabitFormData } from '../../../shared/types';
 
 type Props = {
   form: HabitFormData;
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     rowGap: 15,
     columnGap: 45,
+    paddingHorizontal: 4,
   },
   colorBtn: {
     alignItems: 'center',
@@ -78,9 +79,9 @@ const styles = StyleSheet.create({
       height: 2,
     },
     shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    shadowRadius: 1.84,
 
-    elevation: 5,
+    elevation: 3,
   },
   color: {
     width: 22,

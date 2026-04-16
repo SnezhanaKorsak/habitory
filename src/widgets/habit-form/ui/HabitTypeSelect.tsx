@@ -2,10 +2,10 @@ import { useState } from 'react';
 
 import { SelectList } from 'react-native-dropdown-select-list';
 
-import { HabitType } from '../../../entities/habit';
 import { formData } from '../constants/form-data';
 
-import { HabitFormData } from '../model/types';
+import { HabitFormData } from '../../../shared/types';
+import { HabitType } from '../../../shared/types/habit';
 
 type Props = {
   form: HabitFormData;

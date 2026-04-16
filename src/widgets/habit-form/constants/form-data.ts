@@ -1,7 +1,5 @@
-import { HabitType } from '../../../entities/habit';
-
-import { FeatherIconName } from '../../../shared/types';
-import { SelectHabitType } from '../model/types';
+import { FeatherIconName, SelectHabitType } from '../../../shared/types';
+import { HabitType } from '../../../shared/types/habit';
 
 export const formData: SelectHabitType[] = [
   { key: '1', value: HabitType.check },
