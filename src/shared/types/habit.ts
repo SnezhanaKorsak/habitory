@@ -11,6 +11,14 @@ export type HabitFormData = {
   color: string;
 };
 
+export type Habit = HabitFormData & {
+  id: string;
+  completed: boolean;
+  createdAt: Date;
+  numericCurrentValue?: number;
+  timerCurrentValue?: number;
+};
+
 export type SelectHabitType = {
   key: string;
   value: HabitType;
