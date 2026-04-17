@@ -29,10 +29,10 @@ export const useCreateHabit = () => {
     const newHabit: Habit = {
       id: uuid.v4() as string,
       ...formData,
-      completed: false,
       createdAt: new Date(),
-      numericCurrentValue: 0,
-      timerCurrentValue: 0,
+      completedDays: [],
+      numericTypeResults: [],
+      timeTypeResults: [],
     };
 
     addHabit(newHabit);

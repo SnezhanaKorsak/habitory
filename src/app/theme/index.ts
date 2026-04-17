@@ -17,6 +17,7 @@ const accent100 = '#C64A38';
 const accent200 = '#E17C4B';
 const textPrimary = '#171717';
 const textSecondary = '#666666FF';
+const textShadow = '#b1afaf';
 
 const border = '#7c7a7a';
 
@@ -30,5 +31,6 @@ export const theme = {
   accent200,
   textPrimary,
   textSecondary,
+  textShadow,
   border,
 };

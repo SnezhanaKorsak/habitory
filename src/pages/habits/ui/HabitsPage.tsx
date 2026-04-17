@@ -8,7 +8,7 @@ import { HabitCard } from '../../../widgets/habit-card';
 
 export const HabitsPage = () => {
   const habitsList = useHabitsStore((state) => state.habits);
-  // AsyncStorage.removeItem('habits');
+  //AsyncStorage.removeItem('habits');
   //console.log('habitsList', habitsList);
 
   return (

@@ -12,7 +12,7 @@ type Props = {
 };
 
 export const HabitCard = ({ habit }: Props) => {
-  const { id, icon, name, description, color, completed } = habit;
+  const { id, icon, name, description, color, completedDays } = habit;
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -25,7 +25,7 @@ export const HabitCard = ({ habit }: Props) => {
         <DeleteHabit id={id} />
       </View>
 
-      <HabitHeatMap color={color} completed={completed} />
+      <HabitHeatMap habitId={id} color={color} completedDays={completedDays} />
     </View>
   );
 };

@@ -24,7 +24,7 @@ export function generateDays(count = 365) {
 }
 
 function getWeekdayIndex(date: Date) {
-  return (date.getDay() + 7) % 7;
+  return (date.getDay() + 6) % 7;
 }
 
 export function generateHeatmapMatrix(days: { date: string }[]) {

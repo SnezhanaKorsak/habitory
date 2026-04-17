@@ -13,10 +13,10 @@ export type HabitFormData = {
 
 export type Habit = HabitFormData & {
   id: string;
-  completed: boolean;
   createdAt: Date;
-  numericCurrentValue?: number;
-  timerCurrentValue?: number;
+  completedDays: string[];
+  numericTypeResults: { [key: string]: number }[];
+  timeTypeResults: { [key: string]: number }[];
 };
 
 export type SelectHabitType = {

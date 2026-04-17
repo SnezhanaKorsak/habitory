@@ -1,15 +1,19 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
 import { theme } from '../../../app/theme';
 import { generateDays, generateHeatmapMatrix } from '../../../shared/lib';
+import { CompleteCheckHabit } from '../../complete-check-habit';
 
 type Props = {
+  habitId: string;
   color: string;
-  completed: boolean;
+  completedDays: string[];
 };
 
-export const HabitHeatMap = ({ color, completed }: Props) => {
+export const HabitHeatMap = ({ habitId, color, completedDays }: Props) => {
+  const [visible, setVisible] = useState(true);
+
   const scrollRef = useRef<ScrollView>(null);
 
   const days = generateDays();
@@ -22,34 +26,44 @@ export const HabitHeatMap = ({ color, completed }: Props) => {
   }, []);
 
   return (
-    <ScrollView
-      ref={scrollRef}
-      horizontal={true}
-      showsHorizontalScrollIndicator={false}
-    >
-      <Pressable onPress={() => console.log('press')} style={styles.container}>
-        {weeks.map((week, weekIndex) => (
-          <View key={weekIndex} style={styles.week}>
-            {week.map((day, dayIndex) => {
-              if (!day) {
-                return <View key={dayIndex} style={styles.emptyDay} />;
-              }
-              return (
-                <View
-                  key={day.date}
-                  style={[
-                    styles.day,
-                    {
-                      backgroundColor: completed ? color : theme.bgShadow,
-                    },
-                  ]}
-                />
-              );
-            })}
-          </View>
-        ))}
-      </Pressable>
-    </ScrollView>
+    <>
+      <ScrollView
+        ref={scrollRef}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+      >
+        <Pressable onPress={() => setVisible(true)} style={styles.container}>
+          {weeks.map((week, weekIndex) => (
+            <View key={weekIndex} style={styles.week}>
+              {week.map((day, dayIndex) => {
+                if (!day) {
+                  return <View key={dayIndex} style={styles.emptyDay} />;
+                }
+                const completed = completedDays.includes(day.date);
+
+                return (
+                  <View
+                    key={day.date}
+                    style={[
+                      styles.day,
+                      {
+                        backgroundColor: completed ? color : theme.bgShadow,
+                      },
+                    ]}
+                  />
+                );
+              })}
+            </View>
+          ))}
+        </Pressable>
+      </ScrollView>
+
+      <CompleteCheckHabit
+        habitId={habitId}
+        visibleModal={visible}
+        setVisible={setVisible}
+      />
+    </>
   );
 };
 
