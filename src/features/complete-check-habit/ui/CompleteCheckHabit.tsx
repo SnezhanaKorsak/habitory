@@ -1,4 +1,4 @@
-import { Modal, StyleSheet, Text,View } from 'react-native';
+import { Modal, StyleSheet, Text, View } from 'react-native';
 
 import { Calendar, DateData } from 'react-native-calendars';
 
@@ -41,9 +41,9 @@ export const CompleteCheckHabit = ({
         <View style={styles.modal}>
           <View style={styles.header}>
             <View style={{ width: '80%' }}>
-              <Text
-                style={styles.title}
-              >{'Tap a date to mark the habit\u00A0as\u00A0done'}</Text>
+              <Text style={styles.title}>
+                {'Tap a date to mark the habit\u00A0as\u00A0done'}
+              </Text>
             </View>
             <IconButton icon="x" callback={() => setVisible(false)} />
           </View>

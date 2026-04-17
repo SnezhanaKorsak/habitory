@@ -13,21 +13,23 @@ import { theme } from '../../app/theme';
 
 type Props = PressableProps & {
   style?: StyleProp<ViewStyle>;
+  backgroundColor?: string;
 };
 
 export const PrimaryButton = ({
   children,
   style,
+  backgroundColor,
   ...rest
 }: PropsWithChildren<Props>) => {
   return (
     <View style={[styles.buttonOverContainer, style]}>
       <Pressable
-        style={({ pressed }) =>
-          pressed
-            ? [styles.buttonInnerContainer, styles.pressed]
-            : [styles.buttonInnerContainer]
-        }
+        style={({ pressed }) => [
+          styles.buttonInnerContainer,
+          pressed && styles.pressed,
+          { backgroundColor: backgroundColor ?? theme.accent200 },
+        ]}
         {...rest}
       >
         <Text style={styles.buttonText}>{children}</Text>
@@ -38,20 +40,19 @@ export const PrimaryButton = ({
 
 const styles = StyleSheet.create({
   buttonOverContainer: {
-    height: 36,
+    height: 40,
     borderRadius: 12,
     overflow: 'hidden',
   },
   buttonInnerContainer: {
-    backgroundColor: theme.accent200,
     paddingVertical: 7,
     paddingHorizontal: 16,
     elevation: 2,
   },
   buttonText: {
     fontSize: 16,
-    lineHeight: 22,
-    color: 'white',
+    lineHeight: 26,
+    color: theme.textPrimary,
     textAlign: 'center',
   },
   pressed: {

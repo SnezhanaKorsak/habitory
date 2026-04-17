@@ -4,14 +4,14 @@ const bgAccent = '#DDCDA2';
 const bgShadow = 'rgba(184,166,122,0.58)';
 
 const cardsBg = [
-  '#B8CEC2',
-  '#EBC8B4',
-  '#FDB3A4',
-  '#D2CDE0',
-  '#f6d8b1',
-  '#A8D5D1',
-  '#CFCFCF',
-  '#ae8971',
+  '#7FA89A',
+  '#D89B7C',
+  '#E07A5F',
+  '#9A90B8',
+  '#E3B46A',
+  '#5FB3B3',
+  '#A6A6A6',
+  '#8B6A5A',
 ];
 const accent100 = '#C64A38';
 const accent200 = '#E17C4B';

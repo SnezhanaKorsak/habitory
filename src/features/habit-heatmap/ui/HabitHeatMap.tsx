@@ -4,15 +4,25 @@ import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { theme } from '../../../app/theme';
 import { generateDays, generateHeatmapMatrix } from '../../../shared/lib';
 import { CompleteCheckHabit } from '../../complete-check-habit';
+import { CompleteNumericHabit } from '../../complete-numeric-habit';
+
+import { HabitType } from '../../../shared/types/habit';
 
 type Props = {
   habitId: string;
   color: string;
+  type: HabitType;
   completedDays: string[];
 };
 
-export const HabitHeatMap = ({ habitId, color, completedDays }: Props) => {
-  const [visible, setVisible] = useState(true);
+export const HabitHeatMap = ({
+  habitId,
+  color,
+  type,
+  completedDays,
+}: Props) => {
+  const [visibleCheckModal, setVisibleCheckModal] = useState(false);
+  const [visibleNumericModal, setVisibleNumericModal] = useState(false);
 
   const scrollRef = useRef<ScrollView>(null);
 
@@ -25,6 +35,15 @@ export const HabitHeatMap = ({ habitId, color, completedDays }: Props) => {
     }, 0);
   }, []);
 
+  const openModal = () => {
+    switch (type) {
+      case HabitType.check:
+        return setVisibleCheckModal(true);
+      case HabitType.numeric:
+        return setVisibleNumericModal(true);
+    }
+  };
+
   return (
     <>
       <ScrollView
@@ -32,7 +51,7 @@ export const HabitHeatMap = ({ habitId, color, completedDays }: Props) => {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
       >
-        <Pressable onPress={() => setVisible(true)} style={styles.container}>
+        <Pressable onPress={openModal} style={styles.container}>
           {weeks.map((week, weekIndex) => (
             <View key={weekIndex} style={styles.week}>
               {week.map((day, dayIndex) => {
@@ -60,8 +79,14 @@ export const HabitHeatMap = ({ habitId, color, completedDays }: Props) => {
 
       <CompleteCheckHabit
         habitId={habitId}
-        visibleModal={visible}
-        setVisible={setVisible}
+        visibleModal={visibleCheckModal}
+        setVisible={setVisibleNumericModal}
+      />
+
+      <CompleteNumericHabit
+        habitId={habitId}
+        visibleModal={visibleNumericModal}
+        setVisible={setVisibleNumericModal}
       />
     </>
   );
