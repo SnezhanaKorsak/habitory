@@ -1,46 +1,32 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { theme } from '../../../app/theme';
 import { PrimaryButton } from '../../../shared/ui';
 
 type Props = {
-  currentValue: number;
+  result: number;
   color: string;
+  goal: number;
+  numericUnit?: string;
+  children: React.ReactNode;
 };
 
-export const ChangeNumericResult = ({ currentValue, color }: Props) => {
-  const [result, setResult] = useState(currentValue);
+export const HabitCurrentResult = ({
+  result,
+  color,
+  goal,
+  numericUnit,
+  children,
+}: Props) => {
   const [operation, setOperation] = useState('replace');
-
-  const increase = () => setResult((prevState) => prevState + 1);
-  const decrease = () => setResult((prevState) => prevState - 1);
 
   const replaceOperation = () => setOperation('replace');
   const addOperation = () => setOperation('add');
 
   return (
     <View style={styles.container}>
-      <View style={styles.btnBlock}>
-        <PrimaryButton
-          style={styles.leftBtn}
-          backgroundColor={theme.bgPrimary}
-          onPress={decrease}
-          disabled={result === 0}
-        >
-          <Text style={styles.text}>-</Text>
-        </PrimaryButton>
-        <View style={styles.info}>
-          <Text style={styles.text}>{result}</Text>
-        </View>
-        <PrimaryButton
-          style={styles.rightBtn}
-          backgroundColor={theme.bgPrimary}
-          onPress={increase}
-        >
-          <Text style={styles.text}>+</Text>
-        </PrimaryButton>
-      </View>
+      {children}
 
       <View style={styles.btnBlock}>
         <PrimaryButton
@@ -58,6 +44,12 @@ export const ChangeNumericResult = ({ currentValue, color }: Props) => {
           <Text style={styles.text}>Add</Text>
         </PrimaryButton>
       </View>
+
+      <View style={styles.summary}>
+        <Text
+          style={styles.summaryInfo}
+        >{`Today: ${result}/${goal} ${numericUnit}`}</Text>
+      </View>
     </View>
   );
 };
@@ -66,6 +58,7 @@ const styles = StyleSheet.create({
   container: {
     marginVertical: 8,
     borderRadius: 8,
+    paddingHorizontal: 16,
   },
   info: {
     width: '50%',
@@ -98,5 +91,15 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  summary: {
+    height: 40,
+    backgroundColor: theme.bgPrimary,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  summaryInfo: {
+    fontSize: 16,
   },
 });

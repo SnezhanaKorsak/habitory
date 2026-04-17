@@ -1,18 +1,35 @@
+import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { theme } from '../../../app/theme';
-import { HabitCardTitle } from '../../../entities/habits/ui/HabitCardTitle';
+import { HabitCardTitle } from '../../../entities/habits';
+import { CompleteCheckHabit } from '../../../features/complete-check-habit';
 import { DeleteHabit } from '../../../features/delete-habit';
 import { HabitHeatMap } from '../../../features/habit-heatmap/ui/HabitHeatMap';
+import { HabitResultPanel } from '../../habit-current-result';
 
-import { Habit } from '../../../shared/types/habit';
+import { Habit, HabitType } from '../../../shared/types/habit';
 
 type Props = {
   habit: Habit;
 };
 
 export const HabitCard = ({ habit }: Props) => {
+  const [visibleCheckModal, setVisibleCheckModal] = useState(false);
+  const [visibleNumericModal, setVisibleNumericModal] = useState(false);
+
   const { id, icon, name, description, color, completedDays, type } = habit;
+
+  const openModal = () => {
+    switch (type) {
+      case HabitType.check:
+        return setVisibleCheckModal(true);
+      case HabitType.numeric:
+      case HabitType.time:
+        return setVisibleNumericModal(true);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -26,10 +43,21 @@ export const HabitCard = ({ habit }: Props) => {
       </View>
 
       <HabitHeatMap
-        habitId={id}
         color={color}
-        type={type}
         completedDays={completedDays}
+        openModal={openModal}
+      />
+
+      <CompleteCheckHabit
+        habitId={id}
+        visibleModal={visibleCheckModal}
+        setVisible={setVisibleCheckModal}
+      />
+
+      <HabitResultPanel
+        habit={habit}
+        visible={visibleNumericModal}
+        setVisible={setVisibleNumericModal}
       />
     </View>
   );
@@ -49,5 +77,9 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  heatMapContainer: {
+    marginTop: 10,
+    flexWrap: 'wrap',
   },
 });
