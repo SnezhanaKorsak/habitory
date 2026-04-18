@@ -93,7 +93,10 @@ export const HabitResultPanel = ({ habit, visible, setVisible }: Props) => {
                 {today.toLocaleDateString('ru')}
               </Text>
             </View>
-            <Feather name={icon} size={30} color={color} />
+
+            <View style={[styles.icon, { backgroundColor: color }]}>
+              <Feather name={icon} size={22} />
+            </View>
           </View>
 
           <HabitCurrentResult
@@ -182,5 +185,13 @@ const styles = StyleSheet.create({
     width: 1,
     height: '100%',
     backgroundColor: theme.border,
+  },
+  icon: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 34,
+    height: 34,
+    borderRadius: 8,
+    marginRight: 6,
   },
 });

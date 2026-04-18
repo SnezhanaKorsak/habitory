@@ -3,7 +3,11 @@ import { StyleSheet, View } from 'react-native';
 
 import { theme } from '../../../app/theme';
 import { HabitCardTitle } from '../../../entities/habits';
-import { CompleteCheckHabit , DeleteHabit , HabitHeatMap } from '../../../features';
+import {
+  CompleteCheckHabit,
+  DeleteHabit,
+  HabitHeatMap,
+} from '../../../features';
 import { HabitResultPanel } from '../../habit-current-result';
 
 import { Habit, HabitType } from '../../../shared/types/habit';
