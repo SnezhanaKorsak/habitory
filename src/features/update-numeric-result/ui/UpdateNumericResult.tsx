@@ -1,35 +1,57 @@
-import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TextInput,View } from 'react-native';
 
 import { theme } from '../../../app/theme';
 import { PrimaryButton } from '../../../shared/ui';
 
 type Props = {
   currentValue: number;
+  setCurrentValue: (value: number) => void;
+  increaseResult: () => void;
+  decreaseResult: () => void;
 };
 
-export const UpdateNumericCurrentResult = ({ currentValue }: Props) => {
-  const [result, setResult] = useState(currentValue);
+export const UpdateNumericResult = ({
+  currentValue,
+  setCurrentValue,
+  increaseResult,
+  decreaseResult,
+}: Props) => {
+  const onChangeHandler = (text: string) => {
+    const sanitized = text.replace(/[^0-9]/g, '');
 
-  const increase = () => setResult((prevState) => prevState + 1);
-  const decrease = () => setResult((prevState) => prevState - 1);
+    if (sanitized === '') {
+      setCurrentValue(0);
+      return;
+    }
+
+    const num = Number(sanitized);
+    if (!isNaN(num)) {
+      setCurrentValue(num);
+    }
+  };
+
   return (
     <View style={styles.btnBlock}>
       <PrimaryButton
         style={styles.leftBtn}
         backgroundColor={theme.bgPrimary}
-        onPress={decrease}
-        disabled={result === 0}
+        onPress={decreaseResult}
+        disabled={currentValue === 0}
       >
         <Text style={styles.text}>-</Text>
       </PrimaryButton>
       <View style={styles.info}>
-        <Text style={styles.text}>{result}</Text>
+        <TextInput
+          value={String(currentValue)}
+          onChangeText={onChangeHandler}
+          keyboardType={'numeric'}
+          style={styles.input}
+        />
       </View>
       <PrimaryButton
         style={styles.rightBtn}
         backgroundColor={theme.bgPrimary}
-        onPress={increase}
+        onPress={increaseResult}
       >
         <Text style={styles.text}>+</Text>
       </PrimaryButton>
@@ -46,9 +68,17 @@ const styles = StyleSheet.create({
   info: {
     width: '50%',
     height: 40,
+  },
+  input: {
+    height: '100%',
+    width: '100%',
+    textAlign: 'center',
+    fontSize: 22,
+    fontWeight: 'bold',
+    padding: 0,
+    paddingBottom: 0,
+    margin: 0,
     backgroundColor: theme.bgPrimary,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   btnBlock: {
     height: 40,
@@ -73,6 +103,5 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 22,
     fontWeight: 'bold',
-    textAlign: 'center',
   },
 });

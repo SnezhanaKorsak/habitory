@@ -15,8 +15,8 @@ export type Habit = HabitFormData & {
   id: string;
   createdAt: Date;
   completedDays: string[];
-  numericResults: { [key: string]: number }[];
-  timeResults: { [key: string]: number }[];
+  numericResults: { [key: string]: number };
+  timeResults: { [key: string]: number };
 };
 
 export type SelectHabitType = {

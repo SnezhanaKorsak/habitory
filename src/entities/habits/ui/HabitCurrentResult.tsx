@@ -1,28 +1,38 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { theme } from '../../../app/theme';
 import { PrimaryButton } from '../../../shared/ui';
 
 type Props = {
-  result: number;
+  currentResult: number;
+  setCurrentValue: (value: number) => void;
   color: string;
   goal: number;
-  numericUnit?: string;
+  unit: string;
+  operationWithValue: string;
+  setOperationWithValue: (value: string) => void;
   children: React.ReactNode;
 };
 
 export const HabitCurrentResult = ({
-  result,
+  currentResult,
+  setCurrentValue,
   color,
   goal,
-  numericUnit,
+  unit,
+  operationWithValue,
+  setOperationWithValue,
   children,
 }: Props) => {
-  const [operation, setOperation] = useState('replace');
-
-  const replaceOperation = () => setOperation('replace');
-  const addOperation = () => setOperation('add');
+  const replaceOperation = () => {
+    setOperationWithValue('replace');
+    setCurrentValue(currentResult);
+  };
+  const addOperation = () => {
+    setOperationWithValue('add');
+    setCurrentValue(0);
+  };
 
   return (
     <View style={styles.container}>
@@ -31,14 +41,18 @@ export const HabitCurrentResult = ({
       <View style={styles.btnBlock}>
         <PrimaryButton
           style={[styles.leftBtn, { width: '50%' }]}
-          backgroundColor={operation === 'replace' ? color : theme.bgPrimary}
+          backgroundColor={
+            operationWithValue === 'replace' ? color : theme.bgPrimary
+          }
           onPress={replaceOperation}
         >
           <Text style={styles.text}>Replace</Text>
         </PrimaryButton>
         <PrimaryButton
           style={[styles.rightBtn, { width: '50%', borderLeftWidth: 0 }]}
-          backgroundColor={operation === 'add' ? color : theme.bgPrimary}
+          backgroundColor={
+            operationWithValue === 'add' ? color : theme.bgPrimary
+          }
           onPress={addOperation}
         >
           <Text style={styles.text}>Add</Text>
@@ -48,7 +62,7 @@ export const HabitCurrentResult = ({
       <View style={styles.summary}>
         <Text
           style={styles.summaryInfo}
-        >{`Today: ${result}/${goal} ${numericUnit}`}</Text>
+        >{`Today: ${currentResult}/${goal} ${unit}`}</Text>
       </View>
     </View>
   );

@@ -31,8 +31,8 @@ export const useCreateHabit = () => {
       ...formData,
       createdAt: new Date(),
       completedDays: [],
-      numericTypeResults: [],
-      timeTypeResults: [],
+      numericResults: {},
+      timeResults: {},
     };
 
     addHabit(newHabit);

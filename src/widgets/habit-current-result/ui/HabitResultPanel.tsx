@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, StyleSheet, Text, View } from 'react-native';
 
 import { Feather } from '@expo/vector-icons';
 
 import { theme } from '../../../app/theme';
-import { HabitCurrentResult } from '../../../entities/habits';
-import { UpdateNumericCurrentResult } from '../../../features/update-numeric-current-result';
+import { HabitCurrentResult, useHabitsStore } from '../../../entities/habits';
+import { UpdateNumericResult } from '../../../features';
 import { GhostButton } from '../../../shared/ui';
+import { useCurrentResult } from '../lib/useCurrentResult';
 
-import { Habit } from '../../../shared/types/habit';
+import { Habit, HabitType } from '../../../shared/types/habit';
 
 type Props = {
   habit: Habit;
@@ -17,23 +18,66 @@ type Props = {
 };
 
 export const HabitResultPanel = ({ habit, visible, setVisible }: Props) => {
-  const { icon, name, color, numericUnit } = habit;
+  const updateNumericResult = useHabitsStore(
+    (state) => state.updateNumericResult,
+  );
+  const { habitResult, goal, unit, day } = useCurrentResult(habit);
 
-  const [operation, setOperation] = useState('cancel');
+  const [currentValue, setCurrentValue] = useState(habitResult);
+  const [currentResult, setCurrentResult] = useState(habitResult);
 
+  const [operationWithValue, setOperationWithValue] = useState('replace');
+  const [operationWithResult, setOperationWithResult] = useState('cancel');
+
+  const { id, icon, name, color } = habit;
   const today = new Date();
 
-  const currentValue = 0;
-  const goal = 10;
+  useEffect(() => {
+    setCurrentValue(habitResult);
+    setCurrentResult(habitResult);
+  }, [habitResult]);
+
+  useEffect(() => {
+    if (operationWithValue === 'replace') {
+      setCurrentResult(currentValue);
+    }
+
+    if (operationWithValue === 'add') {
+      setCurrentResult(habitResult + currentValue);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentValue]);
+
+  useEffect(() => {
+    setCurrentResult(habitResult);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [operationWithValue]);
+
+  const increaseResult = () => {
+    setCurrentValue((prev) => prev + 1);
+  };
+
+  const decreaseResult = () => {
+    setCurrentValue((prev) => prev - 1);
+  };
 
   const cancelOperation = () => {
-    setOperation('cancel');
+    setOperationWithResult('cancel');
+    setOperationWithValue('replace');
+    setCurrentValue(habitResult);
+    setCurrentResult(habitResult);
     setVisible(false);
   };
 
   const saveOperation = () => {
-    setOperation('save');
+    setOperationWithResult('save');
+
+    if (habit.type === HabitType.numeric) {
+      updateNumericResult(id, day, currentResult);
+    }
+
     setVisible(false);
+    setOperationWithValue('replace');
   };
 
   return (
@@ -53,19 +97,28 @@ export const HabitResultPanel = ({ habit, visible, setVisible }: Props) => {
           </View>
 
           <HabitCurrentResult
-            result={currentValue}
+            currentResult={currentResult}
+            setCurrentValue={setCurrentValue}
             goal={goal}
             color={color}
-            numericUnit={numericUnit}
+            unit={unit}
+            operationWithValue={operationWithValue}
+            setOperationWithValue={setOperationWithValue}
           >
-            <UpdateNumericCurrentResult currentValue={currentValue} />
+            <UpdateNumericResult
+              currentValue={currentValue}
+              setCurrentValue={setCurrentValue}
+              increaseResult={increaseResult}
+              decreaseResult={decreaseResult}
+            />
           </HabitCurrentResult>
 
           <View style={styles.footer}>
             <GhostButton
               title="CANCEL"
               textStyle={{
-                color: operation === 'cancel' ? color : theme.textPrimary,
+                color:
+                  operationWithResult === 'cancel' ? color : theme.textPrimary,
               }}
               onPress={cancelOperation}
             />
@@ -75,7 +128,8 @@ export const HabitResultPanel = ({ habit, visible, setVisible }: Props) => {
             <GhostButton
               title="SAVE"
               textStyle={{
-                color: operation === 'save' ? color : theme.textPrimary,
+                color:
+                  operationWithResult === 'save' ? color : theme.textPrimary,
               }}
               onPress={saveOperation}
             />
