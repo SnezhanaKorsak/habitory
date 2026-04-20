@@ -4,7 +4,10 @@ import { StyleSheet, Text, View } from 'react-native';
 import { theme } from '../../../app/theme';
 import { PrimaryButton } from '../../../shared/ui';
 
+import { HabitType } from '../../../shared/types/habit';
+
 type Props = {
+  type: HabitType;
   currentResult: number;
   setCurrentValue: (value: number) => void;
   color: string;
@@ -16,6 +19,7 @@ type Props = {
 };
 
 export const HabitCurrentResult = ({
+  type,
   currentResult,
   setCurrentValue,
   color,
@@ -25,6 +29,27 @@ export const HabitCurrentResult = ({
   setOperationWithValue,
   children,
 }: Props) => {
+  const hours = Math.floor(currentResult / 3600);
+  const minutes = Math.floor((currentResult % 3600) / 60);
+  const seconds = currentResult % 60;
+
+  const goalHours = Math.floor(goal / 3600);
+  const goalMinutes = Math.floor((goal % 3600) / 60);
+  const goalSeconds = goal % 60;
+
+  const formatTime = (h: number, m: number, s: number) => {
+    const parts = [];
+
+    if (h) {
+      parts.push(h.toString().padStart(2, '0'));
+    }
+
+    parts.push((m ?? 0).toString().padStart(2, '0'));
+    parts.push((s ?? 0).toString().padStart(2, '0'));
+
+    return parts.join(':');
+  };
+
   const replaceOperation = () => {
     setOperationWithValue('replace');
     setCurrentValue(currentResult);
@@ -60,9 +85,15 @@ export const HabitCurrentResult = ({
       </View>
 
       <View style={styles.summary}>
-        <Text
-          style={styles.summaryInfo}
-        >{`Today: ${currentResult}/${goal} ${unit}`}</Text>
+        {type === HabitType.time ? (
+          <Text>
+            {`Today: ${formatTime(hours, minutes, seconds)} /${formatTime(goalHours, goalMinutes, goalSeconds)}`}
+          </Text>
+        ) : (
+          <Text
+            style={styles.summaryInfo}
+          >{`Today: ${currentResult}/${goal} ${unit}`}</Text>
+        )}
       </View>
     </View>
   );

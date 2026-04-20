@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { theme } from '../../../app/theme';
-import { WheelPicker } from '../../../shared/ui';
+import { GhostButton, WheelPicker } from '../../../shared/ui';
 
 const hoursData = Array.from({ length: 25 }, (_, i) => i);
 const minutesData = Array.from({ length: 60 }, (_, i) => i);
@@ -66,12 +66,8 @@ export const TimerPicker = ({ value, onChange }: Props) => {
             </View>
 
             <View style={styles.actions}>
-              <Pressable onPress={cancel}>
-                <Text>Cancel</Text>
-              </Pressable>
-              <Pressable onPress={save}>
-                <Text style={{ fontWeight: 'bold' }}>Save</Text>
-              </Pressable>
+              <GhostButton title={'Cancel'} onPress={cancel} />
+              <GhostButton title={'Save'} onPress={save} />
             </View>
           </View>
         </View>
@@ -122,8 +118,10 @@ const styles = StyleSheet.create({
   },
 
   actions: {
+    height: 40,
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 20,
+    borderTopWidth: 1,
   },
 });

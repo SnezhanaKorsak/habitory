@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons';
 
 import { theme } from '../../../app/theme';
 import { HabitCurrentResult, useHabitsStore } from '../../../entities/habits';
-import { UpdateNumericResult } from '../../../features';
+import { UpdateNumericResult, UpdateTimeResult } from '../../../features';
 import { GhostButton } from '../../../shared/ui';
 import { useCurrentResult } from '../lib/useCurrentResult';
 
@@ -21,6 +21,8 @@ export const HabitResultPanel = ({ habit, visible, setVisible }: Props) => {
   const updateNumericResult = useHabitsStore(
     (state) => state.updateNumericResult,
   );
+  const updateTimeResult = useHabitsStore((state) => state.updateTimeResult);
+
   const { habitResult, goal, unit, day } = useCurrentResult(habit);
 
   const [currentValue, setCurrentValue] = useState(habitResult);
@@ -76,6 +78,10 @@ export const HabitResultPanel = ({ habit, visible, setVisible }: Props) => {
       updateNumericResult(id, day, currentResult);
     }
 
+    if (habit.type === HabitType.time) {
+      updateTimeResult(id, day, currentResult);
+    }
+
     setVisible(false);
     setOperationWithValue('replace');
   };
@@ -100,6 +106,7 @@ export const HabitResultPanel = ({ habit, visible, setVisible }: Props) => {
           </View>
 
           <HabitCurrentResult
+            type={habit.type}
             currentResult={currentResult}
             setCurrentValue={setCurrentValue}
             goal={goal}
@@ -108,12 +115,19 @@ export const HabitResultPanel = ({ habit, visible, setVisible }: Props) => {
             operationWithValue={operationWithValue}
             setOperationWithValue={setOperationWithValue}
           >
-            <UpdateNumericResult
-              currentValue={currentValue}
-              setCurrentValue={setCurrentValue}
-              increaseResult={increaseResult}
-              decreaseResult={decreaseResult}
-            />
+            {habit.type === HabitType.check ? (
+              <UpdateNumericResult
+                currentValue={currentValue}
+                setCurrentValue={setCurrentValue}
+                increaseResult={increaseResult}
+                decreaseResult={decreaseResult}
+              />
+            ) : (
+              <UpdateTimeResult
+                currentValue={currentValue}
+                setCurrentValue={setCurrentValue}
+              />
+            )}
           </HabitCurrentResult>
 
           <View style={styles.footer}>

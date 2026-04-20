@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   FlatList,
   NativeScrollEvent,
@@ -28,21 +28,24 @@ export const WheelPicker = ({ data, value, onChange }: Props) => {
 
   const middleIndex = Math.floor(loopedData.length / 2);
 
-  useEffect(() => {
-    const initialIndex = middleIndex + value;
+  const [activeIndex, setActiveIndex] = useState(middleIndex + value);
 
-    setTimeout(() => {
-      ref.current?.scrollToOffset({
-        offset: initialIndex * ITEM_HEIGHT,
-        animated: false,
-      });
-    }, 0);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  useEffect(() => {
+    const targetIndex = middleIndex + value;
+
+    ref.current?.scrollToOffset({
+      offset: targetIndex * ITEM_HEIGHT,
+      animated: false,
+    });
+
+    setActiveIndex(targetIndex);
+  }, [value, middleIndex]);
 
   const onScrollEnd = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     const offsetY = e.nativeEvent.contentOffset.y;
     const index = Math.round(offsetY / ITEM_HEIGHT);
+
+    setActiveIndex(index);
 
     const realIndex = index % data.length;
     const realValue = data[realIndex];
@@ -51,6 +54,8 @@ export const WheelPicker = ({ data, value, onChange }: Props) => {
 
     if (index < data.length || index > loopedData.length - data.length) {
       const newIndex = middleIndex + realIndex;
+
+      setActiveIndex(newIndex);
 
       ref.current?.scrollToOffset({
         offset: newIndex * ITEM_HEIGHT,
@@ -77,11 +82,17 @@ export const WheelPicker = ({ data, value, onChange }: Props) => {
         contentContainerStyle={{
           paddingVertical: ITEM_HEIGHT,
         }}
-        renderItem={({ item }) => (
-          <View style={styles.item}>
-            <Text style={styles.text}>{item.toString().padStart(2, '0')}</Text>
-          </View>
-        )}
+        renderItem={({ item, index }) => {
+          const isActive = index === activeIndex;
+
+          return (
+            <View style={styles.item}>
+              <Text style={[styles.text, isActive && styles.activeText]}>
+                {item.toString().padStart(2, '0')}
+              </Text>
+            </View>
+          );
+        }}
       />
 
       <View pointerEvents="none" style={styles.overlay} />
@@ -94,17 +105,20 @@ const styles = StyleSheet.create({
     height: ITEM_HEIGHT * 3,
     width: 60,
   },
-
   item: {
     height: ITEM_HEIGHT,
     justifyContent: 'center',
     alignItems: 'center',
   },
-
   text: {
     fontSize: 20,
+    color: theme.textSecondary,
   },
-
+  activeText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: theme.textPrimary,
+  },
   overlay: {
     position: 'absolute',
     top: ITEM_HEIGHT,
