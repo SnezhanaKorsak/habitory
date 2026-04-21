@@ -13,11 +13,11 @@ type Props = {
 };
 
 export const HabitDetailsBlock = ({ form, setForm }: Props) => {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [numericGoal, setNumericGoal] = useState(0);
-  const [unit, setUnit] = useState('');
-  const [time, setTime] = useState(0);
+  const [name, setName] = useState(form.name);
+  const [description, setDescription] = useState(form.description);
+  const [numericGoal, setNumericGoal] = useState(form.numericGoal);
+  const [unit, setUnit] = useState(form.numericUnit);
+  const [time, setTime] = useState(form.timerGoal);
 
   const habitType = form.type;
 
@@ -46,7 +46,7 @@ export const HabitDetailsBlock = ({ form, setForm }: Props) => {
           <View style={styles.extraBox}>
             <View style={styles.goal}>
               <FloatingInput
-                value={numericGoal}
+                value={numericGoal ?? 0}
                 onChangeValue={(value) => setNumericGoal(Number(value))}
                 placeholder={'Goal'}
                 type="numeric"
@@ -56,7 +56,7 @@ export const HabitDetailsBlock = ({ form, setForm }: Props) => {
             <View style={styles.unit}>
               <View style={{ width: '70%' }}>
                 <FloatingInput
-                  value={unit}
+                  value={unit ?? ''}
                   onChangeValue={(value) => setUnit(String(value))}
                   placeholder={'Unit (optional)'}
                 />
@@ -74,7 +74,7 @@ export const HabitDetailsBlock = ({ form, setForm }: Props) => {
       {habitType === HabitType.time && (
         <View style={styles.unit}>
           <View style={{ width: '70%' }}>
-            <TimerPicker value={time} onChange={setTime} />
+            <TimerPicker value={time ?? 0} onChange={setTime} />
           </View>
 
           <View>
@@ -84,7 +84,7 @@ export const HabitDetailsBlock = ({ form, setForm }: Props) => {
       )}
 
       <FloatingInput
-        value={description}
+        value={description ?? ''}
         onChangeValue={(value) => setDescription(String(value))}
         placeholder={'Description (optional)'}
       />

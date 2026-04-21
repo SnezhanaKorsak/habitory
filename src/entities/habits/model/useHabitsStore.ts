@@ -4,7 +4,7 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
-import { Habit } from '../../../shared/types/habit';
+import { Habit, HabitFormData } from '../../../shared/types/habit';
 
 type State = {
   habits: Habit[];
@@ -15,6 +15,7 @@ type State = {
 type Action = {
   getHabitById: (id: string) => Habit | undefined;
   addHabit: (habit: Habit) => void;
+  updateHabit: (id: string, formData: HabitFormData) => void;
   deleteHabit: (id: string) => void;
   completeHabit: (id: string, day: string) => void;
   updateNumericResult: (id: string, day: string, value: number) => void;
@@ -35,6 +36,13 @@ export const useHabitsStore = create<State & Action>()(
       addHabit: (habit) =>
         set((state) => {
           state.habits.push(habit);
+        }),
+
+      updateHabit: (habitId, formData) =>
+        set((state) => {
+          state.habits = state.habits.map((h) =>
+            h.id === habitId ? { ...h, ...formData } : h,
+          );
         }),
 
       deleteHabit: (id: string) =>

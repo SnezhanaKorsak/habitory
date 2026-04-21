@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     padding: 14,
   },
   pressed: {
-    transform: [{ scale: 0.9 }],
+    transform: [{ scale: 0.95 }],
   },
   header: {
     flexDirection: 'row',

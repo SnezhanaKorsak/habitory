@@ -2,6 +2,10 @@ import { HabitFormData } from '../../../shared/types';
 import { HabitType } from '../../../shared/types/habit';
 
 export const validateHabitForm = (data: HabitFormData) => {
+  if (!data.type) {
+    return 'Select the type of the habit';
+  }
+
   if (!data.name.trim()) {
     return 'Enter the name of the habit';
   }

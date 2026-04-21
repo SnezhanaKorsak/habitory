@@ -115,7 +115,7 @@ export const HabitResultPanel = ({ habit, visible, setVisible }: Props) => {
             operationWithValue={operationWithValue}
             setOperationWithValue={setOperationWithValue}
           >
-            {habit.type === HabitType.check ? (
+            {habit.type === HabitType.numeric ? (
               <UpdateNumericResult
                 currentValue={currentValue}
                 setCurrentValue={setCurrentValue}

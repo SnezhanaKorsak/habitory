@@ -16,7 +16,9 @@ type Props = {
 export const HabitIconPicker = ({ form, setForm }: Props) => {
   const [selectedIcon, setSelectedIcon] = useState<FeatherIconName>(form.icon);
   const [iconsList, setIconsList] = useState<FeatherIconName[]>(
-    form.icon ? [form.icon, ...previewIcons] : previewIcons,
+    form.icon && !previewIcons.includes(form.icon)
+      ? [form.icon, ...previewIcons]
+      : previewIcons,
   );
   const [showMore, setShowMore] = useState(false);
 

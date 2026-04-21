@@ -13,14 +13,14 @@ type Props = {
 };
 
 export const HabitTypeSelect = ({ form, setForm }: Props) => {
-  const [selected, setSelected] = useState<HabitType>(HabitType.check);
-
+  const [selected, setSelected] = useState(form.type);
   const onSelectHandler = () => {
     setForm({ ...form, type: selected });
   };
 
   return (
     <SelectList
+      defaultOption={{ key: form.type, value: form.type }}
       data={formData}
       save="value"
       placeholder="Select type of habit"

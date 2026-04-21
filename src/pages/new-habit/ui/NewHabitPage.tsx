@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { useCreateHabit } from '../../../features/create-new-habit';
+import { useCreateHabit } from '../../../features';
 import { IconButton, PageTitle } from '../../../shared/ui';
 import { Layout } from '../../../widgets';
 import { HabitForm } from '../../../widgets/habit-form';
@@ -12,7 +12,7 @@ export const NewHabitPage = () => {
   const { createHabit } = useCreateHabit();
 
   const [form, setForm] = useState<HabitFormData>({
-    type: HabitType.check,
+    type: '' as HabitType,
     name: '',
     description: '',
     icon: '' as FeatherIconName,

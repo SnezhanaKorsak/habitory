@@ -1,4 +1,4 @@
-import { NavigationProp } from '@react-navigation/native';
+import { NavigationProp, RouteProp } from '@react-navigation/native';
 
 import { MaterialIcons } from '@expo/vector-icons';
 
@@ -20,3 +20,4 @@ export type MenuItemType = {
 export type NavFunction = (name: keyof TypeRootStackParamList) => void;
 
 export type StackNavigationProp = NavigationProp<TypeRootStackParamList>;
+export type StackRouteProp = RouteProp<TypeRootStackParamList, 'Edit'>;
