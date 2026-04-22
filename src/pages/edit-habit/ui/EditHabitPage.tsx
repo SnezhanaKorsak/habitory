@@ -27,7 +27,7 @@ export const EditHabitPage = () => {
   return (
     <Layout>
       <PageTitle
-        title={'New Habit'}
+        title={'Edit Habit'}
         rightAddon={<IconButton icon="save" size={32} callback={handleSave} />}
       />
 

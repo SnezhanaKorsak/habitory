@@ -1,11 +1,10 @@
-import { Text, View } from 'react-native';
-
+import { ProgressInfo } from '../../../entities/progress';
 import { Layout } from '../../../widgets';
 
 export const ProgressPage = () => {
   return (
     <Layout>
-      <Text>Progress Page</Text>
+      <ProgressInfo />
     </Layout>
   );
 };
