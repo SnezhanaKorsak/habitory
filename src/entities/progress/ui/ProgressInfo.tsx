@@ -4,6 +4,7 @@ import * as Progress from 'react-native-progress';
 
 import { theme } from '../../../app/theme';
 import { IconButton } from '../../../shared/ui';
+import { levels } from '../constants/levels';
 import { useProgressStore } from '../model/useProgressStore';
 
 type Props = {
@@ -12,12 +13,18 @@ type Props = {
 
 export const ProgressInfo = ({ openBottomSheet }: Props) => {
   const currentXP = useProgressStore((state) => state.experience);
+  const currentLevel =
+    levels.find(
+      (level) =>
+        currentXP >= level.minExperience && currentXP <= level.maxExperience,
+    ) ?? levels[0];
 
-  const icon = '🐣';
-  const levelName = 'Beginner';
-  const maxXP = 150;
+  const icon = currentLevel.icon;
+  const levelName = currentLevel.name;
+  const maxXP = currentLevel.maxExperience;
+  const minXP = currentLevel.minExperience;
 
-  const percent = (currentXP * 100) / maxXP;
+  const percent = ((currentXP - minXP) * 100) / maxXP;
 
   return (
     <View style={styles.container}>
@@ -39,8 +46,10 @@ export const ProgressInfo = ({ openBottomSheet }: Props) => {
       <View>
         <View style={{ position: 'relative' }}>
           <Text style={styles.levelName}>
-            {`${currentXP} / `}
-            <Text style={{ color: theme.textSecondary }}>{maxXP}</Text>
+            {`${currentXP}  ${maxXP <= 50000 ? '/' : ''}`}
+            {maxXP <= 50000 && (
+              <Text style={{ color: theme.textSecondary }}>{maxXP}</Text>
+            )}
             <Text> XP</Text>
           </Text>
         </View>
