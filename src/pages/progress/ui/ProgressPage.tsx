@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
 import { ProgressInfo } from '../../../entities/progress';
+import { ProgressRules } from '../../../entities/progress/ui/ProgressRules';
 import { BottomSheet } from '../../../shared/ui/BottomSheet';
 import { Layout } from '../../../widgets';
 
@@ -21,7 +22,7 @@ export const ProgressPage = () => {
         title="Rules"
         onClose={closeBottomSheet}
       >
-        <Text> XP</Text>
+        <ProgressRules />
       </BottomSheet>
     </View>
   );
