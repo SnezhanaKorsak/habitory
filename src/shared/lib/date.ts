@@ -52,3 +52,5 @@ export function generateHeatmapMatrix(days: { date: string }[]) {
 
   return weeks;
 }
+
+export const getDateString = (date: Date) => date.toISOString().split('T')[0];

@@ -18,7 +18,7 @@ export const ProgressRules = () => {
       </Text>
 
       <Text style={styles.rule}>⏱ Таймер</Text>
-      <Text style={styles.ruleDescription}>Каждая минута +1 XP</Text>
+      <Text style={styles.ruleDescription}>Каждые 5 минут +1 XP</Text>
 
       <Text style={styles.title}>Важно</Text>
 

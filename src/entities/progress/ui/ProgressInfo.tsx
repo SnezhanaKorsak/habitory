@@ -4,15 +4,17 @@ import * as Progress from 'react-native-progress';
 
 import { theme } from '../../../app/theme';
 import { IconButton } from '../../../shared/ui';
+import { useProgressStore } from '../model/useProgressStore';
 
 type Props = {
   openBottomSheet: () => void;
 };
 
 export const ProgressInfo = ({ openBottomSheet }: Props) => {
+  const currentXP = useProgressStore((state) => state.experience);
+
   const icon = '🐣';
   const levelName = 'Beginner';
-  const currentXP = 45;
   const maxXP = 150;
 
   const percent = (currentXP * 100) / maxXP;
