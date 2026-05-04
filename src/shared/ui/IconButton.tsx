@@ -7,16 +7,17 @@ import { FeatherIconName } from '../types';
 type Props = {
   icon: FeatherIconName;
   size?: number;
+  color?: string;
   callback: () => void;
 };
 
-export const IconButton = ({ icon, callback, size = 26 }: Props) => {
+export const IconButton = ({ icon, callback, color, size = 26 }: Props) => {
   return (
     <Pressable
       onPress={callback}
       style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}
     >
-      <Feather name={icon} size={size} />
+      <Feather name={icon} size={size} color={color} />
     </Pressable>
   );
 };

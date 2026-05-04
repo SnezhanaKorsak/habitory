@@ -3,8 +3,13 @@ import { StyleSheet, Text, View } from 'react-native';
 import * as Progress from 'react-native-progress';
 
 import { theme } from '../../../app/theme';
+import { IconButton } from '../../../shared/ui';
 
-export const ProgressInfo = () => {
+type Props = {
+  openBottomSheet: () => void;
+};
+
+export const ProgressInfo = ({ openBottomSheet }: Props) => {
   const icon = '🐣';
   const levelName = 'Beginner';
   const currentXP = 45;
@@ -29,11 +34,24 @@ export const ProgressInfo = () => {
           </View>
         )}
       />
-      <Text style={styles.levelName}>
-        {`${currentXP} / `}
-        <Text style={{ color: theme.textSecondary }}>{maxXP}</Text>
-        <Text> XP</Text>
-      </Text>
+      <View>
+        <View style={{ position: 'relative' }}>
+          <Text style={styles.levelName}>
+            {`${currentXP} / `}
+            <Text style={{ color: theme.textSecondary }}>{maxXP}</Text>
+            <Text> XP</Text>
+          </Text>
+        </View>
+
+        <View style={styles.info}>
+          <IconButton
+            icon="info"
+            color={theme.textSecondary}
+            size={24}
+            callback={openBottomSheet}
+          />
+        </View>
+      </View>
     </View>
   );
 };
@@ -53,5 +71,10 @@ const styles = StyleSheet.create({
     fontSize: 36,
     fontFamily: 'FastelarDemoRegular',
     textAlign: 'center',
+  },
+  info: {
+    position: 'absolute',
+    top: 10,
+    right: -30,
   },
 });
