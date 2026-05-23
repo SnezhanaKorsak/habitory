@@ -12,7 +12,7 @@ import { theme } from '../../../app/theme';
 import {
   Award,
   AwardCategory,
-} from '../../../entities/awards/types/award-categories';
+} from '../types/award-categories';
 
 type Props = {
   award: Award;
