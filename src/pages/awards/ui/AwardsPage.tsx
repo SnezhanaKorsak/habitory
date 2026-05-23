@@ -1,11 +1,10 @@
-import { Text, View } from 'react-native';
-
+import { EarnedAwards } from '../../../entities/awards';
 import { Layout } from '../../../widgets';
 
 export const AwardsPage = () => {
   return (
     <Layout>
-      <Text>Awards Page</Text>
+      <EarnedAwards />
     </Layout>
   );
 };
