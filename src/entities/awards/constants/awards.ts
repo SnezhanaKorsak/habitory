@@ -61,7 +61,7 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
     backgroundIcon: 'circle',
     backgroundIconType: 'FontAwesome',
     backgroundColor: '#7FA89A',
-    unit: 'days',
+    unit: 'consecutive days',
     currentLevel: 0,
     levels: [
       {
@@ -116,7 +116,7 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
     backgroundIcon: 'square',
     backgroundIconType: 'FontAwesome',
     backgroundColor: '#9A90B8',
-    unit: 'days',
+    unit: 'consecutive days',
     currentLevel: 0,
     levels: [
       {

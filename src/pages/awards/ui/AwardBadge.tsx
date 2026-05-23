@@ -38,8 +38,6 @@ export const AwardBadge = ({ awardInfo, award, isEarned = false }: Props) => {
     goal,
   } = award;
 
-  //const currentProgress = 0;
-
   const IconComponent = mappedIconComponent[backgroundIconType];
 
   return (
@@ -78,7 +76,11 @@ export const AwardBadge = ({ awardInfo, award, isEarned = false }: Props) => {
         {isEarned ? (
           <Text style={styles.description}>{shortDescription}</Text>
         ) : (
-          <Text style={styles.description}>
+          <Text
+            style={styles.description}
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          >
             {`${currentProgress}/${goal} ${unit}`}
           </Text>
         )}
