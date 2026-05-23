@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text,View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import {
   FontAwesome,
@@ -28,8 +28,17 @@ const mappedIconComponent = {
 };
 
 export const AwardBadge = ({ awardInfo, award, isEarned = false }: Props) => {
-  const { backgroundIcon, backgroundIconType, backgroundColor } = awardInfo;
-  const { icon, name: awardName, shortDescription } = award;
+  const { backgroundIcon, backgroundIconType, backgroundColor, unit } =
+    awardInfo;
+  const {
+    icon,
+    name: awardName,
+    shortDescription,
+    currentProgress,
+    goal,
+  } = award;
+
+  //const currentProgress = 0;
 
   const IconComponent = mappedIconComponent[backgroundIconType];
 
@@ -48,25 +57,31 @@ export const AwardBadge = ({ awardInfo, award, isEarned = false }: Props) => {
             size={120}
             color={backgroundColor}
           />
-        </Pressable>
 
-        <View
-          style={[
-            styles.icon,
-            { marginTop: backgroundIcon === 'triangle' ? 15 : 0 },
-          ]}
-        >
-          {isEarned ? (
-            <Text style={styles.emoji}>{icon}</Text>
-          ) : (
-            <Text style={styles.question}>?</Text>
-          )}
-        </View>
+          <View
+            style={[
+              styles.icon,
+              { marginTop: backgroundIcon === 'triangle' ? 15 : 0 },
+            ]}
+          >
+            {isEarned ? (
+              <Text style={styles.emoji}>{icon}</Text>
+            ) : (
+              <Text style={styles.question}>?</Text>
+            )}
+          </View>
+        </Pressable>
       </View>
 
       <View style={{ width: 120 }}>
         <Text style={styles.title}>{awardName}</Text>
-        <Text style={styles.description}>{shortDescription}</Text>
+        {isEarned ? (
+          <Text style={styles.description}>{shortDescription}</Text>
+        ) : (
+          <Text style={styles.description}>
+            {`${currentProgress}/${goal} ${unit}`}
+          </Text>
+        )}
       </View>
     </View>
   );

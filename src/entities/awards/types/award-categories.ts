@@ -25,7 +25,7 @@ export type AwardsCategoryNames =
   | 'overtop'
   | 'time';
 
-export type AvailableAwards = {
+export type AwardsList = {
   category: AwardsCategoryNames;
   award: Award;
 };

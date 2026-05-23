@@ -1,10 +1,10 @@
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
 import { AwardBadge } from '../../../pages/awards/ui/AwardBadge';
 import { IconButton, PageTitle } from '../../../shared/ui';
 import { awards } from '../constants/awards';
 
-import { AvailableAwards, AwardsListState } from '../types/award-categories';
+import { AwardsList, AwardsListState } from '../types/award-categories';
 
 export const EarnedAwards = () => {
   const earnedAwardsList: AwardsListState[] = [
@@ -14,7 +14,7 @@ export const EarnedAwards = () => {
     { category: 'time', level: 2 },
   ];
 
-  const earnedAwards: AvailableAwards[] = earnedAwardsList.map(
+  const earnedAwards: AwardsList[] = earnedAwardsList.map(
     ({ category, level }) => ({
       category,
       award: awards[category].levels[level - 1],
@@ -22,14 +22,13 @@ export const EarnedAwards = () => {
   );
 
   return (
-    <View style={styles.container}>
+    <View>
       <PageTitle
         title={'Earned awards'}
         rightAddon={<IconButton icon={'arrow-right'} callback={() => {}} />}
       />
 
       <ScrollView
-        style={{ flex: 1 }}
         contentContainerStyle={{}}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
@@ -46,9 +45,3 @@ export const EarnedAwards = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
