@@ -1,8 +1,8 @@
 import { FlatList, StyleSheet, View } from 'react-native';
 
-import { AwardBadge } from './AwardBadge';
 import { PageTitle } from '../../../shared/ui';
 import { awards } from '../constants/awards';
+import { AwardBadge } from './AwardBadge';
 
 import {
   AwardsCategoryNames,

@@ -1,8 +1,8 @@
 import { ScrollView, View } from 'react-native';
 
-import { AwardBadge } from './AwardBadge';
 import { IconButton, PageTitle } from '../../../shared/ui';
 import { awards } from '../constants/awards';
+import { AwardBadge } from './AwardBadge';
 
 import { AwardsList, AwardsListState } from '../types/award-categories';
 
