@@ -2,7 +2,11 @@ import { useEffect, useRef } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
 import { theme } from '../../../app/theme';
-import { generateDays, generateHeatmapMatrix } from '../../../shared/lib';
+import {
+  generateDays,
+  generateHeatmapMatrix,
+  getDateString,
+} from '../../../shared/lib';
 
 type Props = {
   color: string;
@@ -15,6 +19,8 @@ export const HabitHeatMap = ({ color, completedDays, openModal }: Props) => {
 
   const days = generateDays();
   const weeks = generateHeatmapMatrix(days);
+
+  const today = getDateString(new Date());
 
   useEffect(() => {
     setTimeout(() => {
@@ -44,6 +50,8 @@ export const HabitHeatMap = ({ color, completedDays, openModal }: Props) => {
                     styles.day,
                     {
                       backgroundColor: completed ? color : theme.bgShadow,
+                      borderWidth: today === day.date ? 1 : 0,
+                      borderColor: color,
                     },
                   ]}
                 />

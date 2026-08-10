@@ -34,9 +34,11 @@ export const HabitCardTitle = ({ icon, title, description, id }: Props) => {
         <Text style={styles.title} numberOfLines={1}>
           {title}
         </Text>
-        <Text style={styles.description} numberOfLines={1}>
-          {description}
-        </Text>
+        {description && (
+          <Text style={styles.description} numberOfLines={1}>
+            {description}
+          </Text>
+        )}
       </View>
     </Pressable>
   );

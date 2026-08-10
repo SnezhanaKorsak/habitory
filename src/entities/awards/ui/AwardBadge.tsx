@@ -9,10 +9,7 @@ import {
 
 import { theme } from '../../../app/theme';
 
-import {
-  Award,
-  AwardCategory,
-} from '../types/award-categories';
+import { Award, AwardCategory } from '../types/award-categories';
 
 type Props = {
   award: Award;
