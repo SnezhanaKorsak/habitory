@@ -7,19 +7,23 @@ import { AwardBadge } from './AwardBadge';
 import { AwardsList, AwardsListState } from '../types/award-categories';
 
 export const EarnedAwards = () => {
+  //from store
   const earnedAwardsList: AwardsListState[] = [
-    { category: 'activity', level: 1 },
-    { category: 'one_stream', level: 1 },
-    { category: 'overtop', level: 2 },
-    { category: 'time', level: 2 },
+    { category: 'activity', currentLevel: 2, currentProgress: 20 },
+    { category: 'all_stream', currentLevel: 0, currentProgress: 0 },
+    { category: 'one_stream', currentLevel: 1, currentProgress: 20 },
+    { category: 'overtop', currentLevel: 3, currentProgress: 20 },
+    { category: 'time', currentLevel: 0, currentProgress: 0 },
   ];
 
-  const earnedAwards: AwardsList[] = earnedAwardsList.map(
-    ({ category, level }) => ({
+  const earnedAwards: AwardsList[] = earnedAwardsList
+    .filter(({ currentLevel }) => currentLevel > 0)
+    .map(({ category, currentLevel }) => ({
       category,
-      award: awards[category].levels[level - 1],
-    }),
-  );
+      award: awards[category].levels[currentLevel - 1],
+    }));
+
+  if (earnedAwards.length === 0) return null;
 
   return (
     <View>

@@ -1,7 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import { theme } from '../../../app/theme';
-
 export const ProgressRules = () => {
   return (
     <View style={styles.container}>
@@ -22,7 +20,7 @@ export const ProgressRules = () => {
 
       <Text style={styles.title}>Важно</Text>
 
-      <Text style={styles.rule}>
+      <Text style={styles.ruleDescription}>
         Пропустил день без активности — получишь −10 XP
       </Text>
     </View>
@@ -41,11 +39,12 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
   rule: {
+    marginBottom: 4,
     fontSize: 18,
+    fontWeight: 'bold',
   },
   ruleDescription: {
-    marginBottom: 8,
+    marginBottom: 12,
     fontSize: 16,
-    color: theme.border,
   },
 });

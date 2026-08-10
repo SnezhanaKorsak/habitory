@@ -5,7 +5,6 @@ export type Award = {
   goal: number;
   shortDescription: string;
   description: string;
-  currentProgress: number;
 };
 
 export type AwardCategory = {
@@ -15,6 +14,7 @@ export type AwardCategory = {
   backgroundColor: string;
   unit: string;
   currentLevel: number;
+  currentProgress: number;
   levels: Award[];
 };
 
@@ -32,7 +32,8 @@ export type AwardsList = {
 
 export type AwardsListState = {
   category: AwardsCategoryNames;
-  level: number;
+  currentLevel: number;
+  currentProgress?: number;
 };
 
 export type BackgroundIconType =

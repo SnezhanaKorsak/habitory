@@ -4,24 +4,22 @@ import { PageTitle } from '../../../shared/ui';
 import { awards } from '../constants/awards';
 import { AwardBadge } from './AwardBadge';
 
-import {
-  AwardsCategoryNames,
-  AwardsList,
-  AwardsListState,
-} from '../types/award-categories';
+import { AwardsList, AwardsListState } from '../types/award-categories';
 
 export const AvailableAwards = () => {
-  const awardKeys = Object.keys(awards) as AwardsCategoryNames[];
+  //from store
+  const earnedAwardsList: AwardsListState[] = [
+    { category: 'activity', currentLevel: 2, currentProgress: 20 },
+    { category: 'all_stream', currentLevel: 0, currentProgress: 0 },
+    { category: 'one_stream', currentLevel: 1, currentProgress: 20 },
+    { category: 'overtop', currentLevel: 3, currentProgress: 20 },
+    { category: 'time', currentLevel: 0, currentProgress: 0 },
+  ];
 
-  const availableAwardsList: AwardsListState[] = awardKeys.map((key) => ({
-    category: key,
-    level: 2,
-  }));
-
-  const availableAwards: AwardsList[] = availableAwardsList.map(
-    ({ category, level }) => ({
+  const availableAwards: AwardsList[] = earnedAwardsList.map(
+    ({ category, currentLevel }) => ({
       category,
-      award: awards[category].levels[level - 1],
+      award: awards[category].levels[currentLevel],
     }),
   );
 

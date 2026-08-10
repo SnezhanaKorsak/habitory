@@ -8,6 +8,7 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
     backgroundColor: '#D89B7C',
     unit: 'habits',
     currentLevel: 0,
+    currentProgress: 0,
     levels: [
       {
         icon: '☘️',
@@ -16,7 +17,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 15,
         shortDescription: 'Completed 15 habits',
         description: 'Successfully completed 15 habits',
-        currentProgress: 0,
       },
       {
         icon: '🌱️',
@@ -25,7 +25,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 40,
         shortDescription: 'Completed 40 habits',
         description: 'Successfully completed 40 habits',
-        currentProgress: 0,
       },
       {
         icon: '🌿️',
@@ -34,7 +33,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 75,
         shortDescription: 'Completed 75 habits',
         description: 'Successfully completed 75 habits',
-        currentProgress: 0,
       },
       {
         icon: '🪴️',
@@ -43,7 +41,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 100,
         shortDescription: 'Completed 100 habits',
         description: 'Successfully completed 100 habits',
-        currentProgress: 0,
       },
       {
         icon: '🌳',
@@ -52,7 +49,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 150,
         shortDescription: 'Completed 150 habits',
         description: 'Successfully completed 150 habits',
-        currentProgress: 0,
       },
     ],
   },
@@ -63,6 +59,7 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
     backgroundColor: '#7FA89A',
     unit: 'consecutive days',
     currentLevel: 0,
+    currentProgress: 0,
     levels: [
       {
         icon: '💪️',
@@ -71,7 +68,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 5,
         shortDescription: '5 consecutive days',
         description: 'Completed all habits for 5 consecutive days',
-        currentProgress: 0,
       },
       {
         icon: '🔥',
@@ -80,7 +76,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 15,
         shortDescription: '15 consecutive days',
         description: 'Completed all habits for 15 consecutive days',
-        currentProgress: 0,
       },
       {
         icon: '⏳️',
@@ -89,7 +84,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 30,
         shortDescription: '30 consecutive days',
         description: 'Completed all habits for 30 consecutive days',
-        currentProgress: 0,
       },
       {
         icon: '🔗️',
@@ -98,7 +92,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 60,
         shortDescription: '60 consecutive days',
         description: 'Completed all habits for 60 consecutive days',
-        currentProgress: 0,
       },
       {
         icon: '🏆',
@@ -107,7 +100,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 90,
         shortDescription: '90 consecutive days',
         description: 'Completed all habits for 90 consecutive days',
-        currentProgress: 0,
       },
     ],
   },
@@ -118,6 +110,7 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
     backgroundColor: '#9A90B8',
     unit: 'consecutive days',
     currentLevel: 0,
+    currentProgress: 0,
     levels: [
       {
         icon: '🪓',
@@ -126,7 +119,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 30,
         shortDescription: '30 consecutive days',
         description: 'Completed at least one habit for 30 consecutive days',
-        currentProgress: 0,
       },
       {
         icon: '🎯',
@@ -135,7 +127,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 60,
         shortDescription: '60 consecutive days',
         description: 'Completed at least one habit for 60 consecutive days',
-        currentProgress: 0,
       },
       {
         icon: '⚙️️',
@@ -144,7 +135,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 100,
         shortDescription: '100 consecutive days',
         description: 'Completed at least one habit for 100 consecutive days',
-        currentProgress: 0,
       },
       {
         icon: '🛡️️',
@@ -153,7 +143,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 180,
         shortDescription: '180 consecutive days',
         description: 'Completed at least one habit for 180 consecutive days',
-        currentProgress: 0,
       },
       {
         icon: '🏋️',
@@ -162,7 +151,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 365,
         shortDescription: '365 consecutive days',
         description: 'Completed at least one habit for 365 consecutive days',
-        currentProgress: 0,
       },
     ],
   },
@@ -173,6 +161,7 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
     backgroundColor: '#E3B46A',
     unit: 'times',
     currentLevel: 0,
+    currentProgress: 0,
     levels: [
       {
         icon: '🏔️',
@@ -181,7 +170,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 15,
         shortDescription: 'Exceeded 15 times',
         description: 'Exceed the target 15 times',
-        currentProgress: 0,
       },
       {
         icon: '🧗',
@@ -190,7 +178,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 45,
         shortDescription: 'Exceeded 45 times',
         description: 'Exceed the target 45 times',
-        currentProgress: 0,
       },
       {
         icon: '🌄️️',
@@ -199,7 +186,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 75,
         shortDescription: 'Exceeded 75 times',
         description: 'Exceed the target 75 times',
-        currentProgress: 0,
       },
       {
         icon: '🏞️️️',
@@ -208,7 +194,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 100,
         shortDescription: 'Exceeded 100 times',
         description: 'Exceed the target 100 times',
-        currentProgress: 0,
       },
       {
         icon: '📈️',
@@ -217,7 +202,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 200,
         shortDescription: 'Exceeded 200 times',
         description: 'Exceed the target 200 times',
-        currentProgress: 0,
       },
     ],
   },
@@ -228,6 +212,7 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
     backgroundColor: '#5FB3B3',
     unit: 'hours',
     currentLevel: 0,
+    currentProgress: 0,
     levels: [
       {
         icon: '⏰',
@@ -236,7 +221,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 15,
         shortDescription: '15 Hours Completed',
         description: 'Spent 15 hours building positive habits',
-        currentProgress: 0,
       },
       {
         icon: '🔄',
@@ -245,7 +229,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 45,
         shortDescription: '45 Hours Completed',
         description: 'Spent 45 hours building positive habits',
-        currentProgress: 0,
       },
       {
         icon: '🕰️️️',
@@ -254,7 +237,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 75,
         shortDescription: '75 Hours Completed',
         description: 'Spent 75 hours building positive habits',
-        currentProgress: 0,
       },
       {
         icon: '📆️️️',
@@ -263,7 +245,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 100,
         shortDescription: '100 Hours Completed',
         description: 'Spent 100 hours building positive habits',
-        currentProgress: 0,
       },
       {
         icon: '⏱️️',
@@ -272,7 +253,6 @@ export const awards: Record<AwardsCategoryNames, AwardCategory> = {
         goal: 150,
         shortDescription: '150 Hours Completed',
         description: 'Spent 150 hours building positive habits',
-        currentProgress: 0,
       },
     ],
   },

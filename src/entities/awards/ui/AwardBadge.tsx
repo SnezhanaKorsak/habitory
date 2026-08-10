@@ -25,15 +25,14 @@ const mappedIconComponent = {
 };
 
 export const AwardBadge = ({ awardInfo, award, isEarned = false }: Props) => {
-  const { backgroundIcon, backgroundIconType, backgroundColor, unit } =
-    awardInfo;
   const {
-    icon,
-    name: awardName,
-    shortDescription,
+    backgroundIcon,
+    backgroundIconType,
+    backgroundColor,
+    unit,
     currentProgress,
-    goal,
-  } = award;
+  } = awardInfo;
+  const { icon, name: awardName, shortDescription, goal } = award;
 
   const IconComponent = mappedIconComponent[backgroundIconType];
 
