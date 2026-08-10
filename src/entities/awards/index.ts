@@ -1,4 +1,5 @@
 export { awards } from './constants/awards';
+export { useAwardsStore } from './model/useAwardsStore';
 export {
   AwardCategory,
   AwardsList,

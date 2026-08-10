@@ -33,7 +33,7 @@ export type AwardsList = {
 export type AwardsListState = {
   category: AwardsCategoryNames;
   currentLevel: number;
-  currentProgress?: number;
+  currentProgress: number;
 };
 
 export type BackgroundIconType =

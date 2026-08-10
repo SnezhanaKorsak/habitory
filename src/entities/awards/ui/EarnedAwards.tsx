@@ -2,19 +2,13 @@ import { ScrollView, View } from 'react-native';
 
 import { IconButton, PageTitle } from '../../../shared/ui';
 import { awards } from '../constants/awards';
+import { useAwardsStore } from '../model/useAwardsStore';
 import { AwardBadge } from './AwardBadge';
 
-import { AwardsList, AwardsListState } from '../types/award-categories';
+import { AwardsList } from '../types/award-categories';
 
 export const EarnedAwards = () => {
-  //from store
-  const earnedAwardsList: AwardsListState[] = [
-    { category: 'activity', currentLevel: 2, currentProgress: 20 },
-    { category: 'all_stream', currentLevel: 0, currentProgress: 0 },
-    { category: 'one_stream', currentLevel: 1, currentProgress: 20 },
-    { category: 'overtop', currentLevel: 3, currentProgress: 20 },
-    { category: 'time', currentLevel: 0, currentProgress: 0 },
-  ];
+  const earnedAwardsList = useAwardsStore((state) => state.earnedAwardsList);
 
   const earnedAwards: AwardsList[] = earnedAwardsList
     .filter(({ currentLevel }) => currentLevel > 0)

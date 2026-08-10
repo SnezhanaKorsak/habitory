@@ -1,3 +1,4 @@
+import { useAwardsStore } from '../../entities/awards';
 import { useHabitsStore } from '../../entities/habits';
 import { useProgressStore } from '../../entities/progress/model/useProgressStore';
 import { calculateDailyXP, getDateString } from '../../shared/lib';
@@ -5,7 +6,12 @@ import { calculateDailyXP, getDateString } from '../../shared/lib';
 export const initProgressSync = () => {
   useHabitsStore.subscribe((state) => {
     const habits = state.habits;
+    const completedTasks: string[] = habits
+      .map((habit) => habit.completedDays)
+      .flat();
+
     const progress = useProgressStore.getState();
+    const awards = useAwardsStore.getState();
 
     const today = getDateString(new Date());
 
@@ -25,6 +31,10 @@ export const initProgressSync = () => {
 
     if (todayXP > 0) {
       useProgressStore.getState().setLastActivityDate(today);
+    }
+
+    if (completedTasks.length > 0) {
+      useAwardsStore.getState().updateActivityAwardsData(completedTasks.length);
     }
   });
 };
