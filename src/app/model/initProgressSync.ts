@@ -9,6 +9,9 @@ export const initProgressSync = () => {
     const completedTasks: string[] = habits
       .map((habit) => habit.completedDays)
       .flat();
+    const allCompletedDays: string[][] = habits.map(
+      (habit) => habit.completedDays,
+    );
 
     const progress = useProgressStore.getState();
     const awards = useAwardsStore.getState();
@@ -35,6 +38,8 @@ export const initProgressSync = () => {
 
     if (completedTasks.length > 0) {
       useAwardsStore.getState().updateActivityAwardsData(completedTasks.length);
+      useAwardsStore.getState().checkAllStreamAwards(allCompletedDays);
+      useAwardsStore.getState().checkHabitStreamAwards(allCompletedDays);
     }
   });
 };

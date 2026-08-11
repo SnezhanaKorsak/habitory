@@ -1,2 +1,8 @@
 export { calculateDailyXP } from './calcDailyXP';
-export { generateDays, generateHeatmapMatrix, getDateString } from './date';
+export {
+  addDays,
+  generateDays,
+  generateHeatmapMatrix,
+  getDateString,
+  getTodayString,
+} from './date';
