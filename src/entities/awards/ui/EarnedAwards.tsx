@@ -1,13 +1,17 @@
 import { ScrollView, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { IconButton, PageTitle } from '../../../shared/ui';
 import { awards } from '../constants/awards';
 import { useAwardsStore } from '../model/useAwardsStore';
 import { AwardBadge } from './AwardBadge';
 
+import { StackNavigationProp } from '../../../shared/types';
 import { AwardsList } from '../types/award-categories';
 
 export const EarnedAwards = () => {
+  const navigation = useNavigation<StackNavigationProp>();
+
   const earnedAwardsList = useAwardsStore((state) => state.earnedAwardsList);
 
   const earnedAwards: AwardsList[] = earnedAwardsList
@@ -19,11 +23,17 @@ export const EarnedAwards = () => {
 
   if (earnedAwards.length === 0) return null;
 
+  const goToAllEarnedAwardsPage = () => {
+    navigation.navigate('AllEarnedAwards');
+  };
+
   return (
     <View>
       <PageTitle
         title={'Earned awards'}
-        rightAddon={<IconButton icon={'arrow-right'} callback={() => {}} />}
+        rightAddon={
+          <IconButton icon={'arrow-right'} callback={goToAllEarnedAwardsPage} />
+        }
       />
 
       <ScrollView

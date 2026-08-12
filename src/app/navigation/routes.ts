@@ -7,11 +7,16 @@ import {
   ProgressPage,
   TimerPage,
 } from '../../pages';
+import { AllEarnedAwardsPage } from '../../pages/awards/ui/AllEarnedAwardsPage';
 
 export const routes = [
   {
     name: 'Awards',
     component: AwardsPage,
+  },
+  {
+    name: 'AllEarnedAwards',
+    component: AllEarnedAwardsPage,
   },
   {
     name: 'Edit',

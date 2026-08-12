@@ -3,12 +3,15 @@ import { StyleSheet, Text, View } from 'react-native';
 
 type Props = {
   title: string;
+  leftAddon?: React.ReactNode;
   rightAddon?: React.ReactNode;
 };
 
-export const PageTitle = ({ title, rightAddon }: Props) => {
+export const PageTitle = ({ title, rightAddon, leftAddon }: Props) => {
   return (
     <View style={styles.container}>
+      {leftAddon}
+
       <Text style={styles.title}>{title}</Text>
 
       {rightAddon}
