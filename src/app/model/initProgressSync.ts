@@ -57,6 +57,7 @@ export const initProgressSync = () => {
       useAwardsStore
         .getState()
         .checkOvertopAwards(timerHabitResults, numericHabitResults);
+      useAwardsStore.getState().checkTimeAwards(timerHabitResults);
     }
   });
 };

@@ -62,3 +62,13 @@ export const getOverNumericHabitResults = (
     )
     .reduce((acc, curr) => acc + curr, 0);
 };
+
+export const getAllHabitTime = (timerHabits: TimerHabitResult[]) => {
+  const allTime = timerHabits
+    .map(({ timeResults }) =>
+      Object.values(timeResults).reduce((acc, curr) => acc + curr, 0),
+    )
+    .reduce((acc, curr) => acc + curr, 0);
+
+  return allTime / 60;
+};
