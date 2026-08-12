@@ -11,7 +11,7 @@ import { HabitFormData } from '../../../shared/types';
 import { StackRouteProp } from '../../../shared/types/navigation';
 
 export const EditHabitPage = () => {
-  const { params } = useRoute<StackRouteProp>();
+  const { params } = useRoute<StackRouteProp<'Edit'>>();
 
   const habit = useHabitsStore((state) => state.getHabitById(params.habitId))!;
 

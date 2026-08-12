@@ -8,6 +8,7 @@ import {
   TimerPage,
 } from '../../pages';
 import { AllEarnedAwardsPage } from '../../pages/awards/ui/AllEarnedAwardsPage';
+import { AwardPage } from '../../pages/awards/ui/AwardPage';
 
 export const routes = [
   {
@@ -17,6 +18,10 @@ export const routes = [
   {
     name: 'AllEarnedAwards',
     component: AllEarnedAwardsPage,
+  },
+  {
+    name: 'Award',
+    component: AwardPage,
   },
   {
     name: 'Edit',

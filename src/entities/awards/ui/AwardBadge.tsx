@@ -1,4 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   FontAwesome,
@@ -9,6 +10,7 @@ import {
 
 import { theme } from '../../../app/theme';
 
+import { StackNavigationProp } from '../../../shared/types';
 import { Award, AwardCategory } from '../types/award-categories';
 
 type Props = {
@@ -25,7 +27,10 @@ const mappedIconComponent = {
 };
 
 export const AwardBadge = ({ awardInfo, award, isEarned = false }: Props) => {
+  const navigation = useNavigation<StackNavigationProp>();
+
   const {
+    category,
     backgroundIcon,
     backgroundIconType,
     backgroundColor,
@@ -36,11 +41,15 @@ export const AwardBadge = ({ awardInfo, award, isEarned = false }: Props) => {
 
   const IconComponent = mappedIconComponent[backgroundIconType];
 
+  const goToAwardPage = () => {
+    navigation.navigate('Award', { awardCategory: category, isEarned });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.box}>
         <Pressable
-          onPress={() => {}}
+          onPress={goToAwardPage}
           style={({ pressed }) => [
             styles.button,
             pressed && styles.buttonPressed,
