@@ -3,6 +3,8 @@ import { useHabitsStore } from '../../entities/habits';
 import { useProgressStore } from '../../entities/progress/model/useProgressStore';
 import { calculateDailyXP, getDateString } from '../../shared/lib';
 
+import { HabitType } from '../../shared/types/habit';
+
 export const initProgressSync = () => {
   useHabitsStore.subscribe((state) => {
     const habits = state.habits;
@@ -12,9 +14,21 @@ export const initProgressSync = () => {
     const allCompletedDays: string[][] = habits.map(
       (habit) => habit.completedDays,
     );
+    const timerHabitResults = habits
+      .filter((habit) => habit.type === HabitType.time)
+      .map((habit) => ({
+        timerGoal: habit.timerGoal!,
+        timeResults: habit.timeResults!,
+      }));
+
+    const numericHabitResults = habits
+      .filter((habit) => habit.type === HabitType.numeric)
+      .map((habit) => ({
+        numericGoal: habit.numericGoal!,
+        numericResults: habit.numericResults!,
+      }));
 
     const progress = useProgressStore.getState();
-    const awards = useAwardsStore.getState();
 
     const today = getDateString(new Date());
 
@@ -40,6 +54,9 @@ export const initProgressSync = () => {
       useAwardsStore.getState().updateActivityAwardsData(completedTasks.length);
       useAwardsStore.getState().checkAllStreamAwards(allCompletedDays);
       useAwardsStore.getState().checkHabitStreamAwards(allCompletedDays);
+      useAwardsStore
+        .getState()
+        .checkOvertopAwards(timerHabitResults, numericHabitResults);
     }
   });
 };

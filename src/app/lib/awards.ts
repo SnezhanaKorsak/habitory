@@ -1,5 +1,7 @@
 import { addDays, getTodayString } from '../../shared/lib';
 
+import { NumericHabitResults, TimerHabitResult } from '../../shared/types';
+
 export const getCurrentHabitStreamDays = (
   allCompletedDays: string[][],
 ): number => {
@@ -37,4 +39,26 @@ export const getCurrentHabitStreamDays = (
   }
 
   return streamDays;
+};
+
+export const getOverTimeHabitResults = (timerHabits: TimerHabitResult[]) => {
+  return timerHabits
+    .map(
+      ({ timerGoal, timeResults }) =>
+        Object.values(timeResults).filter((result) => result > timerGoal)
+          .length,
+    )
+    .reduce((acc, curr) => acc + curr, 0);
+};
+
+export const getOverNumericHabitResults = (
+  numericHabits: NumericHabitResults[],
+) => {
+  return numericHabits
+    .map(
+      ({ numericGoal, numericResults }) =>
+        Object.values(numericResults).filter((result) => result > numericGoal)
+          .length,
+    )
+    .reduce((acc, curr) => acc + curr, 0);
 };

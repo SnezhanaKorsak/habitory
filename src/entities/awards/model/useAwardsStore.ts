@@ -2,9 +2,14 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
-import { getCurrentHabitStreamDays } from '../../../app/lib/awards';
+import {
+  getCurrentHabitStreamDays,
+  getOverNumericHabitResults,
+  getOverTimeHabitResults,
+} from '../../../app/lib/awards';
 import { awards } from '../constants/awards';
 
+import { NumericHabitResults, TimerHabitResult } from '../../../shared/types/';
 import {
   AwardsCategoryNames,
   AwardsListState,
@@ -20,6 +25,10 @@ type Action = {
   updateActivityAwardsData: (completedTasks: number) => void;
   checkAllStreamAwards: (allCompletedDays: string[][]) => void;
   checkHabitStreamAwards: (allCompletedDays: string[][]) => void;
+  checkOvertopAwards: (
+    timerHabitResults: TimerHabitResult[],
+    numericHabitResults: NumericHabitResults[],
+  ) => void;
 };
 
 const earnedAwardsKeys = Object.keys(awards);
@@ -107,8 +116,6 @@ export const useAwardsStore = create<State & Action>()(
       set((state) => {
         const streamDays = getCurrentHabitStreamDays(allCompletedDays);
 
-        console.log('streamDays', streamDays);
-
         const foundedCategory = state.earnedAwardsList.find(
           (award) => award.category === 'one_stream',
         );
@@ -118,6 +125,31 @@ export const useAwardsStore = create<State & Action>()(
         foundedCategory.currentProgress = streamDays;
         foundedCategory.currentLevel =
           awards['one_stream'].levels.find((level) => streamDays >= level.goal)
+            ?.level ?? 0;
+
+        return state;
+      }),
+
+    checkOvertopAwards: (
+      timerHabitResults: TimerHabitResult[],
+      numericHabitResults: NumericHabitResults[],
+    ) =>
+      set((state) => {
+        const overTimeResult = getOverTimeHabitResults(timerHabitResults);
+        const overNumericResult =
+          getOverNumericHabitResults(numericHabitResults);
+
+        const totalResult = overTimeResult + overNumericResult;
+
+        const foundedCategory = state.earnedAwardsList.find(
+          (award) => award.category === 'overtop',
+        );
+
+        if (!foundedCategory) return;
+
+        foundedCategory.currentProgress = totalResult;
+        foundedCategory.currentLevel =
+          awards['overtop'].levels.find((level) => totalResult >= level.goal)
             ?.level ?? 0;
 
         return state;
