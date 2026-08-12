@@ -22,7 +22,7 @@ export const AvailableAwards = () => {
       return {
         category,
         award: currentAward,
-        currentProgress: awardProgress,
+        currentProgress: awardProgress > 0 ? awardProgress : currentProgress,
       };
     });
 

@@ -6,6 +6,7 @@ import { immer } from 'zustand/middleware/immer';
 
 import {
   getAllHabitTime,
+  getCurrentAllHabitStreamDays,
   getCurrentHabitStreamDays,
   getOverNumericHabitResults,
   getOverTimeHabitResults,
@@ -58,51 +59,21 @@ export const useAwardsStore = create<State & Action>()(
           if (!foundedCategory) return;
 
           foundedCategory.currentProgress = completedTasksNumber;
-          foundedCategory.currentLevel =
+
+          const newLevel =
             awards['activity'].levels.find(
               (level) => completedTasksNumber >= level.goal,
             )?.level ?? 0;
+
+          foundedCategory.currentLevel = Math.max(
+            foundedCategory.currentLevel,
+            newLevel,
+          );
         }),
 
-      checkAllStreamAwards: (allCompletedDays: string[][]) =>
+      checkAllStreamAwards: (allCompletedDays) =>
         set((state) => {
-          if (!allCompletedDays.length) {
-            return;
-          }
-
-          // Берём даты первой привычки и оставляем только те,
-          // которые есть у всех остальных привычек
-          const allCompletedTogether = allCompletedDays[0]
-            .filter((date) =>
-              allCompletedDays.every((days) => days.includes(date)),
-            )
-            .sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
-
-          let maxStreamDays = 0;
-          let currentStreamDays = 0;
-
-          for (let i = 0; i < allCompletedTogether.length; i++) {
-            if (i === 0) {
-              currentStreamDays = 1;
-              maxStreamDays = 1;
-              continue;
-            }
-
-            const previousDate = new Date(allCompletedTogether[i - 1]);
-            const currentDate = new Date(allCompletedTogether[i]);
-
-            const diffInDays =
-              (currentDate.getTime() - previousDate.getTime()) /
-              (1000 * 60 * 60 * 24);
-
-            if (diffInDays === 1) {
-              currentStreamDays += 1;
-            } else {
-              currentStreamDays = 1;
-            }
-
-            maxStreamDays = Math.max(maxStreamDays, currentStreamDays);
-          }
+          const streamDays = getCurrentAllHabitStreamDays(allCompletedDays);
 
           const foundedCategory = state.earnedAwardsList.find(
             (award) => award.category === 'all_stream',
@@ -110,11 +81,17 @@ export const useAwardsStore = create<State & Action>()(
 
           if (!foundedCategory) return;
 
-          foundedCategory.currentProgress = maxStreamDays;
-          foundedCategory.currentLevel =
+          foundedCategory.currentProgress = streamDays;
+
+          const newLevel =
             awards['all_stream'].levels.find(
-              (level) => maxStreamDays >= level.goal,
+              (level) => streamDays >= level.goal,
             )?.level ?? 0;
+
+          foundedCategory.currentLevel = Math.max(
+            foundedCategory.currentLevel,
+            newLevel,
+          );
         }),
 
       checkHabitStreamAwards: (allCompletedDays: string[][]) =>
@@ -128,10 +105,16 @@ export const useAwardsStore = create<State & Action>()(
           if (!foundedCategory) return;
 
           foundedCategory.currentProgress = streamDays;
-          foundedCategory.currentLevel =
+
+          const newLevel =
             awards['one_stream'].levels.find(
               (level) => streamDays >= level.goal,
             )?.level ?? 0;
+
+          foundedCategory.currentLevel = Math.max(
+            foundedCategory.currentLevel,
+            newLevel,
+          );
 
           return state;
         }),
@@ -154,9 +137,15 @@ export const useAwardsStore = create<State & Action>()(
           if (!foundedCategory) return;
 
           foundedCategory.currentProgress = totalResult;
-          foundedCategory.currentLevel =
+
+          const newLevel =
             awards['overtop'].levels.find((level) => totalResult >= level.goal)
               ?.level ?? 0;
+
+          foundedCategory.currentLevel = Math.max(
+            foundedCategory.currentLevel,
+            newLevel,
+          );
 
           return state;
         }),
@@ -172,9 +161,15 @@ export const useAwardsStore = create<State & Action>()(
           if (!foundedCategory) return;
 
           foundedCategory.currentProgress = allTimes;
-          foundedCategory.currentLevel =
+
+          const newLevel =
             awards['time'].levels.find((level) => allTimes >= level.goal)
               ?.level ?? 0;
+
+          foundedCategory.currentLevel = Math.max(
+            foundedCategory.currentLevel,
+            newLevel,
+          );
 
           return state;
         }),
@@ -184,7 +179,7 @@ export const useAwardsStore = create<State & Action>()(
       storage: createJSONStorage(() => AsyncStorage),
 
       partialize: (state) => ({
-        awards: state.earnedAwardsList,
+        earnedAwardsList: state.earnedAwardsList,
       }),
     },
   ),
