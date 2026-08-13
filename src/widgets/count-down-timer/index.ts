@@ -1,1 +1,1 @@
-import { CountDownTimer } from './ui/CountDownTimer';
+export { CountDownTimer } from './ui/CountDownTimer';

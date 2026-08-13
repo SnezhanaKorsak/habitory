@@ -7,13 +7,20 @@ import { IconButton } from './IconButton';
 type Props = {
   isOpen: boolean;
   title?: string;
+  subtitle?: string;
   onClose: () => void;
   children: React.ReactNode;
 };
 
 const { height } = Dimensions.get('window');
 
-export const BottomSheet = ({ isOpen, title, onClose, children }: Props) => {
+export const BottomSheet = ({
+  isOpen,
+  title,
+  subtitle,
+  onClose,
+  children,
+}: Props) => {
   const [mounted, setMounted] = useState(isOpen);
 
   const translateY = useRef(new Animated.Value(height)).current;
@@ -73,6 +80,7 @@ export const BottomSheet = ({ isOpen, title, onClose, children }: Props) => {
           <Text style={styles.title}>{title}</Text>
           <IconButton icon="x" color={theme.textSecondary} callback={onClose} />
         </View>
+        <Text style={styles.subtitle}>{subtitle}</Text>
 
         {children}
       </Animated.View>
@@ -98,11 +106,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: 12,
+    marginTop: 12,
   },
 
   title: {
     fontSize: 26,
     fontFamily: 'FastelarDemoRegular',
+  },
+  subtitle: {
+    fontSize: 20,
+    color: theme.textSecondary,
   },
 });
