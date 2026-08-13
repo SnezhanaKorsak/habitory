@@ -14,10 +14,12 @@ import { theme } from '../../app/theme';
 type Props = PressableProps & {
   style?: StyleProp<ViewStyle>;
   backgroundColor?: string;
+  leftAddon?: React.ReactNode;
 };
 
 export const PrimaryButton = ({
   children,
+  leftAddon,
   style,
   backgroundColor,
   ...rest
@@ -32,6 +34,7 @@ export const PrimaryButton = ({
         ]}
         {...rest}
       >
+        {leftAddon}
         <Text style={styles.buttonText}>{children}</Text>
       </Pressable>
     </View>
@@ -45,6 +48,9 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   buttonInnerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingVertical: 7,
     paddingHorizontal: 16,
     elevation: 2,
