@@ -24,6 +24,7 @@ export const TimerPage = () => {
   const [isShowRecordModal, setIsShowRecordModal] = useState(false);
   const [isOpenBottomSheet, setIsOpenBottomSheet] = useState(false);
   const [habitId, setHabitId] = useState('');
+  const [time, setTime] = useState(0);
 
   const startTimer = () => {
     if (currentValue === 0) {
@@ -57,6 +58,7 @@ export const TimerPage = () => {
     setIsPlaying(false);
     setCurrentValue(0);
     setIsShowConfirmModal(false);
+    setIsShowRecordModal(false);
   };
 
   const confirmOperation = () => {
@@ -71,7 +73,6 @@ export const TimerPage = () => {
   };
 
   const onSaveTime = () => {
-    console.log(habitId, 'habit');
     setIsShowRecordModal(false);
   };
 
@@ -90,13 +91,20 @@ export const TimerPage = () => {
           {isShowRecordModal && (
             <SaveTimerRecord
               isShowModal={isShowRecordModal}
+              habitId={habitId}
+              time={time}
               onSaveTime={onSaveTime}
+              onCancelOperation={cancelOperation}
             />
           )}
 
           {isShowCountDownTimer ? (
             <View style={styles.countDown}>
-              <CountDownTimer duration={currentValue} isPlaying={isPlaying} />
+              <CountDownTimer
+                duration={currentValue}
+                isPlaying={isPlaying}
+                onSetRemainingTime={setTime}
+              />
             </View>
           ) : (
             <View style={styles.timer}>

@@ -6,13 +6,19 @@ import {
 } from 'react-native-countdown-circle-timer';
 
 import { theme } from '../../../app/theme';
+import { formattedTimeString } from '../../../shared/lib';
 
 type Props = {
   duration: number;
   isPlaying: boolean;
+  onSetRemainingTime: (remainingTime: number) => void;
 };
 
-export const CountDownTimer = ({ duration, isPlaying }: Props) => {
+export const CountDownTimer = ({
+  duration,
+  isPlaying,
+  onSetRemainingTime,
+}: Props) => {
   return (
     <View style={styles.container}>
       <CountdownCircleTimer
@@ -23,19 +29,14 @@ export const CountDownTimer = ({ duration, isPlaying }: Props) => {
         strokeWidth={16}
         trailColor={theme.bgShadow as ColorFormat}
         rotation="counterclockwise"
+        onUpdate={(remainingTime: number) => {
+          onSetRemainingTime(duration - remainingTime);
+        }}
       >
         {({ remainingTime }) => {
-          const hours = Math.floor(remainingTime / 3600);
-          const minutes = Math.floor((remainingTime % 3600) / 60);
-          const seconds = remainingTime % 60;
-
-          const formatedHours = hours < 10 ? `0${hours}` : hours;
-          const formatedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-          const formatedSeconds = seconds < 10 ? `0${seconds}` : seconds;
-
           return (
             <Text style={styles.remainingText}>
-              {`${formatedHours}:${formatedMinutes}:${formatedSeconds}`}
+              {formattedTimeString(remainingTime)}
             </Text>
           );
         }}

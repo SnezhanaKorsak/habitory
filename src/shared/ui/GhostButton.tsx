@@ -1,23 +1,33 @@
+import React from 'react';
 import {
   Pressable,
   StyleProp,
   StyleSheet,
   Text,
   TextStyle,
+  View,
 } from 'react-native';
 
 type Props = {
   title: string;
+  leftAddon?: React.ReactNode;
   textStyle?: StyleProp<TextStyle>;
   onPress: () => void;
 };
 
-export const GhostButton = ({ title, textStyle, onPress }: Props) => {
+export const GhostButton = ({
+  title,
+  leftAddon,
+  textStyle,
+  onPress,
+}: Props) => {
   return (
     <Pressable
       onPress={onPress}
       style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}
     >
+      {leftAddon && <View style={styles.leftAddon}>{leftAddon}</View>}
+
       <Text style={[styles.text, textStyle]}>{title}</Text>
     </Pressable>
   );
@@ -26,6 +36,7 @@ export const GhostButton = ({ title, textStyle, onPress }: Props) => {
 const styles = StyleSheet.create({
   button: {
     height: '100%',
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent',
@@ -37,5 +48,8 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  leftAddon: {
+    marginRight: 8,
   },
 });

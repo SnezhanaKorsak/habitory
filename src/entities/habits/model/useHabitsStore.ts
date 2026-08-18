@@ -20,6 +20,7 @@ type Action = {
   completeHabit: (id: string, day: string) => void;
   updateNumericResult: (id: string, day: string, value: number) => void;
   updateTimeResult: (id: string, day: string, value: number) => void;
+  addTime: (id: string, day: string, value: number) => void;
 };
 
 export const useHabitsStore = create<State & Action>()(
@@ -86,6 +87,24 @@ export const useHabitsStore = create<State & Action>()(
           habit.timeResults[day] = value;
 
           if (value >= habit.timerGoal!) {
+            habit.completedDays.push(day);
+          } else {
+            habit.completedDays = habit.completedDays.filter((d) => d !== day);
+          }
+        }),
+
+      addTime: (id: string, day: string, value: number) =>
+        set((state: State) => {
+          const habit = state.habits.find((h) => h.id === id);
+          if (!habit) return;
+
+          const newTime = habit.timeResults[day]
+            ? habit.timeResults[day] + value
+            : value;
+
+          habit.timeResults[day] = newTime;
+
+          if (newTime >= habit.timerGoal!) {
             habit.completedDays.push(day);
           } else {
             habit.completedDays = habit.completedDays.filter((d) => d !== day);

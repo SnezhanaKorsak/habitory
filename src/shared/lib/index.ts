@@ -7,3 +7,4 @@ export {
   getDateString,
   getTodayString,
 } from './date';
+export { formattedTimeString } from './formatted-time-string';

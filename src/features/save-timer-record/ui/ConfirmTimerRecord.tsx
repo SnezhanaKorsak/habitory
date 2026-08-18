@@ -57,10 +57,12 @@ const styles = StyleSheet.create({
   },
   modalBtnBlock: {
     flexDirection: 'row',
+    height: 56,
     width: '100%',
     borderTopWidth: 1,
     borderColor: theme.border,
     alignItems: 'stretch',
     justifyContent: 'space-around',
+    marginTop: 8,
   },
 });
