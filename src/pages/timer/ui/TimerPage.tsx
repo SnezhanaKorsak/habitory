@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-import { Entypo } from '@expo/vector-icons';
-import Toast from 'react-native-toast-message';
+import { StyleSheet, View } from 'react-native';
 
 import { HabitsListByType } from '../../../entities/habits';
+import {
+  TimerControlButtons,
+  TimerStatus,
+  TimerType,
+  TimerTypeSelectionButtons,
+} from '../../../entities/timer';
 import {
   ConfirmTimerRecord,
   SaveTimerRecord,
   UpdateTimeResult,
 } from '../../../features';
-import { PrimaryButton } from '../../../shared/ui';
 import { BottomSheet } from '../../../shared/ui/BottomSheet';
 import { CountDownTimer, Layout } from '../../../widgets';
 
@@ -26,33 +28,8 @@ export const TimerPage = () => {
   const [habitId, setHabitId] = useState('');
   const [time, setTime] = useState(0);
 
-  const startTimer = () => {
-    if (currentValue === 0) {
-      Toast.show({
-        type: 'error',
-        text1: 'Please, enter a valid interval!',
-        position: 'top',
-        topOffset: 150,
-      });
-      return;
-    }
-    setIsPlaying(true);
-    setIsShowCountDownTimer(true);
-  };
-
-  const pauseTimer = () => {
-    setIsPlaying((prevState) => !prevState);
-  };
-
-  const resumeTimer = () => {
-    setIsPlaying(true);
-  };
-
-  const stopTimer = () => {
-    setIsPlaying(false);
-    setIsShowConfirmModal(true);
-    setIsShowCountDownTimer(false);
-  };
+  const [timerStatus, setTimerStatus] = useState<TimerStatus>('start');
+  const [timerType, setTimerType] = useState<TimerType>('stopwatch');
 
   const cancelOperation = () => {
     setIsPlaying(false);
@@ -98,6 +75,11 @@ export const TimerPage = () => {
             />
           )}
 
+          <TimerTypeSelectionButtons
+            timerType={timerType}
+            setTimerType={setTimerType}
+          />
+
           {isShowCountDownTimer ? (
             <View style={styles.countDown}>
               <CountDownTimer
@@ -115,46 +97,12 @@ export const TimerPage = () => {
             </View>
           )}
 
-          {isShowCountDownTimer && isPlaying && (
-            <PrimaryButton
-              style={styles.groupBtn}
-              onPress={pauseTimer}
-              leftAddon={<Entypo name="controller-paus" size={26} />}
-            >
-              <Text style={styles.text}>PAUSE</Text>
-            </PrimaryButton>
-          )}
-
-          {isShowCountDownTimer && !isPlaying && (
-            <View style={styles.buttonBlock}>
-              <PrimaryButton
-                style={styles.groupBtn}
-                onPress={resumeTimer}
-                leftAddon={<Entypo name="controller-play" size={26} />}
-              >
-                <Text style={styles.text}>RESUME</Text>
-              </PrimaryButton>
-
-              <PrimaryButton
-                style={styles.groupBtn}
-                backgroundColor={'#DDCDA2'}
-                onPress={stopTimer}
-                leftAddon={<Entypo name="controller-stop" size={26} />}
-              >
-                <Text style={styles.text}>STOP</Text>
-              </PrimaryButton>
-            </View>
-          )}
-
-          {!isShowCountDownTimer && (
-            <PrimaryButton
-              style={styles.startBtn}
-              onPress={startTimer}
-              leftAddon={<Entypo name="controller-play" size={26} />}
-            >
-              <Text style={styles.text}>START</Text>
-            </PrimaryButton>
-          )}
+          <TimerControlButtons
+            timerStatus={timerStatus}
+            isError={currentValue === 0}
+            setIsShowConfirmModal={setIsShowConfirmModal}
+            setTimerStatus={setTimerStatus}
+          />
         </View>
       </Layout>
 
@@ -184,21 +132,5 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  buttonBlock: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    columnGap: 30,
-  },
-  startBtn: {
-    width: 150,
-  },
-  groupBtn: {
-    width: '35%',
-  },
-  text: {
-    fontSize: 22,
-    fontWeight: 'bold',
   },
 });
