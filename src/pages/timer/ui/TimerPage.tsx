@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import { useAudioPlayer } from 'expo-audio';
+
 import { HabitsListByType } from '../../../entities/habits';
 import {
   TimerControlButtons,
@@ -8,32 +10,35 @@ import {
   TimerType,
   TimerTypeSelectionButtons,
 } from '../../../entities/timer';
-import {
-  ConfirmTimerRecord,
-  SaveTimerRecord,
-  UpdateTimeResult,
-} from '../../../features';
+import { ConfirmTimerRecord, SaveTimerRecord } from '../../../features';
 import { BottomSheet } from '../../../shared/ui/BottomSheet';
-import { CountDownTimer, Layout } from '../../../widgets';
+import { CountDownTimer, Layout, Stopwatch } from '../../../widgets';
 
 import { HabitType } from '../../../shared/types/habit';
 
 export const TimerPage = () => {
   const [currentValue, setCurrentValue] = useState(0);
-  const [isShowCountDownTimer, setIsShowCountDownTimer] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [isShowConfirmModal, setIsShowConfirmModal] = useState(false);
   const [isShowRecordModal, setIsShowRecordModal] = useState(false);
   const [isOpenBottomSheet, setIsOpenBottomSheet] = useState(false);
   const [habitId, setHabitId] = useState('');
   const [time, setTime] = useState(0);
+  const [resetKey, setResetKey] = useState(0);
 
   const [timerStatus, setTimerStatus] = useState<TimerStatus>('start');
-  const [timerType, setTimerType] = useState<TimerType>('stopwatch');
+  const [timerType, setTimerType] = useState<TimerType>('countdown');
+
+  const player = useAudioPlayer(
+    require('../../../../assets/sounds/timerEndSound.mp3'),
+  );
+
+  const isError = timerType === 'countdown' && currentValue === 0;
+  const isPlaying = timerStatus === 'play';
 
   const cancelOperation = () => {
-    setIsPlaying(false);
     setCurrentValue(0);
+    setResetKey((prevState) => prevState + 1);
+
     setIsShowConfirmModal(false);
     setIsShowRecordModal(false);
   };
@@ -51,6 +56,14 @@ export const TimerPage = () => {
 
   const onSaveTime = () => {
     setIsShowRecordModal(false);
+  };
+
+  const onCompleteCountdown = () => {
+    player.seekTo(0);
+    player.play();
+
+    setIsShowConfirmModal(true);
+    setTimerStatus('start');
   };
 
   return (
@@ -80,26 +93,33 @@ export const TimerPage = () => {
             setTimerType={setTimerType}
           />
 
-          {isShowCountDownTimer ? (
-            <View style={styles.countDown}>
-              <CountDownTimer
-                duration={currentValue}
-                isPlaying={isPlaying}
-                onSetRemainingTime={setTime}
+          {timerType === 'stopwatch' && (
+            <View style={styles.timer}>
+              <Stopwatch
+                resetKey={resetKey}
+                timerStatus={timerStatus}
+                onSetTime={setTime}
               />
             </View>
-          ) : (
+          )}
+
+          {timerType === 'countdown' && (
             <View style={styles.timer}>
-              <UpdateTimeResult
+              <CountDownTimer
+                timerStatus={timerStatus}
+                duration={currentValue}
+                isPlaying={isPlaying}
                 currentValue={currentValue}
+                onSetTime={setTime}
                 setCurrentValue={setCurrentValue}
+                onCompleteCountdown={onCompleteCountdown}
               />
             </View>
           )}
 
           <TimerControlButtons
             timerStatus={timerStatus}
-            isError={currentValue === 0}
+            isError={isError}
             setIsShowConfirmModal={setIsShowConfirmModal}
             setTimerStatus={setTimerStatus}
           />
@@ -124,11 +144,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   timer: {
     width: '100%',
-    marginBottom: 40,
-  },
-  countDown: {
     marginBottom: 40,
     justifyContent: 'center',
     alignItems: 'center',

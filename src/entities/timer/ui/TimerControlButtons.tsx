@@ -31,7 +31,6 @@ export const TimerControlButtons = ({
       return;
     }
     setTimerStatus('play');
-    //setIsShowCountDownTimer(true);
   };
 
   const pauseTimer = () => {
@@ -45,7 +44,6 @@ export const TimerControlButtons = ({
   const stopTimer = () => {
     setTimerStatus('start');
     setIsShowConfirmModal(true);
-    // setIsShowCountDownTimer(false);
   };
 
   return (

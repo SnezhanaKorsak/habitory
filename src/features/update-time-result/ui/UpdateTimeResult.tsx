@@ -53,6 +53,7 @@ export const UpdateTimeResult = ({ currentValue, setCurrentValue }: Props) => {
 
 const styles = StyleSheet.create({
   container: {
+    width: '100%',
     marginTop: 0,
     marginBottom: 16,
     borderRadius: 8,
