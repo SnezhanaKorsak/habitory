@@ -41,6 +41,7 @@ const earnedAwards: AwardsListState[] = earnedAwardsKeys.map((key) => ({
   category: key as AwardsCategoryNames,
   currentLevel: 0,
   currentProgress: 0,
+  list: [],
 }));
 
 export const useAwardsStore = create<State & Action>()(
@@ -52,71 +53,102 @@ export const useAwardsStore = create<State & Action>()(
 
       updateActivityAwardsData: (completedTasksNumber: number) =>
         set((state) => {
+          const type = 'activity';
           const foundedCategory = state.earnedAwardsList.find(
-            (award) => award.category === 'activity',
+            (award) => award.category === type,
           );
 
           if (!foundedCategory) return;
 
           foundedCategory.currentProgress = completedTasksNumber;
 
-          const newLevel =
-            awards['activity'].levels.find(
-              (level) => completedTasksNumber >= level.goal,
-            )?.level ?? 0;
-
-          foundedCategory.currentLevel = Math.max(
-            foundedCategory.currentLevel,
-            newLevel,
+          const completedAwards = awards[type].levels.filter(
+            (level) => completedTasksNumber >= level.goal,
           );
+          const newLevel = completedAwards?.length ?? 0;
+
+          if (newLevel < foundedCategory.currentLevel) return;
+
+          foundedCategory.currentLevel = newLevel;
+          const existingAwards = foundedCategory.list;
+
+          foundedCategory.list = completedAwards.map((award, index) => {
+            const existingAward = existingAwards[index];
+
+            return {
+              ...award,
+              category: type,
+              earnedAt: existingAward?.earnedAt ?? new Date(),
+            };
+          });
         }),
 
       checkAllStreamAwards: (allCompletedDays) =>
         set((state) => {
+          const type = 'all_stream';
           const streamDays = getCurrentAllHabitStreamDays(allCompletedDays);
 
           const foundedCategory = state.earnedAwardsList.find(
-            (award) => award.category === 'all_stream',
+            (award) => award.category === type,
           );
 
           if (!foundedCategory) return;
 
           foundedCategory.currentProgress = streamDays;
 
-          const newLevel =
-            awards['all_stream'].levels.find(
-              (level) => streamDays >= level.goal,
-            )?.level ?? 0;
-
-          foundedCategory.currentLevel = Math.max(
-            foundedCategory.currentLevel,
-            newLevel,
+          const completedAwards = awards[type].levels.filter(
+            (level) => streamDays >= level.goal,
           );
+          const newLevel = completedAwards?.length ?? 0;
+
+          if (newLevel < foundedCategory.currentLevel) return;
+
+          foundedCategory.currentLevel = newLevel;
+          const existingAwards = foundedCategory.list;
+
+          foundedCategory.list = completedAwards.map((award, index) => {
+            const existingAward = existingAwards[index];
+
+            return {
+              ...award,
+              category: type,
+              earnedAt: existingAward?.earnedAt ?? new Date(),
+            };
+          });
         }),
 
       checkHabitStreamAwards: (allCompletedDays: string[][]) =>
         set((state) => {
+          const type = 'one_stream';
           const streamDays = getCurrentHabitStreamDays(allCompletedDays);
 
           const foundedCategory = state.earnedAwardsList.find(
-            (award) => award.category === 'one_stream',
+            (award) => award.category === type,
           );
 
           if (!foundedCategory) return;
 
           foundedCategory.currentProgress = streamDays;
 
-          const newLevel =
-            awards['one_stream'].levels.find(
-              (level) => streamDays >= level.goal,
-            )?.level ?? 0;
-
-          foundedCategory.currentLevel = Math.max(
-            foundedCategory.currentLevel,
-            newLevel,
+          const completedAwards = awards[type].levels.filter(
+            (level) => streamDays >= level.goal,
           );
+          const newLevel = completedAwards?.length ?? 0;
 
-          return state;
+          if (newLevel < foundedCategory.currentLevel) return;
+
+          foundedCategory.currentLevel = newLevel;
+          const existingAwards = foundedCategory.list;
+
+          foundedCategory.list = completedAwards.map((award, index) => {
+            const existingAward = existingAwards[index];
+
+            return {
+              ...award,
+              category: type,
+              earnedAt: existingAward?.earnedAt ?? new Date(),
+            };
+          });
         }),
 
       checkOvertopAwards: (
@@ -124,6 +156,7 @@ export const useAwardsStore = create<State & Action>()(
         numericHabitResults: NumericHabitResults[],
       ) =>
         set((state) => {
+          const type = 'overtop';
           const overTimeResult = getOverTimeHabitResults(timerHabitResults);
           const overNumericResult =
             getOverNumericHabitResults(numericHabitResults);
@@ -131,47 +164,66 @@ export const useAwardsStore = create<State & Action>()(
           const totalResult = overTimeResult + overNumericResult;
 
           const foundedCategory = state.earnedAwardsList.find(
-            (award) => award.category === 'overtop',
+            (award) => award.category === type,
           );
 
           if (!foundedCategory) return;
 
           foundedCategory.currentProgress = totalResult;
 
-          const newLevel =
-            awards['overtop'].levels.find((level) => totalResult >= level.goal)
-              ?.level ?? 0;
-
-          foundedCategory.currentLevel = Math.max(
-            foundedCategory.currentLevel,
-            newLevel,
+          const completedAwards = awards[type].levels.filter(
+            (level) => totalResult >= level.goal,
           );
+          const newLevel = completedAwards?.length ?? 0;
 
-          return state;
+          if (newLevel < foundedCategory.currentLevel) return;
+
+          foundedCategory.currentLevel = newLevel;
+          const existingAwards = foundedCategory.list;
+
+          foundedCategory.list = completedAwards.map((award, index) => {
+            const existingAward = existingAwards[index];
+
+            return {
+              ...award,
+              category: type,
+              earnedAt: existingAward?.earnedAt ?? new Date(),
+            };
+          });
         }),
 
       checkTimeAwards: (timerHabitResults: TimerHabitResult[]) =>
         set((state) => {
+          const type = 'time';
           const allTimes = getAllHabitTime(timerHabitResults);
 
           const foundedCategory = state.earnedAwardsList.find(
-            (award) => award.category === 'time',
+            (award) => award.category === type,
           );
 
           if (!foundedCategory) return;
 
           foundedCategory.currentProgress = allTimes;
 
-          const newLevel =
-            awards['time'].levels.find((level) => allTimes >= level.goal)
-              ?.level ?? 0;
-
-          foundedCategory.currentLevel = Math.max(
-            foundedCategory.currentLevel,
-            newLevel,
+          const completedAwards = awards[type].levels.filter(
+            (level) => allTimes >= level.goal,
           );
+          const newLevel = completedAwards?.length ?? 0;
 
-          return state;
+          if (newLevel < foundedCategory.currentLevel) return;
+
+          foundedCategory.currentLevel = newLevel;
+          const existingAwards = foundedCategory.list;
+
+          foundedCategory.list = completedAwards.map((award, index) => {
+            const existingAward = existingAwards[index];
+
+            return {
+              ...award,
+              category: type,
+              earnedAt: existingAward?.earnedAt ?? new Date(),
+            };
+          });
         }),
     })),
     {

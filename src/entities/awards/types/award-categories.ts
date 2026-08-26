@@ -27,13 +27,19 @@ export type AwardsCategoryNames =
 
 export type AwardsList = {
   category: AwardsCategoryNames;
-  award: Award;
+  awards: Award[];
+};
+
+export type EarnedAwardsList = {
+  category: AwardsCategoryNames;
+  awards: (Award & { category: AwardsCategoryNames; earnedAt: Date })[];
 };
 
 export type AwardsListState = {
   category: AwardsCategoryNames;
   currentLevel: number;
   currentProgress: number;
+  list: (Award & { category: AwardsCategoryNames; earnedAt: Date })[];
 };
 
 export type BackgroundIconType =

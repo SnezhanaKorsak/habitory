@@ -46,7 +46,7 @@ export const ProgressInfo = ({ openBottomSheet }: Props) => {
       <View>
         <View style={{ position: 'relative' }}>
           <Text style={styles.levelName}>
-            {`${currentXP}  ${maxXP <= 50000 ? '/' : ''}`}
+            {`${Math.round(currentXP)}  ${maxXP <= 50000 ? '/' : ''}`}
             {maxXP <= 50000 && (
               <Text style={{ color: theme.textSecondary }}>{maxXP}</Text>
             )}

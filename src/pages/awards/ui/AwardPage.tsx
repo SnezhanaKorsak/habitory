@@ -3,6 +3,7 @@ import { useRoute } from '@react-navigation/native';
 
 import { theme } from '../../../app/theme';
 import { awards } from '../../../entities/awards';
+import { getDateString } from '../../../shared/lib';
 import { AnimatedGradientBackground } from '../../../shared/ui/AnimatedGradientBackground';
 import { Layout } from '../../../widgets';
 
@@ -14,9 +15,15 @@ export const AwardPage = () => {
 
   const category = params.awardCategory as AwardsCategoryNames;
   const isEarned = params.isEarned;
+  const earnedAt = params.earnedAt;
 
   const { currentLevel, levels } = awards[category];
   const { icon, name, description } = levels[currentLevel];
+
+  const formatedEarnedDate = getDateString(new Date(earnedAt))
+    ?.split('-')
+    .reverse()
+    .join('.');
 
   return (
     <Layout>
@@ -30,6 +37,7 @@ export const AwardPage = () => {
         )}
 
         <Text style={styles.title}>{name}</Text>
+        {isEarned && <Text style={styles.date}>{formatedEarnedDate}</Text>}
         <Text style={styles.description}>{description}</Text>
       </View>
     </Layout>
@@ -55,6 +63,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: theme.textSecondary,
     textAlign: 'center',
+  },
+  date: {
+    fontSize: 22,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    marginVertical: 8,
   },
   question: {
     marginTop: -100,

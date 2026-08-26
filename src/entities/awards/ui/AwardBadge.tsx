@@ -11,10 +11,10 @@ import {
 import { theme } from '../../../app/theme';
 
 import { StackNavigationProp } from '../../../shared/types';
-import { Award, AwardCategory } from '../types/award-categories';
+import { AwardCategory, EarnedAwardsList } from '../types/award-categories';
 
 type Props = {
-  award: Award;
+  award: EarnedAwardsList['awards'][0];
   awardInfo: AwardCategory;
   isEarned?: boolean;
 };
@@ -37,12 +37,16 @@ export const AwardBadge = ({ awardInfo, award, isEarned = false }: Props) => {
     unit,
     currentProgress,
   } = awardInfo;
-  const { icon, name: awardName, shortDescription, goal } = award;
+  const { icon, name: awardName, shortDescription, goal, earnedAt } = award;
 
   const IconComponent = mappedIconComponent[backgroundIconType];
 
   const goToAwardPage = () => {
-    navigation.navigate('Award', { awardCategory: category, isEarned });
+    navigation.navigate('Award', {
+      awardCategory: category,
+      isEarned,
+      earnedAt,
+    });
   };
 
   return (

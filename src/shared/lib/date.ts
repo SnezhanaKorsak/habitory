@@ -2,7 +2,7 @@ type Day = {
   date: string;
 };
 
-export function generateDays(count = 365) {
+export const generateDays = (count = 365) => {
   const days = [];
   const today = new Date();
   let fullCount = count;
@@ -21,13 +21,13 @@ export function generateDays(count = 365) {
   }
 
   return days;
-}
+};
 
-function getWeekdayIndex(date: Date) {
+const getWeekdayIndex = (date: Date) => {
   return (date.getDay() + 6) % 7;
-}
+};
 
-export function generateHeatmapMatrix(days: { date: string }[]) {
+export const generateHeatmapMatrix = (days: { date: string }[]) => {
   const weeks: Day[][] = [];
 
   let currentWeek: Day[] = Array(7).fill(null);
@@ -51,7 +51,7 @@ export function generateHeatmapMatrix(days: { date: string }[]) {
   }
 
   return weeks;
-}
+};
 
 export const getDateString = (date: Date) => date.toISOString().split('T')[0];
 

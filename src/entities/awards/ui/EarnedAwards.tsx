@@ -7,21 +7,28 @@ import { useAwardsStore } from '../model/useAwardsStore';
 import { AwardBadge } from './AwardBadge';
 
 import { StackNavigationProp } from '../../../shared/types';
-import { AwardsList } from '../types/award-categories';
+import { EarnedAwardsList } from '../types/award-categories';
 
 export const EarnedAwards = () => {
   const navigation = useNavigation<StackNavigationProp>();
 
   const earnedAwardsList = useAwardsStore((state) => state.earnedAwardsList);
 
-  const earnedAwards: AwardsList[] = earnedAwardsList
+  const earnedAwards: EarnedAwardsList[] = earnedAwardsList
     .filter(({ currentLevel }) => currentLevel > 0)
-    .map(({ category, currentLevel }) => ({
+    .map(({ category, list }) => ({
       category,
-      award: awards[category].levels[currentLevel - 1],
+      awards: list,
     }));
 
   if (earnedAwards.length === 0) return null;
+
+  const allList = earnedAwards
+    .map(({ awards }) => awards)
+    .flat()
+    .sort(
+      (a, b) => new Date(b.earnedAt).getTime() - new Date(a.earnedAt).getTime(),
+    );
 
   const goToAllEarnedAwardsPage = () => {
     navigation.navigate('AllEarnedAwards');
@@ -41,12 +48,12 @@ export const EarnedAwards = () => {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
       >
-        {earnedAwards.map(({ category, award }) => (
+        {allList.map((award) => (
           <AwardBadge
-            key={`${category}_${award.level}`}
+            key={`${award.category}_${award.level}`}
             isEarned={true}
             award={award}
-            awardInfo={awards[category]}
+            awardInfo={awards[award.category]}
           />
         ))}
       </ScrollView>
