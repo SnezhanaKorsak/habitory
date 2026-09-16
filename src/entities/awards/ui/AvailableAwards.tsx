@@ -5,13 +5,19 @@ import { awards } from '../constants/awards';
 import { useAwardsStore } from '../model/useAwardsStore';
 import { AwardBadge } from './AwardBadge';
 
-import { AwardsList } from '../types/award-categories';
+import { Award, AwardsCategoryNames } from '../types/award-categories';
+
+type AvailableAward = {
+  category: AwardsCategoryNames;
+  award: Award;
+  currentProgress: number;
+};
 
 export const AvailableAwards = () => {
   const earnedAwardsList = useAwardsStore((state) => state.earnedAwardsList);
 
-  const availableAwards: (AwardsList & { currentProgress: number })[] =
-    earnedAwardsList.map(({ category, currentLevel, currentProgress }) => {
+  const availableAwards: AvailableAward[] = earnedAwardsList.map(
+    ({ category, currentLevel, currentProgress }) => {
       const currentAward = awards[category].levels[currentLevel];
       const previousAward = awards[category].levels[currentLevel - 1];
 
@@ -24,7 +30,8 @@ export const AvailableAwards = () => {
         award: currentAward,
         currentProgress: awardProgress > 0 ? awardProgress : currentProgress,
       };
-    });
+    },
+  );
 
   return (
     <View style={styles.container}>

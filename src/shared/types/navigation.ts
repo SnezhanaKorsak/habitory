@@ -5,7 +5,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 export type TypeRootStackParamList = {
   Awards: undefined;
   AllEarnedAwards: undefined;
-  Award: { awardCategory: string; isEarned: boolean; earnedAt: string };
+  Award: { awardCategory: string; isEarned: boolean; earnedAt: Date | string };
   Edit: { habitId: string };
   Habits: undefined;
   New: undefined;

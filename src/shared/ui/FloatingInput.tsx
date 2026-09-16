@@ -79,6 +79,7 @@ export const FloatingInput = ({
         style={styles.input}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
+        autoCapitalize="none"
       />
     </View>
   );

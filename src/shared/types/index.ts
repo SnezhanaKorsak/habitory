@@ -1,6 +1,6 @@
 export { NumericHabitResults, TimerHabitResult } from './awards';
 export { HabitFormData, SelectHabitType } from './habit';
-export { FeatherIconName } from './icons';
+export { AntDesignIconName, FeatherIconName } from './icons';
 export {
   MenuItemType,
   NavFunction,

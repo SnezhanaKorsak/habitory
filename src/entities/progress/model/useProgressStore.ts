@@ -15,6 +15,7 @@ type Action = {
   subtractXP: (value: number) => void;
   setLastActivityDate: (date: string) => void;
   setXPForDay: (day: string, value: number) => void;
+  reset: () => void;
 };
 
 export const useProgressStore = create<State & Action>()(
@@ -23,6 +24,8 @@ export const useProgressStore = create<State & Action>()(
       experience: 0,
       lastActivityDate: '',
       xpByDay: {},
+
+      reset: () => set({ experience: 0, lastActivityDate: '', xpByDay: {} }),
 
       addXP: (value) =>
         set((state) => {

@@ -20,10 +20,9 @@ export const AwardPage = () => {
   const { currentLevel, levels } = awards[category];
   const { icon, name, description } = levels[currentLevel];
 
-  const formatedEarnedDate = getDateString(new Date(earnedAt))
-    ?.split('-')
-    .reverse()
-    .join('.');
+  const formatedEarnedDate = isEarned
+    ? getDateString(new Date(earnedAt))?.split('-').reverse().join('.')
+    : '';
 
   return (
     <Layout>

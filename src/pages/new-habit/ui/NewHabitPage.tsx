@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 
 import { useCreateHabit } from '../../../features';
 import { IconButton, PageTitle } from '../../../shared/ui';
+import { Loader } from '../../../shared/ui/Loader';
 import { Layout } from '../../../widgets';
 import { HabitForm } from '../../../widgets/habit-form';
 
@@ -18,8 +20,10 @@ export const NewHabitPage = () => {
     icon: '' as FeatherIconName,
     color: '',
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSave = () => {
+    setIsLoading(true);
     createHabit(form);
   };
 
@@ -31,6 +35,21 @@ export const NewHabitPage = () => {
       />
 
       <HabitForm form={form} setForm={setForm} />
+
+      {isLoading && (
+        <View style={styles.loader}>
+          <Loader />
+        </View>
+      )}
     </Layout>
   );
 };
+
+const styles = StyleSheet.create({
+  loader: {
+    position: 'absolute',
+    top: '55%',
+    left: '55%',
+    transform: 'translate(-50%, -50%)',
+  },
+});

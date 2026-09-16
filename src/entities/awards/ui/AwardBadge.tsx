@@ -11,10 +11,14 @@ import {
 import { theme } from '../../../app/theme';
 
 import { StackNavigationProp } from '../../../shared/types';
-import { AwardCategory, EarnedAwardsList } from '../types/award-categories';
+import {
+  Award,
+  AwardCategory,
+  AwardsCategoryNames,
+} from '../types/award-categories';
 
 type Props = {
-  award: EarnedAwardsList['awards'][0];
+  award: Award & { category?: AwardsCategoryNames; earnedAt?: Date };
   awardInfo: AwardCategory;
   isEarned?: boolean;
 };
@@ -45,7 +49,7 @@ export const AwardBadge = ({ awardInfo, award, isEarned = false }: Props) => {
     navigation.navigate('Award', {
       awardCategory: category,
       isEarned,
-      earnedAt,
+      earnedAt: earnedAt ?? '',
     });
   };
 

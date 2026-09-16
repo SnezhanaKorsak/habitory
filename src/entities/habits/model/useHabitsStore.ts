@@ -21,6 +21,7 @@ type Action = {
   updateNumericResult: (id: string, day: string, value: number) => void;
   updateTimeResult: (id: string, day: string, value: number) => void;
   addTime: (id: string, day: string, value: number) => void;
+  reset: () => void;
 };
 
 export const useHabitsStore = create<State & Action>()(
@@ -29,6 +30,8 @@ export const useHabitsStore = create<State & Action>()(
       habits: [],
       loading: false,
       error: null,
+
+      reset: () => set({ habits: [] }),
 
       getHabitById: (id: string) => {
         return get().habits.find((h) => h.id === id);

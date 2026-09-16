@@ -34,6 +34,7 @@ type Action = {
     numericHabitResults: NumericHabitResults[],
   ) => void;
   checkTimeAwards: (timerHabitResults: TimerHabitResult[]) => void;
+  reset: () => void;
 };
 
 const earnedAwardsKeys = Object.keys(awards);
@@ -50,6 +51,8 @@ export const useAwardsStore = create<State & Action>()(
       earnedAwardsList: earnedAwards,
       loading: false,
       error: null,
+
+      reset: () => set({ earnedAwardsList: earnedAwards }),
 
       updateActivityAwardsData: (completedTasksNumber: number) =>
         set((state) => {

@@ -1,23 +1,42 @@
 import { Pressable, StyleSheet } from 'react-native';
 
-import { Feather } from '@expo/vector-icons';
+import { AntDesign, Feather } from '@expo/vector-icons';
 
-import { FeatherIconName } from '../types';
+import { AntDesignIconName, FeatherIconName } from '../types';
 
-type Props = {
-  icon: FeatherIconName;
+type Icon =
+  | {
+      iconType?: 'feather';
+      icon: FeatherIconName;
+    }
+  | {
+      iconType: 'antDesign';
+      icon: AntDesignIconName;
+    };
+
+type Props = Icon & {
   size?: number;
   color?: string;
   callback: () => void;
 };
 
-export const IconButton = ({ icon, callback, color, size = 26 }: Props) => {
+export const IconButton = ({
+  icon,
+  iconType,
+  callback,
+  color,
+  size = 26,
+}: Props) => {
   return (
     <Pressable
       onPress={callback}
       style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}
     >
-      <Feather name={icon} size={size} color={color} />
+      {iconType === 'antDesign' ? (
+        <AntDesign name={icon} size={size} color={color} />
+      ) : (
+        <Feather name={icon} size={size} color={color} />
+      )}
     </Pressable>
   );
 };
