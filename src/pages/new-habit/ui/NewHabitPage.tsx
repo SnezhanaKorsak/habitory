@@ -23,7 +23,10 @@ export const NewHabitPage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSave = () => {
-    setIsLoading(true);
+    if (form.name && form.type && form.icon && form.color) {
+      setIsLoading(true);
+    }
+
     createHabit(form);
   };
 

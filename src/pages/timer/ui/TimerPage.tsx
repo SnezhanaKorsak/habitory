@@ -10,7 +10,7 @@ import {
   TimerType,
   TimerTypeSelectionButtons,
 } from '../../../entities/timer';
-import { ConfirmTimerRecord, SaveTimerRecord } from '../../../features';
+import { ConfirmOperationModal, SaveTimerRecord } from '../../../features';
 import { BottomSheet } from '../../../shared/ui/BottomSheet';
 import { CountDownTimer, Layout, Stopwatch } from '../../../widgets';
 
@@ -71,7 +71,8 @@ export const TimerPage = () => {
       <Layout>
         <View style={styles.container}>
           {isShowConfirmModal && (
-            <ConfirmTimerRecord
+            <ConfirmOperationModal
+              title="Save record?"
               isShowModal={isShowConfirmModal}
               onCancelOperation={cancelOperation}
               onConfirmOperation={confirmOperation}
