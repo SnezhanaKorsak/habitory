@@ -33,7 +33,7 @@ export const HabitsPage = () => {
   return (
     <Layout>
       <PageTitle
-        title="Habbits"
+        title="Habits"
         rightAddon={
           <IconButton
             icon="clear"
