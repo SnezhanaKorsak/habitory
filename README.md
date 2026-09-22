@@ -12,6 +12,14 @@ Habitory combines habit tracking with **progress levels, streaks, and achievemen
 
 ---
 
+## 📱 Android
+
+You can try the Android version of Habitory here:
+
+[**Download Habitory for Android**](YOUR_ANDROID_BUILD_LINK)
+
+---
+
 ## 📋 Habits
 
 The **Habits** screen contains all active habits in one place.
