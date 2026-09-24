@@ -168,8 +168,9 @@ vendor/
 /android
 /ios
 *.apk
+/eas-archive/
 
-.yarn/*
+# Yarn 4
 .yarn/cache
 .yarn/install-state.gz
 .yarn/unplugged

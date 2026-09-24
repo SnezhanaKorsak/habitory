@@ -16,7 +16,7 @@ Habitory combines habit tracking with **progress levels, streaks, and achievemen
 
 You can try the Android version of Habitory here:
 
-[**Download Habitory for Android**](YOUR_ANDROID_BUILD_LINK)
+[**Download Habitory for Android**](https://expo.dev/accounts/snega2809/projects/habitory/builds/ad4692c7-8251-4632-ad2d-9f962aac04b0)
 
 ---
 
