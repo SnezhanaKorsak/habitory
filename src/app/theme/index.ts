@@ -1,5 +1,5 @@
 const bgPrimary = '#e4dac0';
-const bgSecondary = '#eceadb';
+const bgSecondary = '#f1eee0';
 const bgAccent = '#DDCDA2';
 const bgShadow = 'rgba(184,166,122,0.58)';
 

@@ -11,6 +11,7 @@ export type TypeRootStackParamList = {
   New: undefined;
   Progress: undefined;
   Onboarding: undefined;
+  Settings: undefined;
   Timer: undefined;
 };
 

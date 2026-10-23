@@ -4,9 +4,9 @@
 
 The app supports different types of habits, allowing users to track:
 
-* **Yes/No habits** — simple habits that can be marked as completed or not completed.
-* **Time-based habits** — habits that require tracking how long an activity was performed.
-* **Quantity-based habits** — habits where users can record a specific amount or value.
+- **Yes/No habits** — simple habits that can be marked as completed or not completed.
+- **Time-based habits** — habits that require tracking how long an activity was performed.
+- **Quantity-based habits** — habits where users can record a specific amount or value.
 
 Habitory combines habit tracking with **progress levels, streaks, and achievements**, adding a game-like element to everyday routines and making it easier to stay motivated.
 
@@ -28,9 +28,9 @@ Each habit is displayed as a contribution-style activity board, similar to the v
 
 By tapping a habit, users can record their progress depending on its type:
 
-* mark a Yes/No habit as completed;
-* enter a value for a quantity-based habit;
-* save a completed time-based activity.
+- mark a Yes/No habit as completed;
+- enter a value for a quantity-based habit;
+- save a completed time-based activity.
 
 The activity board provides a quick visual overview of consistency and helps users avoid breaking their streak.
 
@@ -45,11 +45,11 @@ The **Create Habit** screen allows users to create habits that match their perso
 
 Users can choose the habit type and customize it by adding:
 
-* a habit name;
-* a short description;
-* an icon;
-* a custom color;
-* a target value or duration, depending on the habit type.
+- a habit name;
+- a short description;
+- an icon;
+- a custom color;
+- a target value or duration, depending on the habit type.
 
 This makes it possible to create both simple daily habits and more specific goals that require tracking time or quantity.
 
@@ -91,12 +91,12 @@ Users can start a timer, perform their activity, and track the duration directly
 
 This makes Habitory suitable for activities such as:
 
-* meditation;
-* reading;
-* exercising;
-* studying;
-* stretching;
-* or any other activity measured by time.
+- meditation;
+- reading;
+- exercising;
+- studying;
+- stretching;
+- or any other activity measured by time.
 
 <img src="./assets/screens/timer.jpg" height="400" />
 

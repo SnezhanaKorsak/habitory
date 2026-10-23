@@ -14,6 +14,8 @@ export const RootNavigation = () => {
 
   const navRef = useNavigationContainerRef();
 
+  const excludeRoutes = ['Onboarding'];
+
   useEffect(() => {
     setCurrentRoute(navRef.getCurrentRoute()?.name);
 
@@ -30,7 +32,7 @@ export const RootNavigation = () => {
         <Navigation />
       </NavigationContainer>
 
-      {currentRoute && currentRoute != 'Onboarding' && (
+      {currentRoute && !excludeRoutes.includes(currentRoute) && (
         <BottomMenu currentRoute={currentRoute} nav={navRef.navigate} />
       )}
     </>

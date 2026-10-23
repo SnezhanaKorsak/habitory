@@ -78,11 +78,14 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 22,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   description: {
     fontSize: 18,
+    lineHeight: 24,
+    color: '#777067',
     marginTop: 10,
-    color: theme.textSecondary,
+    textAlign: 'center',
   },
   modalBtnBlock: {
     flexDirection: 'row',

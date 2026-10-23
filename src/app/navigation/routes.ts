@@ -5,6 +5,7 @@ import {
   NewHabitPage,
   OnboardingPage,
   ProgressPage,
+  SettingsPage,
   TimerPage,
 } from '../../pages';
 import { AllEarnedAwardsPage } from '../../pages/awards/ui/AllEarnedAwardsPage';
@@ -42,6 +43,10 @@ export const routes = [
   {
     name: 'Progress',
     component: ProgressPage,
+  },
+  {
+    name: 'Settings',
+    component: SettingsPage,
   },
   {
     name: 'Timer',
