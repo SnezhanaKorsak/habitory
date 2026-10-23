@@ -6,6 +6,7 @@ import { useHabitsStore } from '../../../entities/habits';
 import { IconButton, PageTitle } from '../../../shared/ui';
 import { Layout } from '../../../widgets';
 import { HabitCard } from '../../../widgets/habit-card';
+import { EmptyAlert } from './EmptyAlert';
 
 import { StackNavigationProp } from '../../../shared/types';
 
@@ -13,6 +14,8 @@ export const HabitsPage = () => {
   const navigation = useNavigation<StackNavigationProp>();
 
   const habitsList = useHabitsStore((state) => state.habits);
+
+  const isEmptyList = habitsList?.length === 0;
 
   const navigateToSettings = () => navigation.navigate('Settings');
 
@@ -29,15 +32,20 @@ export const HabitsPage = () => {
           />
         }
       />
-      <ScrollView
-        style={{ flex: 1 }}
-        contentContainerStyle={{}}
-        showsVerticalScrollIndicator={false}
-      >
-        {habitsList.map((habit) => (
-          <HabitCard key={habit.id} habit={habit} />
-        ))}
-      </ScrollView>
+
+      {isEmptyList ? (
+        <EmptyAlert />
+      ) : (
+        <ScrollView
+          style={{ flex: 1 }}
+          contentContainerStyle={{}}
+          showsVerticalScrollIndicator={false}
+        >
+          {habitsList.map((habit) => (
+            <HabitCard key={habit.id} habit={habit} />
+          ))}
+        </ScrollView>
+      )}
     </Layout>
   );
 };

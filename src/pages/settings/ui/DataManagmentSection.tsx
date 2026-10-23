@@ -109,7 +109,6 @@ export const styles = StyleSheet.create({
     backgroundColor: '#F0E2D8',
     opacity: 0.8,
   },
-
   clearButtonText: {
     fontSize: 14,
     fontWeight: '600',

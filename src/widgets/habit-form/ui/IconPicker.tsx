@@ -39,6 +39,7 @@ export const IconPicker = ({ visible, onSelect, setModalVisible }: Props) => {
             <View style={styles.modal}>
               <TextInput
                 placeholder="Search icons..."
+                placeholderTextColor={theme.textPrimary}
                 value={search}
                 onChangeText={setSearch}
                 style={styles.input}

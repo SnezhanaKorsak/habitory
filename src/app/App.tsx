@@ -22,7 +22,7 @@ export default function App() {
       </SafeAreaProvider>
 
       <Toast />
-      <StatusBar style="auto" />
+      <StatusBar style="dark" />
     </>
   );
 }
