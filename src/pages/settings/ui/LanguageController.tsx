@@ -1,24 +1,37 @@
-import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { Feather } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 import { theme } from '../../../app/theme';
-
-type Language = 'en' | 'ru';
+import {
+  type AppLanguage,
+  changeAppLanguage,
+} from '../../../shared/config/i18n';
 
 export const LanguageController = () => {
-  const [language, setLanguage] = useState<Language>('en');
+  const { t, i18n } = useTranslation();
+
+  const language: AppLanguage = i18n.resolvedLanguage === 'ru' ? 'ru' : 'en';
+
+  const handleLanguageChange = async (nextLanguage: AppLanguage) => {
+    try {
+      await changeAppLanguage(nextLanguage);
+    } catch (error: unknown) {
+      // eslint-disable-next-line no-console
+      console.error('Failed to change language:', error);
+    }
+  };
 
   return (
     <View style={styles.section}>
       <View style={styles.sectionHeader}>
-        <Feather name="globe" size={22} color="#C64A38" />
+        <Feather name="globe" size={22} color={theme.accent100} />
 
         <View style={styles.sectionText}>
-          <Text style={styles.sectionTitle}>Language</Text>
+          <Text style={styles.sectionTitle}>{t('settings.language')}</Text>
           <Text style={styles.sectionDescription}>
-            Choose your preferred language
+            {t('settings.languageDescription')}
           </Text>
         </View>
       </View>
@@ -27,7 +40,7 @@ export const LanguageController = () => {
         <Pressable
           accessibilityRole="radio"
           accessibilityState={{ checked: language === 'en' }}
-          onPress={() => setLanguage('en')}
+          onPress={() => void handleLanguageChange('en')}
           style={[
             styles.languageOption,
             language === 'en' && styles.languageOptionActive,
@@ -46,7 +59,7 @@ export const LanguageController = () => {
         <Pressable
           accessibilityRole="radio"
           accessibilityState={{ checked: language === 'ru' }}
-          onPress={() => setLanguage('ru')}
+          onPress={() => void handleLanguageChange('ru')}
           style={[
             styles.languageOption,
             language === 'ru' && styles.languageOptionActive,

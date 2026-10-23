@@ -1,21 +1,22 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import { Feather } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 import { theme } from '../../../app/theme';
 
 export const Header = () => {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.header}>
       <View style={styles.headerIcon}>
-        <Feather name="settings" size={24} color="#C64A38" />
+        <Feather name="settings" size={24} color={theme.accent100} />
       </View>
 
       <View style={styles.headerText}>
-        <Text style={styles.title}>Settings</Text>
-        <Text style={styles.subtitle}>
-          Personalize your Habitory experience
-        </Text>
+        <Text style={styles.title}>{t('settings.title')}</Text>
+        <Text style={styles.subtitle}>{t('settings.subtitle')}</Text>
       </View>
     </View>
   );

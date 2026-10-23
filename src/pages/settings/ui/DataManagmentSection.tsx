@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Feather } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 import { theme } from '../../../app/theme';
 import { useAwardsStore } from '../../../entities/awards';
@@ -11,6 +12,8 @@ import { useProgressStore } from '../../../entities/progress/model/useProgressSt
 import { ConfirmOperationModal } from '../../../features';
 
 export const DataManagementSection = () => {
+  const { t } = useTranslation();
+
   const resetHabits = useHabitsStore((state) => state.reset);
   const resetAwards = useAwardsStore((state) => state.reset);
   const resetProgress = useProgressStore((state) => state.reset);
@@ -34,8 +37,12 @@ export const DataManagementSection = () => {
         <Feather name="database" size={22} color={theme.accent100} />
 
         <View style={styles.sectionText}>
-          <Text style={styles.sectionTitle}>Data management</Text>
-          <Text style={styles.sectionDescription}>Manage your app data</Text>
+          <Text style={styles.sectionTitle}>
+            {t('settings.dataManagement')}
+          </Text>
+          <Text style={styles.sectionDescription}>
+            {t('settings.dataDescription')}
+          </Text>
         </View>
       </View>
 
@@ -47,18 +54,16 @@ export const DataManagementSection = () => {
           pressed && styles.clearButtonPressed,
         ]}
       >
-        <Feather name="trash-2" size={18} color="#C64A38" />
-        <Text style={styles.clearButtonText}>Clear all data</Text>
+        <Feather name="trash-2" size={18} color={theme.accent100} />
+        <Text style={styles.clearButtonText}>{t('settings.clearAllData')}</Text>
       </Pressable>
 
-      <Text style={styles.warningText}>
-        This action will permanently delete all your habits and progress.
-      </Text>
+      <Text style={styles.warningText}>{t('settings.clearWarning')}</Text>
 
       {isShowModal && (
         <ConfirmOperationModal
-          title="Do you want to delete all the data?"
-          description="If you do this, you will delete all habits, current progress, and awards. You will not be able to recover this data later."
+          title={t('settings.modalTitle')}
+          description={t('settings.modalDescription')}
           isShowModal={isShowModal}
           onCancelOperation={cancelOperation}
           onConfirmOperation={clearAll}

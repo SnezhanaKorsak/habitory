@@ -7,6 +7,8 @@ import {
   View,
 } from 'react-native';
 
+import { useTranslation } from 'react-i18next';
+
 import { theme } from '../../../app/theme';
 import { GhostButton } from '../../../shared/ui';
 
@@ -25,6 +27,8 @@ export const ConfirmOperationModal = ({
   onCancelOperation,
   onConfirmOperation,
 }: Props) => {
+  const { t } = useTranslation();
+
   return (
     <Modal transparent={true} visible={isShowModal} animationType="fade">
       <TouchableWithoutFeedback onPress={onCancelOperation}>
@@ -37,12 +41,12 @@ export const ConfirmOperationModal = ({
 
             <View style={styles.modalBtnBlock}>
               <GhostButton
-                title="NO"
+                title={t('common.no')}
                 textStyle={{ color: theme.textPrimary }}
                 onPress={onCancelOperation}
               />
               <GhostButton
-                title="YES"
+                title={t('common.yes')}
                 textStyle={{ color: theme.accent100 }}
                 onPress={onConfirmOperation}
               />
