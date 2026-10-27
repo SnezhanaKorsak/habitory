@@ -19,11 +19,6 @@ export type Habit = HabitFormData & {
   timeResults: { [key: string]: number };
 };
 
-export type SelectHabitType = {
-  key: string;
-  value: HabitType;
-};
-
 export enum HabitType {
   check = 'WITH A YES OR NO',
   numeric = 'WITH A NUMERIC VALUE',

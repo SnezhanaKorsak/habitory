@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { useTranslation } from 'react-i18next';
+
 import { theme } from '../../../app/theme';
 
 import { HabitFormData } from '../../../shared/types';
@@ -11,6 +13,8 @@ type Props = {
 };
 
 export const HabitColorPicker = ({ form, setForm }: Props) => {
+  const { t } = useTranslation();
+
   const [selectedColor, setSelectedColor] = useState(form.color);
 
   const chooseColor = (color: string) => {
@@ -20,7 +24,7 @@ export const HabitColorPicker = ({ form, setForm }: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Color:</Text>
+      <Text style={styles.label}>{t('colorSection.title')}:</Text>
 
       <View style={styles.list}>
         {theme.cardsBg.map((color) => (
@@ -55,6 +59,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 20,
+    fontFamily: 'NeuchaRegular',
   },
   list: {
     flexDirection: 'row',

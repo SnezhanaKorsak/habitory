@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
     lineHeight: 26,
     color: theme.textPrimary,
     textAlign: 'center',
+    fontFamily: 'NeuchaRegular',
   },
   pressed: {
     opacity: 0.75,

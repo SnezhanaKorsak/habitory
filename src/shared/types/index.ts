@@ -1,5 +1,5 @@
 export { NumericHabitResults, TimerHabitResult } from './awards';
-export { HabitFormData, SelectHabitType } from './habit';
+export { HabitFormData } from './habit';
 export { AntDesignIconName, FeatherIconName } from './icons';
 export {
   MenuItemType,

@@ -11,7 +11,7 @@ export const OnboardingPage = () => {
   const { top } = useSafeAreaInsets();
   const { t } = useTranslation();
 
-  const { language , fonts } = useAppSettings();
+  const { language, fonts } = useAppSettings();
   const styles = languageStyles[language];
 
   return (

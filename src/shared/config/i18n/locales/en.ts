@@ -44,6 +44,42 @@ export const en = {
     streak: 'Streak',
   },
 
+  newHabits: {
+    title: 'New Habit',
+    inputTypePlaceholder: 'Select type of habit',
+    inputNamePlaceholder: 'Name',
+    inputDescriptionPlaceholder: 'Description (optional)',
+    goal: 'Goal',
+    unit: 'Unit (optional)',
+    frequency: 'a day',
+    frequencyExample: 'e.g., 3 times a day',
+  },
+
+  habitTypes: {
+    check: 'WITH A YES OR NO',
+    numeric: 'WITH A NUMERIC VALUE',
+    time: 'WITH A TIMER',
+  },
+
+  iconSection: {
+    title: 'Icon',
+    btn: 'Show more',
+    placeHolder: 'Search icons...',
+  },
+
+  colorSection: {
+    title: 'Color',
+  },
+
+  formErrors: {
+    type: 'Select the type of the habit',
+    name: 'Enter the name of the habit',
+    icon: 'Select an icon',
+    color: 'Select an color',
+    numericGoal: 'Specify a numerical goal',
+    timerGoal: 'Specify the goal for the timer',
+  },
+
   navigation: {
     habits: 'Habits',
     new: 'New',

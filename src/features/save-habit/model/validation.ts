@@ -3,27 +3,27 @@ import { HabitType } from '../../../shared/types/habit';
 
 export const validateHabitForm = (data: HabitFormData) => {
   if (!data.type) {
-    return 'Select the type of the habit';
+    return 'type';
   }
 
   if (!data.name.trim()) {
-    return 'Enter the name of the habit';
+    return 'name';
   }
 
   if (!data.icon) {
-    return 'Select an icon';
+    return 'icon';
   }
 
   if (!data.color) {
-    return 'Select an color';
+    return 'color';
   }
 
   if (data.type === HabitType.numeric && !data.numericGoal) {
-    return 'Specify a numerical goal';
+    return 'numericGoal';
   }
 
   if (data.type === HabitType.time && !data.timerGoal) {
-    return 'Specify the goal for the timer';
+    return 'timerGoal';
   }
 
   return null;

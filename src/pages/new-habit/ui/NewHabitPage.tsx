@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import { useTranslation } from 'react-i18next';
+
 import { useCreateHabit } from '../../../features';
 import { IconButton, PageTitle } from '../../../shared/ui';
 import { Loader } from '../../../shared/ui/Loader';
@@ -9,7 +11,6 @@ import { HabitForm } from '../../../widgets/habit-form';
 
 import { FeatherIconName, HabitFormData } from '../../../shared/types';
 import { HabitType } from '../../../shared/types/habit';
-import { useTranslation } from 'react-i18next';
 
 export const NewHabitPage = () => {
   const { createHabit } = useCreateHabit();
@@ -35,7 +36,7 @@ export const NewHabitPage = () => {
   return (
     <Layout>
       <PageTitle
-        title={'New Habit'}
+        title={t('newHabits.title')}
         rightAddon={<IconButton icon="save" size={32} callback={handleSave} />}
       />
 

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { useTranslation } from 'react-i18next';
+
 import { theme } from '../../../app/theme';
 import { IconButton, PrimaryButton } from '../../../shared/ui';
 import { previewIcons } from '../constants/form-data';
@@ -14,6 +16,8 @@ type Props = {
 };
 
 export const HabitIconPicker = ({ form, setForm }: Props) => {
+  const { t } = useTranslation();
+
   const [selectedIcon, setSelectedIcon] = useState<FeatherIconName>(form.icon);
   const [iconsList, setIconsList] = useState<FeatherIconName[]>(
     form.icon && !previewIcons.includes(form.icon)
@@ -34,7 +38,7 @@ export const HabitIconPicker = ({ form, setForm }: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Icon:</Text>
+      <Text style={styles.label}>{t('iconSection.title')}:</Text>
 
       <View style={styles.list}>
         {iconsList.map((icon) => {
@@ -60,7 +64,7 @@ export const HabitIconPicker = ({ form, setForm }: Props) => {
 
       <View style={styles.buttonBlock}>
         <PrimaryButton onPress={() => setShowMore(true)}>
-          Show more
+          {t('iconSection.btn')}
         </PrimaryButton>
       </View>
 
@@ -79,6 +83,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 20,
+    fontFamily: 'NeuchaRegular',
   },
   list: {
     flexDirection: 'row',

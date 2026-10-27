@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import { Feather } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 import { theme } from '../../../app/theme';
 
@@ -25,6 +26,8 @@ type Props = {
 const featherIcons = Object.keys(Feather.glyphMap) as FeatherIconName[];
 
 export const IconPicker = ({ visible, onSelect, setModalVisible }: Props) => {
+  const { t } = useTranslation();
+
   const [search, setSearch] = useState('');
 
   const filteredIcons = featherIcons.filter((iconName) =>
@@ -38,7 +41,7 @@ export const IconPicker = ({ visible, onSelect, setModalVisible }: Props) => {
           <TouchableWithoutFeedback>
             <View style={styles.modal}>
               <TextInput
-                placeholder="Search icons..."
+                placeholder={t('iconSection.placeHolder')}
                 placeholderTextColor={theme.textPrimary}
                 value={search}
                 onChangeText={setSearch}
@@ -77,6 +80,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 12,
+    fontFamily: 'NeuchaRegular',
   },
   iconContainer: {
     flex: 1,

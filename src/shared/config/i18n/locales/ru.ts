@@ -42,6 +42,42 @@ export const ru = {
     streak: 'Серия',
   },
 
+  newHabits: {
+    title: 'Новая привычка',
+    inputTypePlaceholder: 'Выберите тип привычки',
+    inputNamePlaceholder: 'Название',
+    inputDescriptionPlaceholder: 'Описание (опционально)',
+    goal: 'Цель',
+    unit: 'Ед. изм. (опц.)',
+    frequency: 'в день',
+    frequencyExample: 'Например, 3 раза в день',
+  },
+
+  habitTypes: {
+    check: 'Да или нет',
+    numeric: 'Числовое значение',
+    time: 'Таймер',
+  },
+
+  iconSection: {
+    title: 'Иконка',
+    btn: 'Показать больше',
+    placeHolder: 'Найти иконку...',
+  },
+
+  colorSection: {
+    title: 'Цвет',
+  },
+
+  formErrors: {
+    type: 'Выберите тип привычки',
+    name: 'Введите название привычки',
+    icon: 'Выберите иконку',
+    color: 'Выберите цвет',
+    numericGoal: 'Укажите числовую цель',
+    timerGoal: 'Укажите цель для таймера',
+  },
+
   navigation: {
     habits: 'Привычки',
     new: 'Создать',

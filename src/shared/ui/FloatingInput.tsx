@@ -61,6 +61,7 @@ export const FloatingInput = ({
               inputRange: [0, 1],
               outputRange: [16, 14],
             }),
+            fontFamily: 'NeuchaRegular',
             backgroundColor: animated.interpolate({
               inputRange: [0, 1],
               outputRange: ['transparent', theme.bgPrimary],
@@ -101,6 +102,7 @@ const styles = StyleSheet.create({
     padding: 0,
     margin: 0,
     color: theme.textPrimary,
+    fontFamily: 'NeuchaRegular',
   },
 
   label: {

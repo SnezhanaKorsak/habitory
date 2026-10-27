@@ -1,11 +1,4 @@
-import { FeatherIconName, SelectHabitType } from '../../../shared/types';
-import { HabitType } from '../../../shared/types/habit';
-
-export const formData: SelectHabitType[] = [
-  { key: '1', value: HabitType.check },
-  { key: '2', value: HabitType.numeric },
-  { key: '3', value: HabitType.time },
-];
+import { FeatherIconName } from '../../../shared/types';
 
 export const previewIcons: FeatherIconName[] = [
   'activity',

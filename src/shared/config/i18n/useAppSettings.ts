@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
-import type { AppLanguage } from './index';
 import { getFonts } from '../typography';
+import type { AppLanguage } from './index';
 
 export const useAppSettings = () => {
   const { i18n } = useTranslation();
@@ -12,5 +12,5 @@ export const useAppSettings = () => {
   return {
     fonts,
     language,
-  }
+  };
 };

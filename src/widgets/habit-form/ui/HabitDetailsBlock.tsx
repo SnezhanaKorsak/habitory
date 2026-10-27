@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { useTranslation } from 'react-i18next';
+
 import { FloatingInput } from '../../../shared/ui';
 import { TimerPicker } from './TimerPicker';
 
@@ -13,6 +15,8 @@ type Props = {
 };
 
 export const HabitDetailsBlock = ({ form, setForm }: Props) => {
+  const { t } = useTranslation();
+
   const [name, setName] = useState(form.name);
   const [description, setDescription] = useState(form.description);
   const [numericGoal, setNumericGoal] = useState(form.numericGoal);
@@ -38,7 +42,7 @@ export const HabitDetailsBlock = ({ form, setForm }: Props) => {
       <FloatingInput
         value={name}
         onChangeValue={(value) => setName(String(value))}
-        placeholder={'Name'}
+        placeholder={t('newHabits.inputNamePlaceholder')}
       />
 
       {habitType === HabitType.numeric && (
@@ -48,7 +52,7 @@ export const HabitDetailsBlock = ({ form, setForm }: Props) => {
               <FloatingInput
                 value={numericGoal ?? 0}
                 onChangeValue={(value) => setNumericGoal(Number(value))}
-                placeholder={'Goal'}
+                placeholder={t('newHabits.goal')}
                 type="numeric"
               />
             </View>
@@ -58,16 +62,16 @@ export const HabitDetailsBlock = ({ form, setForm }: Props) => {
                 <FloatingInput
                   value={unit ?? ''}
                   onChangeValue={(value) => setUnit(String(value))}
-                  placeholder={'Unit (optional)'}
+                  placeholder={t('newHabits.unit')}
                 />
               </View>
 
               <View>
-                <Text style={styles.text}>a day.</Text>
+                <Text style={styles.text}>{t('newHabits.frequency')}</Text>
               </View>
             </View>
           </View>
-          <Text style={styles.hint}>e.g., 3 times a day </Text>
+          <Text style={styles.hint}>{t('newHabits.frequencyExample')}</Text>
         </>
       )}
 
@@ -78,7 +82,7 @@ export const HabitDetailsBlock = ({ form, setForm }: Props) => {
           </View>
 
           <View>
-            <Text style={styles.text}>a day.</Text>
+            <Text style={styles.text}>{t('newHabits.frequency')}</Text>
           </View>
         </View>
       )}
@@ -86,7 +90,7 @@ export const HabitDetailsBlock = ({ form, setForm }: Props) => {
       <FloatingInput
         value={description ?? ''}
         onChangeValue={(value) => setDescription(String(value))}
-        placeholder={'Description (optional)'}
+        placeholder={t('newHabits.inputDescriptionPlaceholder')}
       />
     </View>
   );
@@ -112,9 +116,11 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
+    fontFamily: 'NeuchaRegular',
   },
   hint: {
     marginTop: '-5%',
     fontSize: 16,
+    fontFamily: 'NeuchaRegular',
   },
 });
