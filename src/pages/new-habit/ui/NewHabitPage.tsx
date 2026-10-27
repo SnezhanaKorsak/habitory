@@ -36,7 +36,7 @@ export const NewHabitPage = () => {
   return (
     <Layout>
       <PageTitle
-        title={t('newHabits.title')}
+        title={t('navigation.new')}
         rightAddon={<IconButton icon="save" size={32} callback={handleSave} />}
       />
 

@@ -13,6 +13,7 @@ export const FontsProvider = ({ children }: Props) => {
     BritishTimes: require('../../../assets/fonts/BritishTimes.ttf'),
     PlaypenSansDevaRegular: require('../../../assets/fonts/PlaypenSansDeva-Regular.ttf'),
     NeuchaRegular: require('../../../assets/fonts/Neucha-Regular.ttf'),
+    'ShantellSans-Medium': require('../../../assets/fonts/ShantellSans-Medium.ttf'),
 
     // Russian fonts
     'PlayfairDisplay-Bold': require('../../../assets/fonts/PlayfairDisplay-Bold.ttf'),

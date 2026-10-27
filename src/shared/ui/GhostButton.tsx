@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 22,
-    fontWeight: 'bold',
     textAlign: 'center',
+    fontFamily: 'ShantellSans-Medium',
   },
   leftAddon: {
     marginRight: 8,

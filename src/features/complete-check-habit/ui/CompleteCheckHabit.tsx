@@ -1,9 +1,13 @@
 import { Modal, StyleSheet, Text, View } from 'react-native';
 
-import { Calendar, DateData } from 'react-native-calendars';
+import { useTranslation } from 'react-i18next';
+import { Calendar, DateData, LocaleConfig } from 'react-native-calendars';
 
+import '../../../shared/config/calendar/locale';
 import { theme } from '../../../app/theme';
 import { useHabitsStore } from '../../../entities/habits';
+import { useAppSettings } from '../../../shared/config/i18n/useAppSettings';
+import { formatDate } from '../../../shared/lib/date';
 import { IconButton } from '../../../shared/ui';
 
 type Props = {
@@ -20,9 +24,18 @@ export const CompleteCheckHabit = ({
   const habit = useHabitsStore((state) => state.getHabitById(habitId));
   const completeHabit = useHabitsStore((state) => state.completeHabit);
 
+  const { t } = useTranslation();
+  const { language } = useAppSettings();
+
   if (!habit) return null;
 
-  const currentDay = new Date().toLocaleDateString('en-CA');
+  LocaleConfig.defaultLocale = language === 'ru' ? 'ru' : 'en';
+
+  const today = new Date();
+  const currentDay = formatDate(today);
+  const minDate = formatDate(
+    new Date(today.getFullYear(), today.getMonth(), 1),
+  );
   const markedDates = habit.completedDays.reduce(
     (obj, day) => {
       obj[day] = { selected: true };
@@ -41,18 +54,19 @@ export const CompleteCheckHabit = ({
         <View style={styles.modal}>
           <View style={styles.header}>
             <View style={{ width: '80%' }}>
-              <Text style={styles.title}>
-                {'Tap a date to mark the habit\u00A0as\u00A0done'}
-              </Text>
+              <Text style={styles.title}>{t('habits.checkTitle')}</Text>
             </View>
             <IconButton icon="x" callback={() => setVisible(false)} />
           </View>
 
           <Calendar
+            key={language.startsWith('ru') ? 'ru' : 'en'}
             style={styles.calendar}
             firstDay={1}
             current={currentDay}
+            minDate={minDate}
             maxDate={currentDay}
+            hideExtraDays={true}
             onDayPress={(day) => dayPressHandler(day)}
             markedDates={{
               [currentDay]: {
@@ -108,8 +122,9 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 18,
     marginRight: 6,
+    fontFamily: 'NeuchaRegular',
   },
   header: {
     flexDirection: 'row',

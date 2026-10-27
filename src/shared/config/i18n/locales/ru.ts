@@ -34,16 +34,10 @@ export const ru = {
     emptyTitle: 'Пока никаких привычек',
     emptySubtitle: 'Начни формировать полезные привычки шаг за шагом',
     emptyButton: 'Создать первую привычку',
-    addHabit: 'Добавить привычку',
-    editHabit: 'Редактировать привычку',
-    deleteHabit: 'Удалить привычку',
-    completed: 'Выполнено',
-    notCompleted: 'Не выполнено',
-    streak: 'Серия',
+    checkTitle: 'Нажми на дату, чтобы отметить привычку выполненной',
   },
 
   newHabits: {
-    title: 'Новая привычка',
     inputTypePlaceholder: 'Выберите тип привычки',
     inputNamePlaceholder: 'Название',
     inputDescriptionPlaceholder: 'Описание (опционально)',
@@ -80,7 +74,8 @@ export const ru = {
 
   navigation: {
     habits: 'Привычки',
-    new: 'Создать',
+    new: 'Новая привычка',
+    edit: 'Редактирование',
     progress: 'Прогресс',
     awards: 'Награды',
     settings: 'Настройки',

@@ -36,16 +36,10 @@ export const en = {
     emptySubtitle:
       'Start building better routines by creating your first habit',
     emptyButton: 'Create the first habit',
-    addHabit: 'Add habit',
-    editHabit: 'Edit habit',
-    deleteHabit: 'Delete habit',
-    completed: 'Completed',
-    notCompleted: 'Not completed',
-    streak: 'Streak',
+    checkTitle: 'Tap a date to mark the habit\u00A0as\u00A0done',
   },
 
   newHabits: {
-    title: 'New Habit',
     inputTypePlaceholder: 'Select type of habit',
     inputNamePlaceholder: 'Name',
     inputDescriptionPlaceholder: 'Description (optional)',
@@ -82,7 +76,8 @@ export const en = {
 
   navigation: {
     habits: 'Habits',
-    new: 'New',
+    new: 'New Habit',
+    edit: 'Edit Habit',
     progress: 'Progress',
     awards: 'Awards',
     settings: 'Settings',

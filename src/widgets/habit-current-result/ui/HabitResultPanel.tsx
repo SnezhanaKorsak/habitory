@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Modal, StyleSheet, Text, View } from 'react-native';
 
 import { Feather } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 import { theme } from '../../../app/theme';
 import { HabitCurrentResult, useHabitsStore } from '../../../entities/habits';
@@ -22,6 +23,8 @@ export const HabitResultPanel = ({ habit, visible, setVisible }: Props) => {
     (state) => state.updateNumericResult,
   );
   const updateTimeResult = useHabitsStore((state) => state.updateTimeResult);
+
+  const { t } = useTranslation();
 
   const { habitResult, goal, unit, day } = useCurrentResult(habit);
 
@@ -132,7 +135,7 @@ export const HabitResultPanel = ({ habit, visible, setVisible }: Props) => {
 
           <View style={styles.footer}>
             <GhostButton
-              title="CANCEL"
+              title={t('common.cancel')}
               textStyle={{
                 color:
                   operationWithResult === 'cancel' ? color : theme.textPrimary,
@@ -143,7 +146,7 @@ export const HabitResultPanel = ({ habit, visible, setVisible }: Props) => {
             <View style={styles.divider} />
 
             <GhostButton
-              title="SAVE"
+              title={t('common.save')}
               textStyle={{
                 color:
                   operationWithResult === 'save' ? color : theme.textPrimary,
@@ -194,6 +197,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     borderTopWidth: 1,
     borderTopColor: theme.border,
+    paddingHorizontal: 10,
   },
   divider: {
     width: 1,

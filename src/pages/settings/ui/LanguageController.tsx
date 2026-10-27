@@ -96,14 +96,17 @@ export const styles = StyleSheet.create({
     gap: 4,
   },
   sectionTitle: {
-    fontSize: 17,
+    fontSize: 16,
+    lineHeight: 18,
     fontWeight: '600',
     color: '#171717',
+    fontFamily: 'ShantellSans-Medium',
   },
   sectionDescription: {
-    fontSize: 13,
-    lineHeight: 18,
+    fontSize: 14,
+    lineHeight: 16,
     color: '#666666',
+    fontFamily: 'NeuchaRegular',
   },
   languageSelector: {
     flexDirection: 'row',
@@ -125,8 +128,8 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.accent100,
   },
   languageText: {
-    fontSize: 14,
-    fontWeight: '500',
+    fontSize: 16,
+    fontFamily: 'NeuchaRegular',
     color: '#171717',
   },
   languageTextActive: {

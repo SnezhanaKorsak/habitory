@@ -90,14 +90,16 @@ export const styles = StyleSheet.create({
     gap: 4,
   },
   sectionTitle: {
-    fontSize: 17,
-    fontWeight: '600',
+    fontSize: 16,
+    lineHeight: 18,
     color: '#171717',
+    fontFamily: 'ShantellSans-Medium',
   },
   sectionDescription: {
-    fontSize: 13,
+    fontSize: 16,
     lineHeight: 18,
     color: '#666666',
+    fontFamily: 'NeuchaRegular',
   },
   clearButton: {
     minHeight: 48,
@@ -115,13 +117,15 @@ export const styles = StyleSheet.create({
     opacity: 0.8,
   },
   clearButtonText: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: '600',
     color: theme.accent100,
+    fontFamily: 'ShantellSans-Medium',
   },
   warningText: {
-    fontSize: 12,
+    fontSize: 16,
     lineHeight: 18,
     color: '#777067',
+    fontFamily: 'NeuchaRegular',
   },
 });

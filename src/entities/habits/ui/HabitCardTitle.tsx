@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 
 import { theme } from '../../../app/theme';
+import { capitalizeFirstLetter } from '../../../shared/lib';
 
 import { FeatherIconName, StackNavigationProp } from '../../../shared/types';
 
@@ -32,11 +33,11 @@ export const HabitCardTitle = ({ icon, title, description, id }: Props) => {
 
       <View style={styles.info}>
         <Text style={styles.title} numberOfLines={1}>
-          {title}
+          {capitalizeFirstLetter(title)}
         </Text>
         {description && (
           <Text style={styles.description} numberOfLines={1}>
-            {description}
+            {capitalizeFirstLetter(description)}
           </Text>
         )}
       </View>
@@ -57,20 +58,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: theme.bgShadow,
-    width: 34,
-    height: 34,
+    width: 40,
+    height: 40,
     borderRadius: 8,
     marginRight: 6,
   },
   info: {
-    height: 34,
+    height: 40,
     justifyContent: 'center',
   },
   title: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 18,
+    lineHeight: 20,
+    fontFamily: 'PlayfairDisplay-Bold',
   },
   description: {
-    fontSize: 14,
+    fontSize: 16,
+    fontFamily: 'NeuchaRegular',
   },
 });

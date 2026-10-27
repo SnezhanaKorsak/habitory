@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useRoute } from '@react-navigation/native';
 
+import { useTranslation } from 'react-i18next';
+
 import { useHabitsStore } from '../../../entities/habits';
 import { useUpdateHabit } from '../../../features/save-habit';
 import { IconButton, PageTitle } from '../../../shared/ui';
@@ -12,6 +14,8 @@ import { StackRouteProp } from '../../../shared/types/navigation';
 
 export const EditHabitPage = () => {
   const { params } = useRoute<StackRouteProp<'Edit'>>();
+
+  const { t } = useTranslation();
 
   const habit = useHabitsStore((state) => state.getHabitById(params.habitId))!;
 
@@ -27,7 +31,7 @@ export const EditHabitPage = () => {
   return (
     <Layout>
       <PageTitle
-        title={'Edit Habit'}
+        title={t('navigation.edit')}
         rightAddon={<IconButton icon="save" size={32} callback={handleSave} />}
       />
 
