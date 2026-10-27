@@ -9,9 +9,11 @@ import { HabitForm } from '../../../widgets/habit-form';
 
 import { FeatherIconName, HabitFormData } from '../../../shared/types';
 import { HabitType } from '../../../shared/types/habit';
+import { useTranslation } from 'react-i18next';
 
 export const NewHabitPage = () => {
   const { createHabit } = useCreateHabit();
+  const { t } = useTranslation();
 
   const [form, setForm] = useState<HabitFormData>({
     type: '' as HabitType,

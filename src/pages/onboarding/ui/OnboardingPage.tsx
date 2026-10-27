@@ -4,16 +4,14 @@ import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { theme } from '../../../app/theme';
-import { useAppLanguage } from '../../../shared/config/i18n/useAppLanguage';
-import { getFonts } from '../../../shared/config/typography';
+import { useAppSettings } from '../../../shared/config/i18n/useAppSettings';
 import { LoadingDots } from '../../../shared/ui';
 
 export const OnboardingPage = () => {
   const { top } = useSafeAreaInsets();
   const { t } = useTranslation();
 
-  const language = useAppLanguage();
-  const fonts = getFonts(language);
+  const { language , fonts } = useAppSettings();
   const styles = languageStyles[language];
 
   return (

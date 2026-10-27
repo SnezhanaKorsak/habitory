@@ -1,8 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { useAppLanguage } from '../config/i18n/useAppLanguage';
-import { getFonts } from '../config/typography';
+import { useAppSettings } from '../config/i18n/useAppSettings';
 
 type Props = {
   title: string;
@@ -11,8 +10,7 @@ type Props = {
 };
 
 export const PageTitle = ({ title, rightAddon, leftAddon }: Props) => {
-  const language = useAppLanguage();
-  const fonts = getFonts(language);
+  const { fonts } = useAppSettings();
 
   return (
     <View style={styles.container}>
