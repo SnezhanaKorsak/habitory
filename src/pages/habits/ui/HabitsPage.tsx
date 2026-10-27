@@ -2,6 +2,8 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import { useTranslation } from 'react-i18next';
+
 import { useHabitsStore } from '../../../entities/habits';
 import { IconButton, PageTitle } from '../../../shared/ui';
 import { Layout } from '../../../widgets';
@@ -12,8 +14,8 @@ import { StackNavigationProp } from '../../../shared/types';
 
 export const HabitsPage = () => {
   const navigation = useNavigation<StackNavigationProp>();
-
   const habitsList = useHabitsStore((state) => state.habits);
+  const { t } = useTranslation();
 
   const isEmptyList = habitsList?.length === 0;
 
@@ -22,7 +24,7 @@ export const HabitsPage = () => {
   return (
     <Layout>
       <PageTitle
-        title="Habits"
+        title={t('habits.title')}
         rightAddon={
           <IconButton
             icon="settings"

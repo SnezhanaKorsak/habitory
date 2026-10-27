@@ -1,6 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { useAppLanguage } from '../config/i18n/useAppLanguage';
+import { getFonts } from '../config/typography';
+
 type Props = {
   title: string;
   leftAddon?: React.ReactNode;
@@ -8,11 +11,14 @@ type Props = {
 };
 
 export const PageTitle = ({ title, rightAddon, leftAddon }: Props) => {
+  const language = useAppLanguage();
+  const fonts = getFonts(language);
+
   return (
     <View style={styles.container}>
       {leftAddon}
 
-      <Text style={styles.title}>{title}</Text>
+      <Text style={[styles.title, { fontFamily: fonts.bold }]}>{title}</Text>
 
       {rightAddon}
     </View>
@@ -27,8 +33,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   title: {
+    width: 'auto',
     fontSize: 32,
-    textAlign: 'center',
-    fontFamily: 'FastelarDemoRegular',
+    lineHeight: 40,
   },
 });

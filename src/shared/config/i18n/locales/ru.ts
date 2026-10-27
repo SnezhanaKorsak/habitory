@@ -10,6 +10,11 @@ export const ru = {
     loading: 'Загрузка...',
   },
 
+  onboarding: {
+    title: 'Трекер\nпривычек',
+    subtitle: 'Твои привычки — твоя сила',
+  },
+
   settings: {
     title: 'Настройки',
     subtitle: 'Настрой Habitory под себя',
@@ -25,8 +30,8 @@ export const ru = {
   },
 
   habits: {
-    title: 'Мои привычки',
-    emptyTitle: 'У тебя пока нет ни одной созданной привычки',
+    title: 'Привычки',
+    emptyTitle: 'Пока никаких привычек',
     emptySubtitle: 'Начни формировать полезные привычки шаг за шагом',
     emptyButton: 'Создать первую привычку',
     addHabit: 'Добавить привычку',

@@ -11,6 +11,13 @@ export const FontsProvider = ({ children }: Props) => {
     Timbly: require('../../../assets/fonts/Timbly.otf'),
     FastelarDemoRegular: require('../../../assets/fonts/FastelarDemoRegular.ttf'),
     BritishTimes: require('../../../assets/fonts/BritishTimes.ttf'),
+    PlaypenSansDevaRegular: require('../../../assets/fonts/PlaypenSansDeva-Regular.ttf'),
+    NeuchaRegular: require('../../../assets/fonts/Neucha-Regular.ttf'),
+
+    // Russian fonts
+    'PlayfairDisplay-Bold': require('../../../assets/fonts/PlayfairDisplay-Bold.ttf'),
+    'PlayfairDisplay-SemiBoldItalic': require('../../../assets/fonts/PlayfairDisplay-SemiBoldItalic.ttf'),
+    'MarckScript-Regular': require('../../../assets/fonts/MarckScript-Regular.ttf'),
   });
 
   if (!fontsLoaded) return null;

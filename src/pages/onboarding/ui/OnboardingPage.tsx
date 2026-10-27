@@ -1,58 +1,90 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
 
+import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { theme } from '../../../app/theme';
+import { useAppLanguage } from '../../../shared/config/i18n/useAppLanguage';
+import { getFonts } from '../../../shared/config/typography';
 import { LoadingDots } from '../../../shared/ui';
 
 export const OnboardingPage = () => {
   const { top } = useSafeAreaInsets();
+  const { t } = useTranslation();
+
+  const language = useAppLanguage();
+  const fonts = getFonts(language);
+  const styles = languageStyles[language];
 
   return (
     <View
       style={{
-        ...styles.container,
+        ...commonStyles.container,
         paddingTop: top * 2,
       }}
     >
       <View>
-        <Text style={styles.title}>Digital Habits Tracker</Text>
-        <Text style={styles.description}>Your habits, your power</Text>
+        <Text style={[styles.title, { fontFamily: fonts.bold }]}>
+          {t('onboarding.title')}
+        </Text>
+        <Text style={[styles.description, { fontFamily: fonts.decorative }]}>
+          {t('onboarding.subtitle')}
+        </Text>
       </View>
 
       <LoadingDots />
 
       <Image
         source={require('../../../../assets/bg-image.jpg')}
-        style={styles.img}
+        style={commonStyles.img}
         resizeMode="contain"
       />
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+const commonStyles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
     paddingHorizontal: 20,
     backgroundColor: theme.bgPrimary,
   },
-  title: {
-    fontSize: 64,
-    textAlign: 'center',
-    fontFamily: 'FastelarDemoRegular',
-  },
-  description: {
-    marginTop: -10,
-    marginBottom: 20,
-    fontSize: 30,
-    fontFamily: 'BritishTimes',
-    textAlign: 'center',
-    color: theme.accent100,
-  },
   img: {
     width: '100%',
     height: 500,
   },
 });
+
+const languageStyles = {
+  en: StyleSheet.create({
+    title: {
+      fontSize: 64,
+      textAlign: 'center',
+    },
+    description: {
+      marginTop: 0,
+      marginBottom: 20,
+      fontSize: 24,
+      textAlign: 'center',
+      color: theme.accent100,
+    },
+  }),
+
+  ru: StyleSheet.create({
+    title: {
+      fontSize: 56,
+      lineHeight: 66,
+      letterSpacing: -1.5,
+      textAlign: 'center',
+    },
+    description: {
+      marginTop: 12,
+      marginBottom: 0,
+      fontSize: 24,
+      lineHeight: 36,
+      textAlign: 'center',
+      color: theme.accent100,
+    },
+  }),
+};

@@ -10,6 +10,11 @@ export const en = {
     loading: 'Loading...',
   },
 
+  onboarding: {
+    title: 'Digital Habits Tracker',
+    subtitle: 'Your habits, your power',
+  },
+
   settings: {
     title: 'Settings',
     subtitle: 'Personalize your Habitory experience',
@@ -26,7 +31,7 @@ export const en = {
   },
 
   habits: {
-    title: 'My habits',
+    title: 'Habits',
     emptyTitle: 'No habits yet',
     emptySubtitle:
       'Start building better routines by creating your first habit',

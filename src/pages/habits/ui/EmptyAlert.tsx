@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { AntDesign, Feather } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 import { theme } from '../../../app/theme';
 
@@ -10,6 +11,7 @@ import { StackNavigationProp } from '../../../shared/types';
 
 export const EmptyAlert = () => {
   const navigation = useNavigation<StackNavigationProp>();
+  const { t } = useTranslation();
 
   const navigateToCreateHabit = () => navigation.navigate('New');
 
@@ -19,9 +21,9 @@ export const EmptyAlert = () => {
         <AntDesign name="alert" size={22} color="#C64A38" />
 
         <View style={styles.sectionText}>
-          <Text style={styles.sectionTitle}>No habits yet</Text>
+          <Text style={styles.sectionTitle}>{t('habits.emptyTitle')}</Text>
           <Text style={styles.sectionDescription}>
-            Start building better routines by creating your first habit.
+            {t('habits.emptySubtitle')}
           </Text>
         </View>
       </View>
@@ -35,7 +37,7 @@ export const EmptyAlert = () => {
         ]}
       >
         <Feather name="arrow-right" size={18} color={theme.accent100} />
-        <Text style={styles.buttonText}>Create the first habit</Text>
+        <Text style={styles.buttonText}>{t('habits.emptyButton')}</Text>
       </Pressable>
     </View>
   );
@@ -62,11 +64,13 @@ export const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: '600',
     color: '#171717',
+    fontFamily: 'NeuchaRegular',
   },
   sectionDescription: {
     fontSize: 13,
     lineHeight: 18,
     color: '#666666',
+    fontFamily: 'NeuchaRegular',
   },
   button: {
     minHeight: 48,
@@ -87,5 +91,6 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     color: theme.accent100,
+    fontFamily: 'NeuchaRegular',
   },
 });
