@@ -176,7 +176,8 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'left',
     fontSize: 16,
-    fontWeight: 'bold',
+    lineHeight: 18,
+    fontFamily: 'ShantellSans-Medium',
   },
   header: {
     flexDirection: 'row',

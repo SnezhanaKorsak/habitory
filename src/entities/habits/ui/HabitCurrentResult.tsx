@@ -1,7 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { useTranslation } from 'react-i18next';
+
 import { theme } from '../../../app/theme';
+import { useAppSettings } from '../../../shared/config/i18n/useAppSettings';
 import { PrimaryButton } from '../../../shared/ui';
 
 import { HabitType } from '../../../shared/types/habit';
@@ -29,6 +32,11 @@ export const HabitCurrentResult = ({
   setOperationWithValue,
   children,
 }: Props) => {
+  const { language } = useAppSettings();
+  const { t } = useTranslation();
+
+  const btnTextSize = language === 'ru' ? 16 : 22;
+
   const hours = Math.floor(currentResult / 3600);
   const minutes = Math.floor((currentResult % 3600) / 60);
   const seconds = currentResult % 60;
@@ -71,7 +79,9 @@ export const HabitCurrentResult = ({
           }
           onPress={replaceOperation}
         >
-          <Text style={styles.text}>Replace</Text>
+          <Text style={[styles.text, { fontSize: btnTextSize }]}>
+            {t('common.replace')}
+          </Text>
         </PrimaryButton>
         <PrimaryButton
           style={[styles.rightBtn, { width: '50%', borderLeftWidth: 0 }]}
@@ -80,19 +90,21 @@ export const HabitCurrentResult = ({
           }
           onPress={addOperation}
         >
-          <Text style={styles.text}>Add</Text>
+          <Text style={[styles.text, { fontSize: btnTextSize }]}>
+            {t('common.add')}
+          </Text>
         </PrimaryButton>
       </View>
 
       <View style={styles.summary}>
         {type === HabitType.time ? (
-          <Text>
-            {`Today: ${formatTime(hours, minutes, seconds)} /${formatTime(goalHours, goalMinutes, goalSeconds)}`}
+          <Text style={styles.summaryInfo}>
+            {`${t('common.today')}: ${formatTime(hours, minutes, seconds)} /${formatTime(goalHours, goalMinutes, goalSeconds)}`}
           </Text>
         ) : (
           <Text
             style={styles.summaryInfo}
-          >{`Today: ${currentResult}/${goal} ${unit}`}</Text>
+          >{`${t('common.today')}: ${currentResult}/${goal} ${unit}`}</Text>
         )}
       </View>
     </View>
@@ -133,9 +145,8 @@ const styles = StyleSheet.create({
     borderLeftColor: theme.border,
   },
   text: {
-    fontSize: 22,
-    fontWeight: 'bold',
     textAlign: 'center',
+    fontFamily: 'ShantellSans-Medium',
   },
   summary: {
     height: 40,
@@ -145,6 +156,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   summaryInfo: {
-    fontSize: 16,
+    fontSize: 18,
+    fontFamily: 'NeuchaRegular',
   },
 });

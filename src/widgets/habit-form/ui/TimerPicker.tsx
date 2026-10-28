@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { useTranslation } from 'react-i18next';
+
 import { theme } from '../../../app/theme';
 import { GhostButton, WheelPicker } from '../../../shared/ui';
 
@@ -14,6 +16,8 @@ type Props = {
 };
 
 export const TimerPicker = ({ value, onChange }: Props) => {
+  const { t } = useTranslation();
+
   const [visible, setVisible] = useState(false);
 
   const initialHours = Math.floor(value / 3600);
@@ -51,7 +55,7 @@ export const TimerPicker = ({ value, onChange }: Props) => {
       <Modal transparent={true} visible={visible} animationType="fade">
         <View style={styles.overlay}>
           <View style={styles.modal}>
-            <Text style={styles.title}>Set Timer</Text>
+            <Text style={styles.title}>{t('timer.modalTitle')}</Text>
 
             <View style={styles.row}>
               <WheelPicker data={hoursData} value={h} onChange={setH} />
@@ -60,14 +64,14 @@ export const TimerPicker = ({ value, onChange }: Props) => {
             </View>
 
             <View style={styles.labels}>
-              <Text>hours</Text>
-              <Text>minutes</Text>
-              <Text>seconds</Text>
+              <Text style={styles.label}>{t('timer.hours')}</Text>
+              <Text style={styles.label}>{t('timer.minutes')}</Text>
+              <Text style={styles.label}>{t('timer.seconds')}</Text>
             </View>
 
             <View style={styles.actions}>
-              <GhostButton title={'Cancel'} onPress={cancel} />
-              <GhostButton title={'Save'} onPress={save} />
+              <GhostButton title={t('common.cancel')} onPress={cancel} />
+              <GhostButton title={t('common.save')} onPress={save} />
             </View>
           </View>
         </View>
@@ -103,7 +107,8 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     marginBottom: 16,
-    fontSize: 16,
+    fontSize: 22,
+    fontFamily: 'NeuchaRegular',
   },
 
   row: {
@@ -117,11 +122,17 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
 
+  label: {
+    fontSize: 16,
+    fontFamily: 'NeuchaRegular',
+  },
+
   actions: {
     height: 40,
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 20,
     borderTopWidth: 1,
+    paddingHorizontal: 12,
   },
 });

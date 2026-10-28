@@ -2,12 +2,15 @@ export const ru = {
   common: {
     save: 'Сохранить',
     cancel: 'Отменить',
+    replace: 'Заменить',
+    add: 'Добавить',
     delete: 'Удалить',
     back: 'Назад',
     confirm: 'Подтвердить',
     yes: 'Да',
     no: 'Нет',
     loading: 'Загрузка...',
+    today: 'Сегодня',
   },
 
   onboarding: {
@@ -70,6 +73,13 @@ export const ru = {
     color: 'Выберите цвет',
     numericGoal: 'Укажите числовую цель',
     timerGoal: 'Укажите цель для таймера',
+  },
+
+  timer: {
+    modalTitle: 'Установить таймер',
+    hours: 'часы',
+    minutes: 'минуты',
+    seconds: 'секунды',
   },
 
   navigation: {

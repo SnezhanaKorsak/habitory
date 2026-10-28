@@ -2,12 +2,15 @@ export const en = {
   common: {
     save: 'Save',
     cancel: 'Cancel',
+    replace: 'Replace',
+    add: 'Add',
     delete: 'Delete',
     back: 'Back',
     confirm: 'Confirm',
     yes: 'Yes',
     no: 'No',
     loading: 'Loading...',
+    today: 'Today',
   },
 
   onboarding: {
@@ -72,6 +75,13 @@ export const en = {
     color: 'Select an color',
     numericGoal: 'Specify a numerical goal',
     timerGoal: 'Specify the goal for the timer',
+  },
+
+  timer: {
+    modalTitle: 'Set Timer',
+    hours: 'hours',
+    minutes: 'minutes',
+    seconds: 'seconds',
   },
 
   navigation: {

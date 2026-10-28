@@ -1,5 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
+import { useTranslation } from 'react-i18next';
+
 import { theme } from '../../../app/theme';
 import { WheelPicker } from '../../../shared/ui';
 
@@ -13,6 +15,8 @@ const minutesData = Array.from({ length: 60 }, (_, i) => i);
 const secondsData = Array.from({ length: 60 }, (_, i) => i);
 
 export const UpdateTimeResult = ({ currentValue, setCurrentValue }: Props) => {
+  const { t } = useTranslation();
+
   const h = Math.floor(currentValue / 3600);
   const m = Math.floor((currentValue % 3600) / 60);
   const s = currentValue % 60;
@@ -43,9 +47,9 @@ export const UpdateTimeResult = ({ currentValue, setCurrentValue }: Props) => {
       </View>
 
       <View style={styles.labelsBlock}>
-        <Text style={styles.labels}>hours</Text>
-        <Text style={styles.labels}>minutes</Text>
-        <Text style={styles.labels}>seconds</Text>
+        <Text style={styles.labels}>{t('timer.hours')}</Text>
+        <Text style={styles.labels}>{t('timer.minutes')}</Text>
+        <Text style={styles.labels}>{t('timer.seconds')}</Text>
       </View>
     </View>
   );
@@ -70,6 +74,8 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   labels: {
+    fontSize: 14,
     color: theme.textSecondary,
+    fontFamily: 'NeuchaRegular',
   },
 });
