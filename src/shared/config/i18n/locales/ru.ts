@@ -102,5 +102,7 @@ export const ru = {
     awards: 'Награды',
     settings: 'Настройки',
     rules: 'Правила',
+    earnedAwards: 'Полученные награды',
+    availableAwards: 'Доступные награды',
   },
 };

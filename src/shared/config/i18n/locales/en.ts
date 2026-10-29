@@ -104,5 +104,7 @@ export const en = {
     awards: 'Awards',
     settings: 'Settings',
     rules: 'Rules',
+    earnedAwards: 'Earned awards',
+    availableAwards: 'Available awards',
   },
 };

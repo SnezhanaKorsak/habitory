@@ -14,11 +14,13 @@ export const PageTitle = ({ title, rightAddon, leftAddon }: Props) => {
 
   return (
     <View style={styles.container}>
-      {leftAddon}
+      {leftAddon && <View style={styles.leftAddon}>{leftAddon}</View>}
 
-      <Text style={[styles.title, { fontFamily: fonts.bold }]}>{title}</Text>
+      <View style={styles.main}>
+        <Text style={[styles.title, { fontFamily: fonts.bold }]}>{title}</Text>
+      </View>
 
-      {rightAddon}
+      {rightAddon && <View style={styles.rightAddon}>{rightAddon}</View>}
     </View>
   );
 };
@@ -30,9 +32,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
   },
+  main: {
+    flex: 1,
+  },
+
   title: {
-    width: 'auto',
     fontSize: 32,
     lineHeight: 40,
+  },
+  leftAddon: {
+    width: 30,
+    marginRight: 8,
+  },
+  rightAddon: {
+    width: 30,
+    marginLeft: 8,
   },
 });

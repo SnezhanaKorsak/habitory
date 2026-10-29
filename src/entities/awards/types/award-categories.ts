@@ -1,10 +1,13 @@
 export type Award = {
   icon: string;
-  name: string;
+  nameRU: string;
+  nameEN: string;
   level: number;
   goal: number;
-  shortDescription: string;
-  description: string;
+  shortDescriptionRU: string;
+  shortDescriptionEN: string;
+  descriptionRU: string;
+  descriptionEN: string;
 };
 
 export type AwardCategory = {
@@ -12,7 +15,8 @@ export type AwardCategory = {
   backgroundIcon: string;
   backgroundIconType: BackgroundIconType;
   backgroundColor: string;
-  unit: string;
+  unitRU: string;
+  unitEN: string;
   currentLevel: number;
   currentProgress: number;
   levels: Award[];

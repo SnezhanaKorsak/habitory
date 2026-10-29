@@ -9,6 +9,7 @@ import {
 } from '@expo/vector-icons';
 
 import { theme } from '../../../app/theme';
+import { useAppSettings } from '../../../shared/config/i18n/useAppSettings';
 
 import { StackNavigationProp } from '../../../shared/types';
 import {
@@ -33,17 +34,37 @@ const mappedIconComponent = {
 export const AwardBadge = ({ awardInfo, award, isEarned = false }: Props) => {
   const navigation = useNavigation<StackNavigationProp>();
 
+  const { language } = useAppSettings();
+  const isRussianLanguage = language === 'ru';
+
   const {
     category,
     backgroundIcon,
     backgroundIconType,
     backgroundColor,
-    unit,
+    unitRU,
+    unitEN,
     currentProgress,
   } = awardInfo;
-  const { icon, name: awardName, shortDescription, goal, earnedAt } = award;
+  const {
+    icon,
+    nameRU,
+    nameEN,
+    shortDescriptionRU,
+    shortDescriptionEN,
+    goal,
+    earnedAt,
+  } = award;
+
+  const awardName = isRussianLanguage ? nameRU : nameEN;
+  const shortDescription = isRussianLanguage
+    ? shortDescriptionRU
+    : shortDescriptionEN;
+  const unit = isRussianLanguage ? unitRU : unitEN;
 
   const IconComponent = mappedIconComponent[backgroundIconType];
+
+  const cardWidth = isEarned ? 160 : '45%';
 
   const goToAwardPage = () => {
     navigation.navigate('Award', {
@@ -54,7 +75,7 @@ export const AwardBadge = ({ awardInfo, award, isEarned = false }: Props) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { width: cardWidth }]}>
       <View style={styles.box}>
         <Pressable
           onPress={goToAwardPage}
@@ -84,7 +105,7 @@ export const AwardBadge = ({ awardInfo, award, isEarned = false }: Props) => {
         </Pressable>
       </View>
 
-      <View style={{ width: 120 }}>
+      <View style={styles.info}>
         <Text style={styles.title}>{awardName}</Text>
         {isEarned ? (
           <Text style={styles.description}>{shortDescription}</Text>
@@ -107,10 +128,13 @@ const styles = StyleSheet.create({
     height: 200,
   },
   box: {
-    width: 120,
+    width: '100%',
     height: 120,
     marginRight: 20,
     position: 'relative',
+  },
+  info: {
+    width: '100%',
   },
   icon: {
     ...StyleSheet.absoluteFillObject,
@@ -125,12 +149,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontWeight: 'bold',
     textAlign: 'center',
+    fontFamily: 'ShantellSans-Medium',
   },
   description: {
     fontSize: 14,
     color: theme.textSecondary,
+    fontFamily: 'NeuchaRegular',
     textAlign: 'center',
   },
   button: {

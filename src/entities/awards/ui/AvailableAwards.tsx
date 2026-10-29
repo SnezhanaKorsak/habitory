@@ -1,5 +1,7 @@
 import { FlatList, StyleSheet, View } from 'react-native';
 
+import { useTranslation } from 'react-i18next';
+
 import { PageTitle } from '../../../shared/ui';
 import { awards } from '../constants/awards';
 import { useAwardsStore } from '../model/useAwardsStore';
@@ -14,6 +16,8 @@ type AvailableAward = {
 };
 
 export const AvailableAwards = () => {
+  const { t } = useTranslation();
+
   const earnedAwardsList = useAwardsStore((state) => state.earnedAwardsList);
 
   const availableAwards: AvailableAward[] = earnedAwardsList.map(
@@ -35,7 +39,7 @@ export const AvailableAwards = () => {
 
   return (
     <View style={styles.container}>
-      <PageTitle title={'Available awards'} />
+      <PageTitle title={t('navigation.availableAwards')} />
 
       <FlatList
         data={availableAwards}
