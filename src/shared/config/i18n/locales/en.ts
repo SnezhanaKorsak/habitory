@@ -84,6 +84,18 @@ export const en = {
     seconds: 'seconds',
   },
 
+  rules: {
+    title: 'How You Earn XP',
+    title1: '✔️ Yes / No Habits',
+    title2: '🔢 Quantitative Habits',
+    title3: '⏱ Timer',
+    title4: 'Important',
+    rule1: 'Complete a habit and earn +10 XP',
+    rule2: 'The more you do, the more XP you earn (up to 20 XP per goal)',
+    rule3: 'Earn +1 XP every 5 minutes',
+    rule4: 'Miss a day without any activity — lose 10 XP',
+  },
+
   navigation: {
     habits: 'Habits',
     new: 'New Habit',
@@ -91,5 +103,6 @@ export const en = {
     progress: 'Progress',
     awards: 'Awards',
     settings: 'Settings',
+    rules: 'Rules',
   },
 };

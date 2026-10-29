@@ -1,28 +1,25 @@
 import { StyleSheet, Text, View } from 'react-native';
 
+import { useTranslation } from 'react-i18next';
+
 export const ProgressRules = () => {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Как ты получаешь XP</Text>
+      <Text style={styles.title}>{t('rules.title')}</Text>
 
-      <Text style={styles.rule}>✔️ Да / нет привычки</Text>
-      <Text style={styles.ruleDescription}>
-        Просто выполни — и получи +10 XP
-      </Text>
+      <Text style={styles.rule}>{t('rules.title1')}</Text>
+      <Text style={styles.ruleDescription}>{t('rules.rule1')}</Text>
 
-      <Text style={styles.rule}>🔢 Количественные привычки</Text>
-      <Text style={styles.ruleDescription}>
-        Чем больше сделал — тем больше XP (до 20 XP за цель)
-      </Text>
+      <Text style={styles.rule}>{t('rules.title2')}</Text>
+      <Text style={styles.ruleDescription}>{t('rules.rule2')}</Text>
 
-      <Text style={styles.rule}>⏱ Таймер</Text>
-      <Text style={styles.ruleDescription}>Каждые 5 минут +1 XP</Text>
+      <Text style={styles.rule}>{t('rules.title3')}</Text>
+      <Text style={styles.ruleDescription}>{t('rules.rule3')}</Text>
 
-      <Text style={styles.title}>Важно</Text>
-
-      <Text style={styles.ruleDescription}>
-        Пропустил день без активности — получишь −10 XP
-      </Text>
+      <Text style={styles.title}>{t('rules.title4')}</Text>
+      <Text style={styles.ruleDescription}>{t('rules.rule4')}</Text>
     </View>
   );
 };
@@ -35,16 +32,17 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 8,
     fontSize: 20,
-    fontWeight: 'bold',
     textAlign: 'left',
+    fontFamily: 'ShantellSans-Medium',
   },
   rule: {
     marginBottom: 4,
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: 'ShantellSans-Medium',
   },
   ruleDescription: {
     marginBottom: 12,
     fontSize: 16,
+    fontFamily: 'NeuchaRegular',
   },
 });

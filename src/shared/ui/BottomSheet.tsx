@@ -111,10 +111,11 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 26,
-    fontFamily: 'FastelarDemoRegular',
+    fontFamily: 'ShantellSans-Medium',
   },
   subtitle: {
     fontSize: 20,
     color: theme.textSecondary,
+    fontFamily: 'NeuchaRegular',
   },
 });

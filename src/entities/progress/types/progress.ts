@@ -1,6 +1,9 @@
 export type Level = {
   icon: string;
-  name: string;
+  nameEN: string;
+  nameRU: string;
+  descriptionEN: string;
+  descriptionRU: string;
   minExperience: number;
   maxExperience: number;
 };

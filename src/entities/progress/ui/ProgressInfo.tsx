@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import * as Progress from 'react-native-progress';
 
 import { theme } from '../../../app/theme';
+import { useAppSettings } from '../../../shared/config/i18n/useAppSettings';
 import { IconButton } from '../../../shared/ui';
 import { levels } from '../constants/levels';
 import { useProgressStore } from '../model/useProgressStore';
@@ -12,6 +13,8 @@ type Props = {
 };
 
 export const ProgressInfo = ({ openBottomSheet }: Props) => {
+  const { language } = useAppSettings();
+
   const currentXP = useProgressStore((state) => state.experience);
   const currentLevel =
     levels.find(
@@ -20,7 +23,10 @@ export const ProgressInfo = ({ openBottomSheet }: Props) => {
     ) ?? levels[0];
 
   const icon = currentLevel.icon;
-  const levelName = currentLevel.name;
+  const levelName =
+    language === 'ru' ? currentLevel.nameRU : currentLevel.nameEN;
+  const levelDescription =
+    language === 'ru' ? currentLevel.descriptionRU : currentLevel.descriptionEN;
   const maxXP = currentLevel.maxExperience;
   const minXP = currentLevel.minExperience;
 
@@ -37,9 +43,10 @@ export const ProgressInfo = ({ openBottomSheet }: Props) => {
         unfilledColor={theme.border}
         showsText={true}
         formatText={() => (
-          <View>
+          <View style={styles.block}>
             <Text style={styles.icon}>{icon}</Text>
             <Text style={styles.levelName}>{levelName}</Text>
+            <Text style={styles.levelDescription}>{levelDescription}</Text>
           </View>
         )}
       />
@@ -73,14 +80,28 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  block: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   icon: {
-    fontSize: 150,
-    lineHeight: 170,
+    fontSize: 140,
+    lineHeight: 160,
   },
   levelName: {
-    marginTop: 20,
-    fontSize: 36,
-    fontFamily: 'FastelarDemoRegular',
+    marginTop: 8,
+    fontSize: 20,
+    fontFamily: 'ShantellSans-Medium',
+    textAlign: 'center',
+  },
+  levelDescription: {
+    width: 200,
+    marginTop: 0,
+    paddingLeft: 16,
+    color: theme.textSecondary,
+    fontSize: 16,
+    fontFamily: 'NeuchaRegular',
     textAlign: 'center',
   },
   info: {
