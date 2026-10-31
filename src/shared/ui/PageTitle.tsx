@@ -41,11 +41,11 @@ const styles = StyleSheet.create({
     lineHeight: 40,
   },
   leftAddon: {
-    width: 30,
+    width: 34,
     marginRight: 8,
   },
   rightAddon: {
-    width: 30,
+    width: 34,
     marginLeft: 8,
   },
 });

@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 import { theme } from '../../../app/theme';
 import { GhostButton } from '../../../shared/ui';
@@ -17,13 +18,15 @@ export const TimerTypeSelectionButtons = ({
   timerType,
   setTimerType,
 }: Props) => {
+  const { t } = useTranslation();
+
   const stopwatchColor = timerType === 'stopwatch' ? theme.accent200 : '';
   const countdownColor = timerType === 'countdown' ? theme.accent200 : '';
 
   return (
     <View style={styles.container}>
       <GhostButton
-        title="Stopwatch"
+        title={t('timer.stopwatch')}
         textStyle={{ color: stopwatchColor }}
         leftAddon={<Entypo name="stopwatch" size={26} color={stopwatchColor} />}
         onPress={() => setTimerType('stopwatch')}
@@ -32,7 +35,7 @@ export const TimerTypeSelectionButtons = ({
       <View style={styles.divider} />
 
       <GhostButton
-        title="Countdown"
+        title={t('timer.countdown')}
         textStyle={{ color: countdownColor }}
         leftAddon={
           <MaterialCommunityIcons

@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 22,
     lineHeight: 60,
+    fontFamily: 'NeuchaRegular',
   },
   iconBg: {
     width: 40,

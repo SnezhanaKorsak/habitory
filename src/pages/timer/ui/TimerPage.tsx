@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { useAudioPlayer } from 'expo-audio';
+import { useTranslation } from 'react-i18next';
 
 import { HabitsListByType } from '../../../entities/habits';
 import {
@@ -17,6 +18,8 @@ import { CountDownTimer, Layout, Stopwatch } from '../../../widgets';
 import { HabitType } from '../../../shared/types/habit';
 
 export const TimerPage = () => {
+  const { t } = useTranslation();
+
   const [currentValue, setCurrentValue] = useState(0);
   const [isShowConfirmModal, setIsShowConfirmModal] = useState(false);
   const [isShowRecordModal, setIsShowRecordModal] = useState(false);
@@ -72,7 +75,7 @@ export const TimerPage = () => {
         <View style={styles.container}>
           {isShowConfirmModal && (
             <ConfirmOperationModal
-              title="Save record?"
+              title={t('common.saveRecord')}
               isShowModal={isShowConfirmModal}
               onCancelOperation={cancelOperation}
               onConfirmOperation={confirmOperation}
@@ -129,8 +132,8 @@ export const TimerPage = () => {
 
       <BottomSheet
         isOpen={isOpenBottomSheet}
-        title="Today"
-        subtitle="Select an activity"
+        title={t('common.today')}
+        subtitle={t('timer.selectActivity')}
         onClose={() => setIsOpenBottomSheet(false)}
       >
         <HabitsListByType type={HabitType.time} onSelect={selectHabit} />

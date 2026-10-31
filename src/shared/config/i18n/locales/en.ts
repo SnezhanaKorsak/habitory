@@ -4,13 +4,15 @@ export const en = {
     cancel: 'Cancel',
     replace: 'Replace',
     add: 'Add',
-    delete: 'Delete',
-    back: 'Back',
-    confirm: 'Confirm',
     yes: 'Yes',
     no: 'No',
     loading: 'Loading...',
     today: 'Today',
+    saveRecord: 'Save record?',
+    start: 'Start',
+    pause: 'Pause',
+    resume: 'Resume',
+    stop: 'Stop',
   },
 
   onboarding: {
@@ -82,6 +84,10 @@ export const en = {
     hours: 'hours',
     minutes: 'minutes',
     seconds: 'seconds',
+    selectActivity: 'Select an activity',
+    error: 'Please, enter a valid interval!',
+    stopwatch: 'Stopwatch',
+    countdown: 'Countdown',
   },
 
   rules: {

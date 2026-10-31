@@ -4,13 +4,15 @@ export const ru = {
     cancel: 'Отменить',
     replace: 'Заменить',
     add: 'Добавить',
-    delete: 'Удалить',
-    back: 'Назад',
-    confirm: 'Подтвердить',
     yes: 'Да',
     no: 'Нет',
     loading: 'Загрузка...',
     today: 'Сегодня',
+    saveRecord: 'Сохранить запись?',
+    start: 'Начать',
+    pause: 'Пауза',
+    resume: 'Возобновить',
+    stop: 'Остановить',
   },
 
   onboarding: {
@@ -80,6 +82,10 @@ export const ru = {
     hours: 'часы',
     minutes: 'минуты',
     seconds: 'секунды',
+    selectActivity: 'Выберите активность',
+    error: 'Пожалуйста, установите время!',
+    stopwatch: 'Секундомер',
+    countdown: 'Таймер',
   },
 
   rules: {
