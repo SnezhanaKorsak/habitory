@@ -81,8 +81,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 22,
-    fontWeight: 'bold',
     textAlign: 'center',
+    fontFamily: 'ShantellSans-Medium',
   },
   description: {
     fontSize: 18,
@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
     color: '#777067',
     marginTop: 10,
     textAlign: 'center',
+    fontFamily: 'NeuchaRegular',
   },
   modalBtnBlock: {
     flexDirection: 'row',
